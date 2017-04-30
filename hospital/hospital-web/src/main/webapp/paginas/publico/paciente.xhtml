@@ -7,7 +7,7 @@
 		<ui:define name="cuerpo">
 		<h:form prependId="false">
 		
-		<p:fieldset legend="Datos paciente" style="margin-bottom:10px">
+		<p:fieldset legend="Datos paciente" style="margin-top:10px">
 			<h:panelGrid columns="3">
 			
 				<p:outputLabel for="tfnompa" id="nom" value="Nombre"  />
@@ -18,14 +18,9 @@
 				<p:inputText id="tfapepa" class="form-control"  value="" />
 				<p:message for="tfapepa" />
 				
-				<p:outputLabel for="tfdocpa" id="doc" value="Documento"  />
-				<h:selectOneMenu id="tfdocpa" class="form-control" value="#">
-					<f:selectItem itemValue="Seleccione" itemLabel="Seleccione" />
-					<f:selectItem itemValue="C.C" itemLabel="C.C" />
-					<f:selectItem itemValue="T.I" itemLabel="T.I" />
-					<f:selectItem itemValue="R.C" itemLabel="R.C" />
-				</h:selectOneMenu>
-				<p:message for="tfdocpa" />
+				<p:outputLabel for="tfnumpa" id="nunD" value="Numero documento"  />
+				<p:inputText id="tfnumpa" class="form-control"  value="" />
+				<p:message for="tfnumpa" />
 				
 				<p:outputLabel for="tfgenpa" id="gen" value="Genero"  />
 				<h:selectOneMenu id="tfgenpa" class="form-control" value="#">
@@ -51,12 +46,74 @@
 				<h:panelGrid columns="2">
 				<p:commandButton styleClass="ui-priority-primary" value="Registrar" ajax="false" action="#" />
 				<p:commandButton styleClass="ui-priority-primary" value="Buscar" ajax="false" action="#" />
+				
 				</h:panelGrid>
-				
-				
-				
 			</h:panelGrid>
 		</p:fieldset>
+		
+		 <p:accordionPanel>
+        <p:tab title="Pacientes">
+			<p:dataTable id="tablaPa" value="#" var="pa"
+				border="1">
+				<p:column>
+					<f:facet name="header">
+							Nombre
+						</f:facet>
+					<p:outputLabel value="" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+							Apellido
+						</f:facet>
+					<p:outputLabel value="" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+							Tipo Documento
+						</f:facet>
+					<p:outputLabel value="" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+							Documento
+						</f:facet>
+					<p:outputLabel value="" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+							Genero
+						</f:facet>
+					<p:outputLabel value="" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+							Fecha Nacimiento
+						</f:facet>
+					<p:outputLabel value="" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+							Telefono
+						</f:facet>
+					<p:outputLabel value="" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+							Email
+						</f:facet>
+					<p:outputLabel value="" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+							Borrar
+						</f:facet>
+						<p:commandButton action="#" process="@this" value="Quitar"
+							update="tablaPa" />
+					<p:outputLabel value="" />
+				</p:column>
+			</p:dataTable>
+			</p:tab>
+    </p:accordionPanel>
 			
 		</h:form>
 	</ui:define>
