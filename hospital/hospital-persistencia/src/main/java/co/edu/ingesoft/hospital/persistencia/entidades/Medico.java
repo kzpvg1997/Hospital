@@ -32,9 +32,6 @@ public class Medico implements Serializable{
 	@Column(name="apellido",length=40)
 	private String apellido;
 	
-	@ManyToOne
-	@JoinColumn(name="tipo_medico")
-	private TipoMedico tipoMedico;
 	
 	@ManyToOne
 	@JoinColumn(name="horarios_disponibles")

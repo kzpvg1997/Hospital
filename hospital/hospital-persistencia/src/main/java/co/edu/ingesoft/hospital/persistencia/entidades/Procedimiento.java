@@ -30,9 +30,6 @@ public class Procedimiento implements Serializable{
 	@Column(name="descripcion",length=200)
 	private String descripcion;
 	
-	@ManyToOne
-	@JoinColumn(name="tipo_procedimiento")
-	private TipoProcedimiento tipoProcedimiento;
 	
 	@ManyToOne
 	@JoinColumn(name="medico_id")

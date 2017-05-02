@@ -53,10 +53,6 @@ public class Cita implements Serializable{
 	private Paciente paciente;
 	
 	@ManyToOne
-	@JoinColumn(name="Tipo_cita")
-	private TipoCita tipoCita;
-	
-	@ManyToOne
 	@JoinColumn(name="horarios_disponibles")
 	private HorariosDisponibles horarioDisponible;
 	

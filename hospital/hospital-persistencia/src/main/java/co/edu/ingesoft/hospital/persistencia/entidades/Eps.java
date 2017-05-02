@@ -27,9 +27,6 @@ public class Eps implements Serializable{
 	@Column(name="nombre",length=40)
 	private String nombre;
 	
-	@ManyToOne
-	@JoinColumn(name="Tipo_EPS")
-	private TipoEPS tipoEPS;
 	
 	public Eps(){
 		

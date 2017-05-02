@@ -34,9 +34,6 @@ public class RecetasMedicas implements Serializable{
 	@JoinColumn(name="medicamentos_id")
 	private Medicamento medicamento;
 	
-	@ManyToOne
-	@JoinColumn(name="tipo_Entrega")
-	private TipoEntrega tipoEntrega;
 	
 	public RecetasMedicas(){
 		

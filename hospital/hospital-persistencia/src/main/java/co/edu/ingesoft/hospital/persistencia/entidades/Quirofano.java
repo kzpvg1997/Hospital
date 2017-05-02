@@ -35,9 +35,6 @@ public class Quirofano implements Serializable{
 	@Column(name="ocupado")
 	private boolean ocupado;
 	
-	@ManyToOne
-	@JoinColumn(name="tipo_quirofano")
-	private TipoQuirofano tipoQuirofano;
 	
 	@ManyToOne
 	@JoinColumn(name="hospital_id")
