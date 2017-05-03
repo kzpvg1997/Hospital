@@ -31,6 +31,15 @@
 				</h:selectOneMenu>
 				<p:message for="tfgenpa" />
 				
+				<p:outputLabel for="tfepspa" id="eps" value="Eps"  />
+				<h:selectOneMenu id="tfepspa" class="form-control" value="#">
+					<f:selectItem itemValue="Seleccione" itemLabel="Seleccione" />
+					<f:selectItem itemValue="1" itemLabel="Coomeva" />
+					<f:selectItem itemValue="2" itemLabel="Cafe salud" />
+					<f:selectItem itemValue="3" itemLabel="Caprecom" />
+				</h:selectOneMenu>
+				<p:message for="tfepspa" />
+				
 				<p:outputLabel for="tffechpa" id="fech" value="Fecha nacimiento"  />
 				<p:inputText id="tffechpa" class="form-control"  value="" />
 				<p:message for="tffechpa" />
@@ -64,12 +73,6 @@
 				<p:column>
 					<f:facet name="header">
 							Apellido
-						</f:facet>
-					<p:outputLabel value="" />
-				</p:column>
-				<p:column>
-					<f:facet name="header">
-							Tipo Documento
 						</f:facet>
 					<p:outputLabel value="" />
 				</p:column>
