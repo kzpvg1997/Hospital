@@ -7,10 +7,12 @@
   <h:head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <title>Medilab Free Bootstrap HTML5 Template</title>
+    <title>Medilab</title>
     <meta name="description" content="Free Bootstrap Theme by BootstrapMade.com"/>
     <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template"/>
     
+    <link rel="shortcut icon"
+		href="#{request.contextPath}/img/ico.png" />
     <link rel="stylesheet" type="text/css" href="#{request.contextPath}/https://fonts.googleapis.com/css?family=Open+Sans|Raleway|Candal"/>
     <link rel="stylesheet" type="text/css" href="#{request.contextPath}/css/font-awesome.min.css"/>
     <link rel="stylesheet" type="text/css" href="#{request.contextPath}/css/bootstrap.min.css"/>
@@ -51,9 +53,9 @@
 							<img src="#{request.contextPath}/img/logo.png" class="img-responsive"/>
 						</div>
 						<div class="banner-text text-center">
-							<h1 class="white">Healthcare at your desk!!</h1>
+							<h1 class="white">EL MEJOR CUIDADO PARA TU SALUD</h1>
 							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod <br>tempor incididunt ut labore et dolore magna aliqua.</br></p>
-							<a href="#{request.contextPath}/#contact" class="btn btn-appoint">Make an Appointment.</a>
+							<p:commandButton process="@this" action="/paginas/publico/cita.xhtml?faces-redirect=true"  class="btn btn-appoint" value="Pedir una cita"/>
 						</div>
 						<div class="overlay-detail text-center">
 			               <a href="#{request.contextPath}/#service"><i class="fa fa-angle-down"></i></a>
@@ -66,7 +68,7 @@
 	<!--/ banner-->
 			<h:form prependId="false">
 
-				<div class="body">
+				<div class="body" align="center">
 
 					<section id="portfolio">
 

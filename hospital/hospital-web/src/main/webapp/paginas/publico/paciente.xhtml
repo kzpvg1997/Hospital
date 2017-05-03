@@ -1,0 +1,124 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui" template="/template/template.xhtml">
+	
+		<ui:define name="cuerpo">
+		<h:form prependId="false">
+		
+		<p:fieldset legend="Datos paciente" style="margin-top:10px">
+			<h:panelGrid columns="3">
+			
+				<p:outputLabel for="tfnompa" id="nom" value="Nombre"  />
+				<p:inputText id="tfnompa" class="form-control"  value="" />
+				<p:message for="tfnompa" />
+				
+				<p:outputLabel for="tfapepa" id="ape" value="Apellido"  />
+				<p:inputText id="tfapepa" class="form-control"  value="" />
+				<p:message for="tfapepa" />
+				
+				<p:outputLabel for="tfnumpa" id="nunD" value="Numero documento"  />
+				<p:inputText id="tfnumpa" class="form-control"  value="" />
+				<p:message for="tfnumpa" />
+				
+				<p:outputLabel for="tfgenpa" id="gen" value="Genero"  />
+				<h:selectOneMenu id="tfgenpa" class="form-control" value="#">
+					<f:selectItem itemValue="Seleccione" itemLabel="Seleccione" />
+					<f:selectItem itemValue="Femenino" itemLabel="Femenino" />
+					<f:selectItem itemValue="Masculino" itemLabel="Masculino" />
+					<f:selectItem itemValue="Otro" itemLabel="Otro" />
+				</h:selectOneMenu>
+				<p:message for="tfgenpa" />
+				
+				<p:outputLabel for="tfepspa" id="eps" value="Eps"  />
+				<h:selectOneMenu id="tfepspa" class="form-control" value="#">
+					<f:selectItem itemValue="Seleccione" itemLabel="Seleccione" />
+					<f:selectItem itemValue="1" itemLabel="Coomeva" />
+					<f:selectItem itemValue="2" itemLabel="Cafe salud" />
+					<f:selectItem itemValue="3" itemLabel="Caprecom" />
+				</h:selectOneMenu>
+				<p:message for="tfepspa" />
+				
+				<p:outputLabel for="tffechpa" id="fech" value="Fecha nacimiento"  />
+				<p:inputText id="tffechpa" class="form-control"  value="" />
+				<p:message for="tffechpa" />
+				
+				<p:outputLabel for="tftelpa" id="tel" value="Telefono"  />
+				<p:inputText id="tftelpa" class="form-control"  value="" />
+				<p:message for="tftelpa" />
+				
+				<p:outputLabel for="tfemapa" id="ema" value="Email"  />
+				<p:inputText type="Email" id="tfemapa" class="form-control"  value="" />
+				<p:message for="tfemapa" />
+				
+				<h:panelGrid columns="2">
+				<p:commandButton styleClass="ui-priority-primary" value="Registrar" ajax="false" action="#" />
+				<p:commandButton styleClass="ui-priority-primary" value="Buscar" ajax="false" action="#" />
+				
+				</h:panelGrid>
+			</h:panelGrid>
+		</p:fieldset>
+		
+		 <p:accordionPanel>
+        <p:tab title="Pacientes">
+			<p:dataTable id="tablaPa" value="#" var="pa"
+				border="1">
+				<p:column>
+					<f:facet name="header">
+							Nombre
+						</f:facet>
+					<p:outputLabel value="" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+							Apellido
+						</f:facet>
+					<p:outputLabel value="" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+							Documento
+						</f:facet>
+					<p:outputLabel value="" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+							Genero
+						</f:facet>
+					<p:outputLabel value="" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+							Fecha Nacimiento
+						</f:facet>
+					<p:outputLabel value="" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+							Telefono
+						</f:facet>
+					<p:outputLabel value="" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+							Email
+						</f:facet>
+					<p:outputLabel value="" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+							Borrar
+						</f:facet>
+						<p:commandButton action="#" process="@this" value="Quitar"
+							update="tablaPa" />
+					<p:outputLabel value="" />
+				</p:column>
+			</p:dataTable>
+			</p:tab>
+    </p:accordionPanel>
+			
+		</h:form>
+	</ui:define>
+	
+</ui:composition>
