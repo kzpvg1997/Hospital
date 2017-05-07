@@ -18,10 +18,12 @@
 				<p:outputLabel for="tfpass" id="pass" value="Contraseña" />
 				<h:inputSecret  id="tfpass" class="form-control" placeholder="password" value="" />
 				<p:message for="tfpass" />
-
+				
+				<h:selectOneMenu id="tfepspasss" class="form-control" value="#">
+					<f:selectItem itemValue="Seleccione" itemLabel="Seleccione" />
+				</h:selectOneMenu>
 			
 				<p:commandButton styleClass="ui-priority-primary" value="Iniciar Sesion" ajax="false" action="#" />
-				<p:calendar/>
 			</h:panelGrid>
 		</p:fieldset>
 		</h:form>
