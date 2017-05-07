@@ -35,7 +35,7 @@ public class Eps implements Serializable{
 	public static final String LISTA_EPS ="eps.Lista";
 	
 	@Id
-	@Column(name="id")
+	@Column(name="id_eps")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "EPS_SEQ")
     @SequenceGenerator(sequenceName = "eps_seq", allocationSize = 1, name = "EPS_SEQ")
 	private int idEps;
@@ -50,4 +50,48 @@ public class Eps implements Serializable{
 	public Eps(){
 		
 	}
+
+	/**
+	 * @return the idEps
+	 */
+	public int getIdEps() {
+		return idEps;
+	}
+
+	/**
+	 * @param idEps the idEps to set
+	 */
+	public void setIdEps(int idEps) {
+		this.idEps = idEps;
+	}
+
+	/**
+	 * @return the nombre
+	 */
+	public String getNombre() {
+		return nombre;
+	}
+
+	/**
+	 * @param nombre the nombre to set
+	 */
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	/**
+	 * @return the tipoEps
+	 */
+	public TipoEpsEnum getTipoEps() {
+		return tipoEps;
+	}
+
+	/**
+	 * @param tipoEps the tipoEps to set
+	 */
+	public void setTipoEps(TipoEpsEnum tipoEps) {
+		this.tipoEps = tipoEps;
+	}
+	
+	
 }

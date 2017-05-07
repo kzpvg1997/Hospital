@@ -20,8 +20,10 @@
 				<h:inputSecret  id="tfpass" class="form-control" placeholder="password" value="" />
 				<p:message for="tfpass" />
 				
-				<h:selectOneMenu id="tfepspasss" class="form-control" value="#">
+				<h:selectOneMenu id="tfepspasss" class="form-control" value="#{pacienteAjaxController.epsSeleccionada}">
 					<f:selectItem itemValue="Seleccione" itemLabel="Seleccione" />
+					<f:selectItems value="#{pacienteAjaxController.listaEps}" var="eps"
+					itemValue="#{eps.idEps}" itemLabel="#{eps.nombre}"/>
 				</h:selectOneMenu>
 			
 				<p:commandButton styleClass="ui-priority-primary" value="Iniciar Sesion" ajax="false" action="#" />

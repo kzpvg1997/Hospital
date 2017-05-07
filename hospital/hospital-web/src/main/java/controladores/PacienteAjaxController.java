@@ -52,7 +52,7 @@ public class PacienteAjaxController implements Serializable {
 	@PostConstruct
 	public void inicializar(){
 	
-		listaEps = pacienteEJB.listarEps();
+		listarEps();
 	}
 	
 	public void registrar(){
@@ -61,6 +61,153 @@ public class PacienteAjaxController implements Serializable {
 	
 	public void buscar(){
 		
+	}
+	
+	public void listarEps(){
+		listaEps = pacienteEJB.listarEps();
+		if(listaEps==null){
+			System.out.println("(((((((((((((((((((SIN EPS))))))))))))))");
+		}
+	}
+
+	/**
+	 * @return the pacienteEJB
+	 */
+	public PacienteEJB getPacienteEJB() {
+		return pacienteEJB;
+	}
+
+	/**
+	 * @param pacienteEJB the pacienteEJB to set
+	 */
+	public void setPacienteEJB(PacienteEJB pacienteEJB) {
+		this.pacienteEJB = pacienteEJB;
+	}
+
+	/**
+	 * @return the nombre
+	 */
+	public String getNombre() {
+		return nombre;
+	}
+
+	/**
+	 * @param nombre the nombre to set
+	 */
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	/**
+	 * @return the apellido
+	 */
+	public String getApellido() {
+		return apellido;
+	}
+
+	/**
+	 * @param apellido the apellido to set
+	 */
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
+	}
+
+	/**
+	 * @return the numeroDocumento
+	 */
+	public String getNumeroDocumento() {
+		return numeroDocumento;
+	}
+
+	/**
+	 * @param numeroDocumento the numeroDocumento to set
+	 */
+	public void setNumeroDocumento(String numeroDocumento) {
+		this.numeroDocumento = numeroDocumento;
+	}
+
+	/**
+	 * @return the generoSeleccionado
+	 */
+	public String getGeneroSeleccionado() {
+		return generoSeleccionado;
+	}
+
+	/**
+	 * @param generoSeleccionado the generoSeleccionado to set
+	 */
+	public void setGeneroSeleccionado(String generoSeleccionado) {
+		this.generoSeleccionado = generoSeleccionado;
+	}
+
+	/**
+	 * @return the epsSeleccionada
+	 */
+	public String getEpsSeleccionada() {
+		return epsSeleccionada;
+	}
+
+	/**
+	 * @param epsSeleccionada the epsSeleccionada to set
+	 */
+	public void setEpsSeleccionada(String epsSeleccionada) {
+		this.epsSeleccionada = epsSeleccionada;
+	}
+
+	/**
+	 * @return the listaEps
+	 */
+	public List<Eps> getListaEps() {
+		return listaEps;
+	}
+
+	/**
+	 * @param listaEps the listaEps to set
+	 */
+	public void setListaEps(List<Eps> listaEps) {
+		this.listaEps = listaEps;
+	}
+
+	/**
+	 * @return the fecha
+	 */
+	public String getFecha() {
+		return fecha;
+	}
+
+	/**
+	 * @param fecha the fecha to set
+	 */
+	public void setFecha(String fecha) {
+		this.fecha = fecha;
+	}
+
+	/**
+	 * @return the telefono
+	 */
+	public String getTelefono() {
+		return telefono;
+	}
+
+	/**
+	 * @param telefono the telefono to set
+	 */
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
+	}
+
+	/**
+	 * @return the email
+	 */
+	public String getEmail() {
+		return email;
+	}
+
+	/**
+	 * @param email the email to set
+	 */
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	
 	

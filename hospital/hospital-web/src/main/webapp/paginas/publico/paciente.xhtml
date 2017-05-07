@@ -40,14 +40,13 @@
 				</h:selectOneMenu>
 				<p:message for="tfgenpa" />
 				
-				<p:outputLabel for="tfepspa" id="eps" value="Eps"  />
-				<h:selectOneMenu id="tfepspa" class="form-control" value="#">
+				<p:outputLabel for="tfepspasss" id="eps" value="Eps"  />
+				<h:selectOneMenu id="tfepspasss" class="form-control" value="#{pacienteAjaxController.epsSeleccionada}">
 					<f:selectItem itemValue="Seleccione" itemLabel="Seleccione" />
-					<f:selectItem itemValue="1" itemLabel="Coomeva" />
-					<f:selectItem itemValue="2" itemLabel="Cafe salud" />
-					<f:selectItem itemValue="3" itemLabel="Caprecom" />
+					<f:selectItems value="#{pacienteAjaxController.listaEps}" var="eps"
+					itemValue="#{eps.idEps}" itemLabel="#{eps.nombre}"/>
 				</h:selectOneMenu>
-				<p:message for="tfepspa" />
+				<p:message for="tfepspasss" />
 				
 				<p:outputLabel for="tffechpa" id="fech" value="Fecha nacimiento"  />
 				<p:inputText id="tffechpa" class="form-control"  value="" />
