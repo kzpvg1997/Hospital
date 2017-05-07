@@ -66,6 +66,70 @@ public class Paciente extends Persona implements Serializable{
 		this.eps=eps;
 				
 		}
+
+
+	/**
+	 * @return the email
+	 */
+	public String getEmail() {
+		return email;
+	}
+
+
+	/**
+	 * @param email the email to set
+	 */
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+
+	/**
+	 * @return the fechaNacimiento
+	 */
+	public Date getFechaNacimiento() {
+		return fechaNacimiento;
+	}
+
+
+	/**
+	 * @param fechaNacimiento the fechaNacimiento to set
+	 */
+	public void setFechaNacimiento(Date fechaNacimiento) {
+		this.fechaNacimiento = fechaNacimiento;
+	}
+
+
+	/**
+	 * @return the genero
+	 */
+	public GeneroEnum getGenero() {
+		return genero;
+	}
+
+
+	/**
+	 * @param genero the genero to set
+	 */
+	public void setGenero(GeneroEnum genero) {
+		this.genero = genero;
+	}
+
+
+	/**
+	 * @return the eps
+	 */
+	public Eps getEps() {
+		return eps;
+	}
+
+
+	/**
+	 * @param eps the eps to set
+	 */
+	public void setEps(Eps eps) {
+		this.eps = eps;
+	}
 	
 	
 }
