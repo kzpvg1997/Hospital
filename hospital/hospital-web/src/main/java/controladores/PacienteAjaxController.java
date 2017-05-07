@@ -13,6 +13,7 @@ import org.omnifaces.cdi.ViewScoped;
 
 import co.edu.eam.ingesoft.pa.negocio.beans.PacienteEJB;
 import co.edu.ingesoft.hospital.persistencia.entidades.Eps;
+import co.edu.ingesoft.hospital.persistencia.entidades.Paciente;
 
 @ViewScoped
 @Named("pacienteAjaxController")
@@ -31,7 +32,7 @@ public class PacienteAjaxController implements Serializable {
 	
 	@Pattern(regexp="[0-9]*",message="Ingrese solo numeros")
 	@Length(min=3,max=10,message="Lonitud entre 3 y 10")
-	private String numeroDocumento;
+	private int numeroDocumento;
 	
 	private String generoSeleccionado;
 	
@@ -60,6 +61,19 @@ public class PacienteAjaxController implements Serializable {
 	}
 	
 	public void buscar(){
+		
+		Paciente pa = pacienteEJB.buscarPaciente(numeroDocumento);
+		if(pa != null){
+			nombre = pa.getNombre();
+			apellido = pa.getApellido();
+			numeroDocumento = pa.getIdentificacion();
+			generoSeleccionado = pa.getGenero;
+			
+		}else{
+			
+		}
+		
+		
 		
 	}
 	
@@ -115,14 +129,14 @@ public class PacienteAjaxController implements Serializable {
 	/**
 	 * @return the numeroDocumento
 	 */
-	public String getNumeroDocumento() {
+	public int getNumeroDocumento() {
 		return numeroDocumento;
 	}
 
 	/**
 	 * @param numeroDocumento the numeroDocumento to set
 	 */
-	public void setNumeroDocumento(String numeroDocumento) {
+	public void setNumeroDocumento(int numeroDocumento) {
 		this.numeroDocumento = numeroDocumento;
 	}
 
