@@ -7,6 +7,15 @@
 		<ui:define name="cuerpo">
 		<h:form prependId="false">
 		
+		<p:fieldset legend="Busqueda" style="margin-top:10px">
+			<h:panelGrid columns="3">
+			
+			<p:commandButton styleClass="ui-priority-primary" value="Buscar" ajax="false" action="#" />
+				<p:inputText id="tfbuspa" class="form-control"  value="" />
+				<p:message for="tfbuspa" />
+			</h:panelGrid>
+		</p:fieldset>
+		
 		<p:fieldset legend="Datos paciente" style="margin-top:10px">
 			<h:panelGrid columns="3">
 			
@@ -54,7 +63,6 @@
 				
 				<h:panelGrid columns="2">
 				<p:commandButton styleClass="ui-priority-primary" value="Registrar" ajax="false" action="#" />
-				<p:commandButton styleClass="ui-priority-primary" value="Buscar" ajax="false" action="#" />
 				
 				</h:panelGrid>
 			</h:panelGrid>
