@@ -1,17 +1,25 @@
 package controladores;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.Length;
 import org.omnifaces.cdi.ViewScoped;
 
+import co.edu.eam.ingesoft.pa.negocio.beans.PacienteEJB;
+import co.edu.ingesoft.hospital.persistencia.entidades.Eps;
+
 @ViewScoped
 @Named("pacienteAjaxController")
 public class PacienteAjaxController implements Serializable {
+	
+	@EJB
+	private	PacienteEJB pacienteEJB;
 	
 	@Pattern(regexp="[A-Za-z ]*",message="Ingrese solo letras")
 	@Length(min=4,max=30,message="Lonitud entre 4 y 30")
@@ -29,6 +37,8 @@ public class PacienteAjaxController implements Serializable {
 	
 	private String epsSeleccionada;
 	
+	private List<Eps> listaEps;
+	
 	private String fecha;
 	
 	@Pattern(regexp="[0-9]*",message="Ingrese solo numeros")
@@ -42,6 +52,7 @@ public class PacienteAjaxController implements Serializable {
 	@PostConstruct
 	public void inicializar(){
 	
+		listaEps = pacienteEJB.listarEps();
 	}
 	
 	public void registrar(){
@@ -51,6 +62,7 @@ public class PacienteAjaxController implements Serializable {
 	public void buscar(){
 		
 	}
+	
 	
 	
 

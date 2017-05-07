@@ -34,7 +34,7 @@ public class Hospital implements Serializable{
 	private String nombre;
 	
 	@OneToOne
-	@JoinColumn(name="Usuario")
+	@JoinColumn(name="Usuario",unique=true)
 	private Usuario usuario;
 	
 	public Hospital(){

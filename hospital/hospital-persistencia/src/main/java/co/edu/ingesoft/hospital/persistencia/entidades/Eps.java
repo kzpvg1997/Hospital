@@ -14,6 +14,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -25,8 +27,13 @@ import co.edu.ingesoft.hospital.persistencia.enumeraciones.TipoEpsEnum;
  */
 @Entity
 @Table(name="EPS")
+@NamedQueries({
+	@NamedQuery(name=Eps.LISTA_EPS,query="SELECT e FROM Eps e ")
+})
 public class Eps implements Serializable{
 
+	public static final String LISTA_EPS ="eps.Lista";
+	
 	@Id
 	@Column(name="id")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "EPS_SEQ")

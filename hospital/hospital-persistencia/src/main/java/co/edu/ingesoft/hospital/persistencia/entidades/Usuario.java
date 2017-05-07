@@ -37,7 +37,7 @@ public class Usuario implements Serializable{
 	
 	@ManyToOne
 	@JoinColumn(name="Persona",unique=true)
-	private Persona persona;/**/
+	private Persona persona;
 	
 	public Usuario(){
 		

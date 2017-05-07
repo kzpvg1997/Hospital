@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>edu.eam.ingesoft.avanzada</groupId>
@@ -8,6 +9,13 @@
   <artifactId>hospital-web</artifactId>
   <packaging>war</packaging>
   <dependencies>
+  	<!-- https://mvnrepository.com/artifact/org.primefaces/primefaces -->
+<dependency>
+    <groupId>org.primefaces</groupId>
+    <artifactId>primefaces</artifactId>
+    <version>5.3</version>
+</dependency>
+  	
   	<dependency>
   		<groupId>edu.eam.ingesoft.avanzada</groupId>
   		<artifactId>hospital-negocio</artifactId>
@@ -19,12 +27,7 @@
   		<artifactId>hospital-persistencia</artifactId>
   		<version>0.0.1-SNAPSHOT</version>
   	</dependency>
-  	
-  	<dependency>
-			<groupId>org.primefaces</groupId>
-			<artifactId>primefaces</artifactId>
-			<version>5.3</version>
-		</dependency>
+  
 		<dependency>
 			<groupId>org.omnifaces</groupId>
 			<artifactId>omnifaces</artifactId>
