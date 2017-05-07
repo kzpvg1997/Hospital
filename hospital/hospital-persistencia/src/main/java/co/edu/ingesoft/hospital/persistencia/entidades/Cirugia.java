@@ -11,6 +11,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
@@ -22,15 +25,20 @@ import javax.persistence.Table;
 public class Cirugia implements Serializable{
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_cirugia")
+	//@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CAMA_SEQ")
+   // @SequenceGenerator(sequenceName = "camas_seq", allocationSize = 1, name = "null")
 	private int idCirugia;
 	
 	@Column(name="descripcion",length=200)
 	private String descripcion;
 	
-	@Column(name="Tiempo_estimado")
-	private int tiempoEstimado;
+	@Column(name="tiempo_estimado",length=40)
+	private String tiempoEstimado;
+	
+	@ManyToOne
+	@JoinColumn(name="Orden_Cirugia",nullable=true)
+	private OrdenCirugia ordenCirugia;
 	
 	public Cirugia(){
 		

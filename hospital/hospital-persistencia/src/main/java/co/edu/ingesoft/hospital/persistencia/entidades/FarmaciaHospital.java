@@ -26,13 +26,13 @@ public class FarmaciaHospital implements Serializable{
 	
 	@Id
 	@ManyToOne
-	@JoinColumn(name="id_farmacia")
+	@JoinColumn(name="Farmacia_id")
 	private Farmacia farmacia;
 	
 	
 	@Id
 	@ManyToOne
-	@JoinColumn(name="id_hospital")
+	@JoinColumn(name="Hospital_id")
 	private Hospital hospital;
 	
 	public FarmaciaHospital(){

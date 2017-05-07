@@ -5,6 +5,7 @@ package co.edu.ingesoft.hospital.persistencia.entidades;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
@@ -18,21 +19,24 @@ import javax.persistence.Table;
  * @author TOSHIBAP55W
  *
  */
-@IdClass(HospitalizacionesPK.class)
 @Entity
 @Table(name="Hospitalizaciones")
 public class Hospitalizaciones implements Serializable{
 
-	
 	@Id
+	@Column(name="id")
+	//@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CAMA_SEQ")
+    //@SequenceGenerator(sequenceName = "camas_seq", allocationSize = 1, name = "null")
+	private int id;
+	
 	@OneToOne
-	@JoinColumn(name="cama_id",unique=true)
+	@JoinColumn(name="Cama",unique=true)
 	private Cama cama;
 	
-	@Id
+	
 	@OneToOne
-	@JoinColumn(name="paciente_id",unique=true)
-	private Paciente paciente;
+	@JoinColumn(name="Cita",unique=true)
+	private Cita cita;
 	
 	public Hospitalizaciones(){
 		

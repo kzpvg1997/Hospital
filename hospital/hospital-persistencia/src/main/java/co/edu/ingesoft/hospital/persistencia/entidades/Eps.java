@@ -7,10 +7,14 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import co.edu.ingesoft.hospital.persistencia.enumeraciones.TipoEpsEnum;
 
 /**
  * @author TOSHIBAP55W
@@ -21,12 +25,17 @@ import javax.persistence.Table;
 public class Eps implements Serializable{
 
 	@Id
-	@Column(name="id_eps",length=16)
-	private String idEps;
+	@Column(name="id")
+	//@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CAMA_SEQ")
+    //@SequenceGenerator(sequenceName = "camas_seq", allocationSize = 1, name = "null")
+	private int idEps;
 	
 	@Column(name="nombre",length=40)
 	private String nombre;
 	
+	@Column(name="tipo_eps",length=100)
+	@Enumerated(EnumType.STRING)
+	private TipoEpsEnum tipoEps;
 	
 	public Eps(){
 		

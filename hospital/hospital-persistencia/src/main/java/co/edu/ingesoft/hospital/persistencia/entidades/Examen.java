@@ -21,8 +21,9 @@ import javax.persistence.Table;
 public class Examen implements Serializable{
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_examen")
+	//@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CAMA_SEQ")
+    //@SequenceGenerator(sequenceName = "camas_seq", allocationSize = 1, name = "null")
 	private int idExamen;
 	
 	@Column(name="nombre_examen",length=40)

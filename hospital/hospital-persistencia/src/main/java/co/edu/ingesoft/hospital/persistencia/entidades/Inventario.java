@@ -25,12 +25,12 @@ public class Inventario implements Serializable{
 
 	@Id
 	@ManyToOne
-	@JoinColumn(name="Medicamentos_id")
+	@JoinColumn(name="Medicamento")
 	private Medicamento medicamento;
 	
 	@Id
 	@ManyToOne
-	@JoinColumn(name="Farmacia_id")
+	@JoinColumn(name="Farmacia")
 	private Farmacia farmacia;
 	
 	@Column(name="cantidad")

@@ -4,6 +4,7 @@
 package co.edu.ingesoft.hospital.persistencia.entidades;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,6 +15,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  * @author TOSHIBAP55W
@@ -24,11 +27,12 @@ import javax.persistence.Table;
 public class Resultados implements Serializable{
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id_resultado")
-	private int idResultado;
+	@Column(name="id")
+	//@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CAMA_SEQ")
+    //@SequenceGenerator(sequenceName = "camas_seq", allocationSize = 1, name = "null")
+	private int id;
 	
-	@Column(name="nombre_Resultado",length=16)
+	@Column(name="nombre_resultado",length=40)
 	private String nombreResultado;
 	
 	@Column(name="descripcion",length=200)
@@ -36,10 +40,15 @@ public class Resultados implements Serializable{
 	
 	@ManyToOne
 	@JoinColumns({
-		@JoinColumn(name="cita_id",referencedColumnName="cita_id"),
-		@JoinColumn(name="examen_id",referencedColumnName="examen_id")	
+		@JoinColumn(name="cita_id",referencedColumnName="Cita"),
+		@JoinColumn(name="examen_id",referencedColumnName="Examen")	
 	})
 	private CitaExamen citaExamen;
+	
+	
+	@Column(name="fecha_resultado")
+	@Temporal(TemporalType.DATE)
+	private Date fechaResultado;
 	
 	public Resultados(){
 		

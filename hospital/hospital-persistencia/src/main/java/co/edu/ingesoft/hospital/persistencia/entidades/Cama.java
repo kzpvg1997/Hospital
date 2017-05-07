@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
@@ -25,6 +26,8 @@ public class Cama implements Serializable{
 	
 	@Id	
 	@Column(name="numero_cama")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CAMA_SEQ")
+    @SequenceGenerator(sequenceName = "camas_seq", allocationSize = 1, name = "CAMA_SEQ")
 	private int numeroCama;
 	
 	@Column(name="disponible")

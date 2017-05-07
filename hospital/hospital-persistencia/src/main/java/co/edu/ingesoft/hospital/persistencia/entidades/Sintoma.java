@@ -21,11 +21,12 @@ import javax.persistence.Table;
 public class Sintoma implements Serializable{
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_sintoma")
+	//@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CAMA_SEQ")
+    //@SequenceGenerator(sequenceName = "camas_seq", allocationSize = 1, name = "null")
 	private int idSintoma;
 	
-	@Column(name="nombre_sintoma",length=40)
+	@Column(name="nombre",length=40)
 	private String nombreSintoma;
 	
 	@Column(name="descripcion",length=200)

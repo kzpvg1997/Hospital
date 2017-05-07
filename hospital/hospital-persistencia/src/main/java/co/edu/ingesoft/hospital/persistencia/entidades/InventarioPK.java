@@ -11,9 +11,9 @@ import java.io.Serializable;
  */
 public class InventarioPK implements Serializable{
 
-	private String medicamento;
+	private int medicamento;
 	
-	private String farmacia;
+	private int farmacia;
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
@@ -22,8 +22,8 @@ public class InventarioPK implements Serializable{
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((farmacia == null) ? 0 : farmacia.hashCode());
-		result = prime * result + ((medicamento == null) ? 0 : medicamento.hashCode());
+		result = prime * result + farmacia;
+		result = prime * result + medicamento;
 		return result;
 	}
 
@@ -39,18 +39,14 @@ public class InventarioPK implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		InventarioPK other = (InventarioPK) obj;
-		if (farmacia == null) {
-			if (other.farmacia != null)
-				return false;
-		} else if (!farmacia.equals(other.farmacia))
+		if (farmacia != other.farmacia)
 			return false;
-		if (medicamento == null) {
-			if (other.medicamento != null)
-				return false;
-		} else if (!medicamento.equals(other.medicamento))
+		if (medicamento != other.medicamento)
 			return false;
 		return true;
 	}
+
+	
 	
 	
 }

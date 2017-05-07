@@ -15,9 +15,9 @@ import javax.persistence.Id;
 public class FarmaciaHospitalPK implements Serializable{
 
 	
-	private String farmacia;
+	private int farmacia;
 	
-	private String hospital;
+	private int hospital;
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
@@ -26,8 +26,8 @@ public class FarmaciaHospitalPK implements Serializable{
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((farmacia == null) ? 0 : farmacia.hashCode());
-		result = prime * result + ((hospital == null) ? 0 : hospital.hashCode());
+		result = prime * result + farmacia;
+		result = prime * result + hospital;
 		return result;
 	}
 
@@ -43,19 +43,13 @@ public class FarmaciaHospitalPK implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		FarmaciaHospitalPK other = (FarmaciaHospitalPK) obj;
-		if (farmacia == null) {
-			if (other.farmacia != null)
-				return false;
-		} else if (!farmacia.equals(other.farmacia))
+		if (farmacia != other.farmacia)
 			return false;
-		if (hospital == null) {
-			if (other.hospital != null)
-				return false;
-		} else if (!hospital.equals(other.hospital))
+		if (hospital != other.hospital)
 			return false;
 		return true;
 	}
-	
+
 	
 	
 }

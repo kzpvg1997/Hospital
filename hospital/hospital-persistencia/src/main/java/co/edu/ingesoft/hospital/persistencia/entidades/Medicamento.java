@@ -19,8 +19,10 @@ import javax.persistence.Table;
 public class Medicamento implements Serializable{
 
 	@Id
-	@Column(name="id_medicamento",length=16)
-	private String idMedicamento;
+	@Column(name="id_medicamento")
+	//@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CAMA_SEQ")
+    //@SequenceGenerator(sequenceName = "camas_seq", allocationSize = 1, name = "null")
+	private int idMedicamento;
 	
 	@Column(name="nombre",length=40)
 	private String nombre;

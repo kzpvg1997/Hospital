@@ -8,6 +8,8 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,6 +20,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import co.edu.ingesoft.hospital.persistencia.enumeraciones.TipoCitaEnum;
+
 /**
  * @author TOSHIBAP55W
  *
@@ -27,42 +31,44 @@ import javax.persistence.TemporalType;
 public class Cita implements Serializable{
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_cita")
+	//@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CAMA_SEQ")
+    //@SequenceGenerator(sequenceName = "camas_seq", allocationSize = 1, name = "null")
 	private int idCita;
 	
-	@Column(name="descripciones",length=200)
+	@Column(name="descripcion",length=400)
 	private String descripcion;
 	
-	@Column(name="anotaciones",length=2000)
+	@Column(name="anotaciones",length=400)
 	private String anotacion;
 	
-//	@Column(name="hora_cita")
-//	@Temporal(TemporalType.TIME)
-//	private Date horaCita;
-	
-	@Column(name="fecha_cita")
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date fechaCita;
+	@Column(name="tipo_cita",length=40)
+	@Enumerated(EnumType.STRING)
+	private TipoCitaEnum tipoCita;
 	
 	@Column(name="atendida")
 	private boolean atendida;
 	
 	@ManyToOne
-	@JoinColumn(name="Pacientes_id")
+	@JoinColumn(name="Cita_id",nullable=true)
+	private Cita cita;
+	
+	@Column(name="fecha_cita")
+	@Temporal(TemporalType.DATE)
+	private Date fechaCita;
+	
+	@Column(name="hora_cita")
+	@Temporal(TemporalType.TIME)
+	private Date horaCita;	
+	
+	@ManyToOne
+	@JoinColumn(name="Paciente")
 	private Paciente paciente;
 	
 	@ManyToOne
-	@JoinColumn(name="horarios_disponibles")
-	private HorariosDisponibles horarioDisponible;
-	
-	@ManyToOne
-	@JoinColumn(name="medico_id")
+	@JoinColumn(name="Medico")
 	private Medico medico;
 	
-	@ManyToOne
-	@JoinColumn(name="cita_id")
-	private Cita cita;
 	
 	public Cita(){
 		

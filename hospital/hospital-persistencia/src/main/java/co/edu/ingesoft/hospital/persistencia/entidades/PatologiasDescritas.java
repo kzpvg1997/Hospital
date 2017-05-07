@@ -19,8 +19,9 @@ import javax.persistence.Table;
 public class PatologiasDescritas {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_patologia")
+	//@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CAMA_SEQ")
+    //@SequenceGenerator(sequenceName = "camas_seq", allocationSize = 1, name = "null")
 	private int idPatologia;
 	
 	@Column(name="nombre_patologia",length=40)
