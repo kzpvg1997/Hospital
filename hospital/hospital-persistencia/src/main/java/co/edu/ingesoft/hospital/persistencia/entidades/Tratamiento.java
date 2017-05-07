@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
@@ -22,8 +23,8 @@ public class Tratamiento implements Serializable{
 
 	@Id
 	@Column(name="id_tratamiento")
-	//@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CAMA_SEQ")
-    //@SequenceGenerator(sequenceName = "camas_seq", allocationSize = 1, name = "null")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TRATAMENTO_SEQ")
+    @SequenceGenerator(sequenceName = "tratamiento_seq", allocationSize = 1, name = "TRATAMENTO_SEQ")
 	private int idTratamiento;
 	
 	@Column(name="nombre",length=40)

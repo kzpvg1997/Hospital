@@ -7,7 +7,10 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
@@ -20,8 +23,8 @@ public class Medicamento implements Serializable{
 
 	@Id
 	@Column(name="id_medicamento")
-	//@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CAMA_SEQ")
-    //@SequenceGenerator(sequenceName = "camas_seq", allocationSize = 1, name = "null")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MEDICAMENTO_SEQ")
+    @SequenceGenerator(sequenceName = "medicamento_seq", allocationSize = 1, name = "MEDICAMENTO_SEQ")
 	private int idMedicamento;
 	
 	@Column(name="nombre",length=40)

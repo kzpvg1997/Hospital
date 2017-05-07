@@ -9,9 +9,12 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import co.edu.ingesoft.hospital.persistencia.enumeraciones.TipoEpsEnum;
@@ -26,8 +29,8 @@ public class Eps implements Serializable{
 
 	@Id
 	@Column(name="id")
-	//@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CAMA_SEQ")
-    //@SequenceGenerator(sequenceName = "camas_seq", allocationSize = 1, name = "null")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "EPS_SEQ")
+    @SequenceGenerator(sequenceName = "eps_seq", allocationSize = 1, name = "EPS_SEQ")
 	private int idEps;
 	
 	@Column(name="nombre",length=40)

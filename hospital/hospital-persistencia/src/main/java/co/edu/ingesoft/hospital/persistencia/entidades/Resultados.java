@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -28,8 +29,8 @@ public class Resultados implements Serializable{
 
 	@Id
 	@Column(name="id")
-	//@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CAMA_SEQ")
-    //@SequenceGenerator(sequenceName = "camas_seq", allocationSize = 1, name = "null")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "RESULTADOS_SEQ")
+    @SequenceGenerator(sequenceName = "resultados_seq", allocationSize = 1, name = "RESULTADOS_SEQ")
 	private int id;
 	
 	@Column(name="nombre_resultado",length=40)

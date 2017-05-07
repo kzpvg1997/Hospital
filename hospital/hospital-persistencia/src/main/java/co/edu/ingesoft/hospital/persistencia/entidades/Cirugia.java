@@ -26,8 +26,8 @@ public class Cirugia implements Serializable{
 
 	@Id
 	@Column(name="id_cirugia")
-	//@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CAMA_SEQ")
-   // @SequenceGenerator(sequenceName = "camas_seq", allocationSize = 1, name = "null")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CIRUGIA_SEQ")
+    @SequenceGenerator(sequenceName = "cirugia_seq", allocationSize = 1, name = "CIRUGIA_SEQ")
 	private int idCirugia;
 	
 	@Column(name="descripcion",length=200)

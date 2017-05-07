@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
@@ -20,8 +21,8 @@ public class PatologiasDescritas {
 
 	@Id
 	@Column(name="id_patologia")
-	//@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CAMA_SEQ")
-    //@SequenceGenerator(sequenceName = "camas_seq", allocationSize = 1, name = "null")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PATOLOGIASDESCRITAS_SEQ")
+    @SequenceGenerator(sequenceName = "patologiasdescritas_seq", allocationSize = 1, name = "PATOLOGIASDESCRITAS_SEQ")
 	private int idPatologia;
 	
 	@Column(name="nombre_patologia",length=40)

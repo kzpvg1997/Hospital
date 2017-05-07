@@ -7,11 +7,14 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 
@@ -25,8 +28,8 @@ public class Hospitalizaciones implements Serializable{
 
 	@Id
 	@Column(name="id")
-	//@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CAMA_SEQ")
-    //@SequenceGenerator(sequenceName = "camas_seq", allocationSize = 1, name = "null")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "HOSPITALIZACIONES_SEQ")
+    @SequenceGenerator(sequenceName = "hospitalizaciones_seq", allocationSize = 1, name = "HOSPITALIZACIONES_SEQ")
 	private int id;
 	
 	@OneToOne

@@ -15,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import co.edu.ingesoft.hospital.persistencia.enumeraciones.TipoCitaEnum;
@@ -30,8 +31,8 @@ public class RecetasMedicas implements Serializable{
 
 	@Id
 	@Column(name="id_receta")
-	//@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CAMA_SEQ")
-    //@SequenceGenerator(sequenceName = "camas_seq", allocationSize = 1, name = "null")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "RECETASMEDICAS_SEQ")
+    @SequenceGenerator(sequenceName = "recetasmedicas_seq", allocationSize = 1, name = "RECETASMEDICAS_SEQ")
 	private int idReceta;
 	
 	@ManyToOne
