@@ -67,5 +67,17 @@ public class PacienteEJB {
 		
 	}
 	
+	/**
+	 * metodo que sirve para buscar la eps del paciente
+	 * @param id que recibe
+	 * @return la eps
+	 */
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public Eps buscarEps(int id){
+		return em.find(Eps.class,id);
+	}
+	
+	
+	
 	
 }

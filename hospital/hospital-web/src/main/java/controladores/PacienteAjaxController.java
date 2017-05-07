@@ -72,7 +72,11 @@ public class PacienteAjaxController implements Serializable {
 			nombre = pa.getNombre();
 			apellido = pa.getApellido();
 			numeroDocumento = pa.getIdentificacion();
-			generoSeleccionado = pa.getGenero();
+			//generoSeleccionado = pa.getGenero();
+			epsSeleccionada = pa.getEps().getNombre();
+			fecha = pa.getFechaNacimiento().toString();
+			telefono = pa.getTelefono();
+			email = pa.getEmail();
 			
 		}else{
 			

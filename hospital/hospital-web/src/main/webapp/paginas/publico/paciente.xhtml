@@ -10,14 +10,15 @@
 		<p:fieldset legend="Busqueda" style="margin-top:10px">
 			<h:panelGrid columns="3">
 			
-			<p:commandButton styleClass="ui-priority-primary" value="Buscar" ajax="false" action="#" />
+			<p:commandButton styleClass="ui-priority-primary" value="Buscar" ajax="false" process="@htis tfbuspa"
+				update="datospa " action="#" />
 				<p:inputText id="tfbuspa" class="form-control"  value="" />
 				<p:message for="tfbuspa" />
 			</h:panelGrid>
 		</p:fieldset>
 		
 		<p:fieldset legend="Datos paciente" style="margin-top:10px">
-			<h:panelGrid columns="3">
+			<h:panelGrid id="datospa" columns="3">
 			
 				<p:outputLabel for="tfnompa" id="nom" value="Nombre"  />
 				<p:inputText id="tfnompa" class="form-control"  value="" />
