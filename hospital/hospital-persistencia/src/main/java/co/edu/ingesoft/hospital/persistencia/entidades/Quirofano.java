@@ -19,8 +19,6 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.ManyToAny;
 
-import co.edu.ingesoft.hospital.persistencia.enumeraciones.TipoCitaEnum;
-import co.edu.ingesoft.hospital.persistencia.enumeraciones.TipoQuirofanoEnum;
 
 /**
  * @author TOSHIBAP55W
@@ -43,8 +41,7 @@ public class Quirofano implements Serializable{
 	private String descripcion;
 	
 	@Column(name="tipo_quirofano",length=40)
-	@Enumerated(EnumType.STRING)
-	private TipoQuirofanoEnum tipoQuirofano;
+	private String tipoQuirofano;
 	
 	@Column(name="ocupado")
 	private boolean ocupado;

@@ -19,7 +19,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import co.edu.ingesoft.hospital.persistencia.enumeraciones.TipoEpsEnum;
 
 /**
  * @author TOSHIBAP55W
@@ -44,8 +43,7 @@ public class Eps implements Serializable{
 	private String nombre;
 	
 	@Column(name="tipo_eps",length=100)
-	@Enumerated(EnumType.STRING)
-	private TipoEpsEnum tipoEps;
+	private String tipoEps;
 	
 	public Eps(){
 		
@@ -82,14 +80,14 @@ public class Eps implements Serializable{
 	/**
 	 * @return the tipoEps
 	 */
-	public TipoEpsEnum getTipoEps() {
+	public String getTipoEps() {
 		return tipoEps;
 	}
 
 	/**
 	 * @param tipoEps the tipoEps to set
 	 */
-	public void setTipoEps(TipoEpsEnum tipoEps) {
+	public void setTipoEps(String tipoEps) {
 		this.tipoEps = tipoEps;
 	}
 	

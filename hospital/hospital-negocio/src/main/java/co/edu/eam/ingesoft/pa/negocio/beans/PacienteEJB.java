@@ -60,9 +60,10 @@ public class PacienteEJB {
 	public void crearPaciente(Paciente p){
 		Paciente paciente = buscarPaciente(p.getIdentificacion());
 		if(paciente == null){
+			
 			em.persist(p);
 		}else{
-			throw new ExcepcionNegocio("El paciente ya se encuentra registrado");
+			throw new ExcepcionNegocio("Este paciente ya se encuentra registrado");
 		}
 		
 	}

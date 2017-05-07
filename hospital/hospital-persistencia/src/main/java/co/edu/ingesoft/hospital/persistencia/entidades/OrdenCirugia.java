@@ -17,7 +17,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import co.edu.ingesoft.hospital.persistencia.enumeraciones.TipoProcedimientoEnum;
 
 /**
  * @author TOSHIBAP55W
@@ -48,8 +47,7 @@ public class OrdenCirugia implements Serializable {
 	private Medico medico;
 	
 	@Column(name="Tipo_procedimiento",length=40)
-	@Enumerated(EnumType.STRING)
-	private TipoProcedimientoEnum tipoProcedimiento;
+	private String tipoProcedimiento;
 	
 	public OrdenCirugia(){
 		

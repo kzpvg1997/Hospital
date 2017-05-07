@@ -34,8 +34,9 @@
 				<p:outputLabel for="tfgenpa" id="gen" value="Genero"  />
 				<h:selectOneMenu id="tfgenpa" class="form-control" value="#{pacienteAjaxController.generoSeleccionado}">
 					<f:selectItem itemValue="Seleccione" itemLabel="Seleccione" />
-					<f:selectItems Value="#{pacienteAjaxController.listaGeneros}" var="gen" 
-					itemValue="#{gen}" itemLabel="#{gen}"/>
+					<f:selectItem itemValue="1" itemLabel="MASCULINO" />
+					<f:selectItem itemValue="2" itemLabel="FEMENINO" />
+					<f:selectItem itemValue="3" itemLabel="OTRO" />
 				</h:selectOneMenu>
 				<p:message for="tfgenpa" />
 				

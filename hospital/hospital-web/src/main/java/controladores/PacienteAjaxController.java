@@ -15,7 +15,6 @@ import org.omnifaces.cdi.ViewScoped;
 import co.edu.eam.ingesoft.pa.negocio.beans.PacienteEJB;
 import co.edu.ingesoft.hospital.persistencia.entidades.Eps;
 import co.edu.ingesoft.hospital.persistencia.entidades.Paciente;
-import co.edu.ingesoft.hospital.persistencia.enumeraciones.GeneroEnum;
 
 
 @ViewScoped
@@ -42,8 +41,6 @@ public class PacienteAjaxController implements Serializable {
 	private String epsSeleccionada;
 	
 	private List<Eps> listaEps;
-	
-	private GeneroEnum[] listaGeneros;
 	
 	private String fecha;
 	
@@ -72,7 +69,7 @@ public class PacienteAjaxController implements Serializable {
 			nombre = pa.getNombre();
 			apellido = pa.getApellido();
 			numeroDocumento = pa.getIdentificacion();
-			generoSeleccionado = pa.getGenero();
+		//	generoSeleccionado = pa.getGenero();
 			
 		}else{
 			
@@ -85,21 +82,6 @@ public class PacienteAjaxController implements Serializable {
 	public void listarCombos(){
 		listaEps = pacienteEJB.listarEps();
 		
-	}
-
-
-	/**
-	 * @return the listaGeneros
-	 */
-	public GeneroEnum[] getListaGeneros() {
-		return GeneroEnum.values();
-	}
-
-	/**
-	 * @param listaGeneros the listaGeneros to set
-	 */
-	public void setListaGeneros(GeneroEnum[] listaGeneros) {
-		this.listaGeneros = listaGeneros;
 	}
 
 	/**
