@@ -17,6 +17,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import co.edu.ingesoft.hospital.persistencia.enumeraciones.GeneroEnum;
 import co.edu.ingesoft.hospital.persistencia.enumeraciones.TipoCitaEnum;
 
 /**
@@ -35,9 +36,9 @@ public class Paciente extends Persona implements Serializable{
 	@Temporal(TemporalType.DATE)
 	private Date fechaNacimiento;
 	
-	@Column(name="tipo_cita",length=40)
+	@Column(name="genero",length=100)
 	@Enumerated(EnumType.STRING)
-	private TipoCitaEnum tipoCita;
+	private GeneroEnum genero;
 	
 	@ManyToOne
 	@JoinColumn(name="EPS")
@@ -55,13 +56,80 @@ public class Paciente extends Persona implements Serializable{
 	 * @param apellido
 	 * @param telefono
 	 */
-	public Paciente(int identificacion, String nombre, String apellido, String telefono,String email,TipoCitaEnum tipoCita) {
+	public Paciente(int identificacion, String nombre, String apellido, String telefono,String email,Date fechaNacimiento,
+			GeneroEnum genero,Eps eps) {
 		super();
 	
 		this.email=email;
-		this.tipoCita=tipoCita;
+		this.genero=genero;
+		this.fechaNacimiento=fechaNacimiento;
+		this.eps=eps;
 				
 		}
+
+
+	/**
+	 * @return the email
+	 */
+	public String getEmail() {
+		return email;
+	}
+
+
+	/**
+	 * @param email the email to set
+	 */
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+
+	/**
+	 * @return the fechaNacimiento
+	 */
+	public Date getFechaNacimiento() {
+		return fechaNacimiento;
+	}
+
+
+	/**
+	 * @param fechaNacimiento the fechaNacimiento to set
+	 */
+	public void setFechaNacimiento(Date fechaNacimiento) {
+		this.fechaNacimiento = fechaNacimiento;
+	}
+
+
+	/**
+	 * @return the genero
+	 */
+	public GeneroEnum getGenero() {
+		return genero;
+	}
+
+
+	/**
+	 * @param genero the genero to set
+	 */
+	public void setGenero(GeneroEnum genero) {
+		this.genero = genero;
+	}
+
+
+	/**
+	 * @return the eps
+	 */
+	public Eps getEps() {
+		return eps;
+	}
+
+
+	/**
+	 * @param eps the eps to set
+	 */
+	public void setEps(Eps eps) {
+		this.eps = eps;
+	}
 	
 	
 }
