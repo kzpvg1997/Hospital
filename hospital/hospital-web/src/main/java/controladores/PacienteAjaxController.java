@@ -72,16 +72,12 @@ public class PacienteAjaxController implements Serializable {
 		
 	}
 
-	public GeneroEnum[] getGeneros(){
-		return GeneroEnum.values();
-	}
-
 
 	/**
 	 * @return the listaGeneros
 	 */
 	public GeneroEnum[] getListaGeneros() {
-		return listaGeneros;
+		return GeneroEnum.values();
 	}
 
 	/**

@@ -35,7 +35,7 @@
 				<h:selectOneMenu id="tfgenpa" class="form-control" value="#{pacienteAjaxController.generoSeleccionado}">
 					<f:selectItem itemValue="Seleccione" itemLabel="Seleccione" />
 					<f:selectItems Value="#{pacienteAjaxController.listaGeneros}" var="gen" 
-					itemValue="#{gen.}" itemLabel="#{gen}"/>
+					itemValue="#{gen}" itemLabel="#{gen}"/>
 				</h:selectOneMenu>
 				<p:message for="tfgenpa" />
 				
