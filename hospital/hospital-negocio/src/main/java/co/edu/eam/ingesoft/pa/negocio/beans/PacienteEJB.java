@@ -31,7 +31,7 @@ public class PacienteEJB {
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public List<Eps> listarEps(){
 		Query q = em.createNamedQuery(Eps.LISTA_EPS);
-		List<Eps> banks = q.getResultList();
-		return banks;
+		List<Eps> eps = q.getResultList();
+		return eps;
 	}
 }

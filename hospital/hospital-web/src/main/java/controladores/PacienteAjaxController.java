@@ -1,6 +1,7 @@
 package controladores;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -13,6 +14,7 @@ import org.omnifaces.cdi.ViewScoped;
 
 import co.edu.eam.ingesoft.pa.negocio.beans.PacienteEJB;
 import co.edu.ingesoft.hospital.persistencia.entidades.Eps;
+import co.edu.ingesoft.hospital.persistencia.enumeraciones.GeneroEnum;
 
 @ViewScoped
 @Named("pacienteAjaxController")
@@ -39,6 +41,8 @@ public class PacienteAjaxController implements Serializable {
 	
 	private List<Eps> listaEps;
 	
+	private GeneroEnum[] listaGeneros;
+	
 	private String fecha;
 	
 	@Pattern(regexp="[0-9]*",message="Ingrese solo numeros")
@@ -52,7 +56,7 @@ public class PacienteAjaxController implements Serializable {
 	@PostConstruct
 	public void inicializar(){
 	
-		listarEps();
+		listarCombos();
 	}
 	
 	public void registrar(){
@@ -63,11 +67,28 @@ public class PacienteAjaxController implements Serializable {
 		
 	}
 	
-	public void listarEps(){
+	public void listarCombos(){
 		listaEps = pacienteEJB.listarEps();
-		if(listaEps==null){
-			System.out.println("(((((((((((((((((((SIN EPS))))))))))))))");
-		}
+		
+	}
+
+	public GeneroEnum[] getGeneros(){
+		return GeneroEnum.values();
+	}
+
+
+	/**
+	 * @return the listaGeneros
+	 */
+	public GeneroEnum[] getListaGeneros() {
+		return listaGeneros;
+	}
+
+	/**
+	 * @param listaGeneros the listaGeneros to set
+	 */
+	public void setListaGeneros(GeneroEnum[] listaGeneros) {
+		this.listaGeneros = listaGeneros;
 	}
 
 	/**
