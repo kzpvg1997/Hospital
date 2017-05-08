@@ -17,8 +17,6 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import co.edu.ingesoft.hospital.persistencia.enumeraciones.GeneroEnum;
-import co.edu.ingesoft.hospital.persistencia.enumeraciones.TipoCitaEnum;
 
 /**
  * @author TOSHIBAP55W
@@ -37,8 +35,7 @@ public class Paciente extends Persona implements Serializable{
 	private Date fechaNacimiento;
 	
 	@Column(name="genero",length=100)
-	@Enumerated(EnumType.STRING)
-	private GeneroEnum genero;
+	private String genero;
 	
 	@ManyToOne
 	@JoinColumn(name="EPS")
@@ -57,7 +54,7 @@ public class Paciente extends Persona implements Serializable{
 	 * @param telefono
 	 */
 	public Paciente(int identificacion, String nombre, String apellido, String telefono,String email,Date fechaNacimiento,
-			GeneroEnum genero,Eps eps) {
+			String genero,Eps eps) {
 		super();
 	
 		this.email=email;
@@ -103,7 +100,7 @@ public class Paciente extends Persona implements Serializable{
 	/**
 	 * @return the genero
 	 */
-	public GeneroEnum getGenero() {
+	public String getGenero() {
 		return genero;
 	}
 
@@ -111,7 +108,7 @@ public class Paciente extends Persona implements Serializable{
 	/**
 	 * @param genero the genero to set
 	 */
-	public void setGenero(GeneroEnum genero) {
+	public void setGenero(String genero) {
 		this.genero = genero;
 	}
 

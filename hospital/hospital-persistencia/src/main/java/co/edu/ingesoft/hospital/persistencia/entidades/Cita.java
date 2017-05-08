@@ -21,7 +21,6 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import co.edu.ingesoft.hospital.persistencia.enumeraciones.TipoCitaEnum;
 
 /**
  * @author TOSHIBAP55W
@@ -44,8 +43,7 @@ public class Cita implements Serializable{
 	private String anotacion;
 	
 	@Column(name="tipo_cita",length=40)
-	@Enumerated(EnumType.STRING)
-	private TipoCitaEnum tipoCita;
+	private String tipoCita;
 	
 	@Column(name="atendida")
 	private boolean atendida;

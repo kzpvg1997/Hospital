@@ -17,6 +17,7 @@ import javax.persistence.Query;
 import co.edu.eam.ingesoft.pa.negocio.excepciones.ExcepcionNegocio;
 import co.edu.ingesoft.hospital.persistencia.entidades.Eps;
 import co.edu.ingesoft.hospital.persistencia.entidades.Paciente;
+import co.edu.ingesoft.hospital.persistencia.entidades.Persona;
 
 
 /**
@@ -60,9 +61,10 @@ public class PacienteEJB {
 	public void crearPaciente(Paciente p){
 		Paciente paciente = buscarPaciente(p.getIdentificacion());
 		if(paciente == null){
+			
 			em.persist(p);
 		}else{
-			throw new ExcepcionNegocio("El paciente ya se encuentra registrado");
+			throw new ExcepcionNegocio("Este paciente ya se encuentra registrado");
 		}
 		
 	}
@@ -77,7 +79,10 @@ public class PacienteEJB {
 		return em.find(Eps.class,id);
 	}
 	
-	
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public Persona buscarPersona(int id){
+		return em.find(Persona.class,id);
+	}
 	
 	
 }

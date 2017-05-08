@@ -18,8 +18,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import co.edu.ingesoft.hospital.persistencia.enumeraciones.TipoCitaEnum;
-import co.edu.ingesoft.hospital.persistencia.enumeraciones.TipoEntregaEnum;
 
 /**
  * @author TOSHIBAP55W
@@ -40,8 +38,7 @@ public class RecetasMedicas implements Serializable{
 	private Cita cita;
 	
 	@Column(name="tipo_entrega",length=100,nullable=false)
-	@Enumerated(EnumType.STRING)
-	private TipoEntregaEnum tipoEntrega;
+	private String tipoEntrega;
 	
 	
 	public RecetasMedicas(){

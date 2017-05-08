@@ -1,21 +1,19 @@
 package controladores;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
-import javax.validation.constraints.Pattern;
 
-import org.hibernate.validator.constraints.Length;
 import org.omnifaces.cdi.ViewScoped;
+import org.omnifaces.util.Messages;
 
 import co.edu.eam.ingesoft.pa.negocio.beans.PacienteEJB;
 import co.edu.ingesoft.hospital.persistencia.entidades.Eps;
 import co.edu.ingesoft.hospital.persistencia.entidades.Paciente;
-import co.edu.ingesoft.hospital.persistencia.enumeraciones.GeneroEnum;
+import co.edu.ingesoft.hospital.persistencia.entidades.Persona;
 
 
 @ViewScoped
@@ -25,16 +23,13 @@ public class PacienteAjaxController implements Serializable {
 	@EJB
 	private	PacienteEJB pacienteEJB;
 	
-	@Pattern(regexp="[A-Za-z ]*",message="Ingrese solo letras")
-	@Length(min=4,max=30,message="Lonitud entre 4 y 30")
+	
 	private String nombre;
 	
-	@Pattern(regexp="[A-Za-z ]*",message="Ingrese solo letras")
-	@Length(min=4,max=30,message="Lonitud entre 4 y 30")
+	
 	private String apellido;
 	
-	@Pattern(regexp="[0-9]*",message="Ingrese solo numeros")
-	@Length(min=3,max=10,message="Lonitud entre 3 y 10")
+	
 	private int numeroDocumento;
 	
 	private String generoSeleccionado;
@@ -43,16 +38,10 @@ public class PacienteAjaxController implements Serializable {
 	
 	private List<Eps> listaEps;
 	
-	private GeneroEnum[] listaGeneros;
-	
 	private String fecha;
 	
-	@Pattern(regexp="[0-9]*",message="Ingrese solo numeros")
-	@Length(min=10,max=10,message="Lonitud entre 3 y 10")
 	private String telefono;
-	
-	@Pattern(regexp="[A-Za-z ]*",message="Ingrese solo letras")
-	@Length(min=4,max=30,message="Lonitud entre 4 y 30")
+
 	private String email;
 	
 	@PostConstruct
@@ -66,20 +55,33 @@ public class PacienteAjaxController implements Serializable {
 	}
 	
 	public void buscar(){
+		System.out.println("holaaaaaaa");
 		
-		Paciente pa = pacienteEJB.buscarPaciente(numeroDocumento);
+		//Paciente pa = pacienteEJB.buscarPaciente(numeroDocumento);
+		Persona pa = pacienteEJB.buscarPersona(numeroDocumento);
 		if(pa != null){
+			System.out.println("si");
 			nombre = pa.getNombre();
 			apellido = pa.getApellido();
 			numeroDocumento = pa.getIdentificacion();
-			//generoSeleccionado = pa.getGenero();
-			epsSeleccionada = pa.getEps().getNombre();
-			fecha = pa.getFechaNacimiento().toString();
+			///generoSeleccionado = pa.;
+		//	epsSeleccionada = pa.getEps().getNombre();
+			//fecha = pa.getFechaNacimiento().toString();
 			telefono = pa.getTelefono();
-			email = pa.getEmail();
+		//	email = pa.getEmail();
 			
+			System.out.println(pa.getNombre());
+			System.out.println(pa.getApellido());
+			System.out.println(pa.getIdentificacion());
+		//	System.out.println(pa.getGenero());
+			//System.out.println(pa.getEps().getNombre());
+			//System.out.println(pa.getFechaNacimiento().toString());
+			System.out.println(pa.getTelefono());
+			//System.out.println(pa.getEmail());
+													
 		}else{
-			
+			Messages.addFlashGlobalWarn("El paciente no existe");
+			System.out.println("no");
 		}
 		
 		
@@ -89,25 +91,6 @@ public class PacienteAjaxController implements Serializable {
 	public void listarCombos(){
 		listaEps = pacienteEJB.listarEps();
 		
-	}
-
-	public GeneroEnum[] getGeneros(){
-		return GeneroEnum.values();
-	}
-
-
-	/**
-	 * @return the listaGeneros
-	 */
-	public GeneroEnum[] getListaGeneros() {
-		return listaGeneros;
-	}
-
-	/**
-	 * @param listaGeneros the listaGeneros to set
-	 */
-	public void setListaGeneros(GeneroEnum[] listaGeneros) {
-		this.listaGeneros = listaGeneros;
 	}
 
 	/**

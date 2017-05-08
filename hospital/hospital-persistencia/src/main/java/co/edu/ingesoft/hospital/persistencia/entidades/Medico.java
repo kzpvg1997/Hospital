@@ -16,8 +16,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import co.edu.ingesoft.hospital.persistencia.enumeraciones.TipoCitaEnum;
-import co.edu.ingesoft.hospital.persistencia.enumeraciones.TiposMedicosEnum;
 
 /**
  * @author TOSHIBAP55W
@@ -33,8 +31,7 @@ public class Medico  extends Persona implements Serializable{
 	private Hospital hospital;
 	
 	@Column(name="tipo_medico",length=40)
-	@Enumerated(EnumType.STRING)
-	private TiposMedicosEnum tipoMedico;
+	private String tipoMedico;
 	
 	public Medico(){
 		
@@ -46,7 +43,7 @@ public class Medico  extends Persona implements Serializable{
 	 * @param apellido
 	 * @param telefono
 	 */
-	public Medico(int identificacion, String nombre, String apellido, String telefono,Hospital hospital,TiposMedicosEnum tipoMedico) {
+	public Medico(int identificacion, String nombre, String apellido, String telefono,Hospital hospital,String tipoMedico) {
 		super();
 		
 		this.hospital = hospital;

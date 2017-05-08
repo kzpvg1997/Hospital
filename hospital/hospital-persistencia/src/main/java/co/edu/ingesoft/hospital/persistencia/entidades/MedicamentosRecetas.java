@@ -3,6 +3,8 @@
  */
 package co.edu.ingesoft.hospital.persistencia.entidades;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -15,7 +17,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import co.edu.ingesoft.hospital.persistencia.enumeraciones.TipoEntregaEnum;
 
 /**
  * @author TOSHIBAP55W
@@ -23,7 +24,7 @@ import co.edu.ingesoft.hospital.persistencia.enumeraciones.TipoEntregaEnum;
  */
 @Entity
 @Table(name="Medicamentos_Rescetas")
-public class MedicamentosRecetas {
+public class MedicamentosRecetas implements Serializable{
 
 	
 	@Id
@@ -38,6 +39,9 @@ public class MedicamentosRecetas {
 	
 	
 	@Column(name="tipo_entrega",length=100)
-	@Enumerated(EnumType.STRING)
-	private TipoEntregaEnum tipoEntrega;
+	private String tipoEntrega;
+	
+	public MedicamentosRecetas(){
+		
+	}
 }
