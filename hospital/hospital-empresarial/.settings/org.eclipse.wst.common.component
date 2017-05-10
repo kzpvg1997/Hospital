@@ -26,6 +26,9 @@
         <dependent-module archiveName="hospital-persistencia.jar" deploy-path="/lib" handle="module:/resource/hospital-persistencia/hospital-persistencia">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="ojdbc14.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/com/oracle/ojdbc14/10.2.0.4.0/ojdbc14-10.2.0.4.0.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <dependent-module archiveName="hospital-web.war" deploy-path="/" handle="module:/resource/hospital-web/hospital-web">
             <dependency-type>uses</dependency-type>
         </dependent-module>

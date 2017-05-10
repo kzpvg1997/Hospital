@@ -13,6 +13,7 @@ import org.hibernate.validator.constraints.Length;
 import org.omnifaces.cdi.ViewScoped;
 
 import co.edu.eam.ingesoft.pa.negocio.beans.PacienteEJB;
+import co.edu.eam.ingesoft.pa.negocio.beans.RolEJB;
 import co.edu.ingesoft.hospital.persistencia.entidades.Eps;
 import co.edu.ingesoft.hospital.persistencia.entidades.Paciente;
 
@@ -23,6 +24,9 @@ public class PacienteAjaxController implements Serializable {
 	
 	@EJB
 	private	PacienteEJB pacienteEJB;
+	
+	@EJB
+	private RolEJB rolEJB;
 	
 	@Pattern(regexp="[A-Za-z ]*",message="Ingrese solo letras")
 	@Length(min=4,max=30,message="Lonitud entre 4 y 30")
@@ -56,6 +60,7 @@ public class PacienteAjaxController implements Serializable {
 	public void inicializar(){
 	
 		listarCombos();
+		
 	}
 	
 	public void registrar(){
@@ -64,17 +69,17 @@ public class PacienteAjaxController implements Serializable {
 	
 	public void buscar(){
 		
-		Paciente pa = pacienteEJB.buscarPaciente(numeroDocumento);
-		if(pa != null){
-			nombre = pa.getNombre();
-			apellido = pa.getApellido();
-			numeroDocumento = pa.getIdentificacion();
-		//	generoSeleccionado = pa.getGenero();
-			
-		}else{
-			
-		}
-		
+//		Paciente pa = pacienteEJB.buscarPaciente(numeroDocumento);
+//		if(pa != null){
+//			nombre = pa.getNombre();
+//			apellido = pa.getApellido();
+//			numeroDocumento = pa.getIdentificacion();
+//		//	generoSeleccionado = pa.getGenero();
+//			
+//		}else{
+//			
+//		}
+//		
 		
 		
 	}

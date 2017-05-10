@@ -10,6 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -19,8 +21,13 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="Roles")
+@NamedQueries({
+	@NamedQuery(name=Rol.LISTA_ROLES,query="SELECT r FROM Rol r ")
+})
 public class Rol implements Serializable{
 
+	public static final String LISTA_ROLES= "Rol.lista";
+	
 	@Id
 	@Column(name="id")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ROL_SEQ")
@@ -33,4 +40,34 @@ public class Rol implements Serializable{
 	public Rol(){
 		
 	}
+
+	/**
+	 * @return the idRol
+	 */
+	public int getIdRol() {
+		return idRol;
+	}
+
+	/**
+	 * @param idRol the idRol to set
+	 */
+	public void setIdRol(int idRol) {
+		this.idRol = idRol;
+	}
+
+	/**
+	 * @return the nombre
+	 */
+	public String getNombre() {
+		return nombre;
+	}
+
+	/**
+	 * @param nombre the nombre to set
+	 */
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	
+	
 }

@@ -5,6 +5,7 @@ package co.edu.eam.ingesoft.pa.negocio.beans;
 
 import java.util.List;
 
+import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
@@ -17,6 +18,7 @@ import javax.persistence.Query;
 import co.edu.eam.ingesoft.pa.negocio.excepciones.ExcepcionNegocio;
 import co.edu.ingesoft.hospital.persistencia.entidades.Eps;
 import co.edu.ingesoft.hospital.persistencia.entidades.Paciente;
+import co.edu.ingesoft.hospital.persistencia.entidades.Rol;
 
 
 /**
@@ -29,6 +31,9 @@ public class PacienteEJB {
 
 	@PersistenceContext
 	private EntityManager em;
+	
+	@EJB
+	private RolEJB rolEJB;
 	
 	/**
 	 * Metodo que sirve para listar las eps
@@ -61,7 +66,11 @@ public class PacienteEJB {
 		Paciente paciente = buscarPaciente(p.getIdentificacion());
 		if(paciente == null){
 			
+			Rol rol= rolEJB.buscarRol(1);
+			p.setRol(rol);
+			
 			em.persist(p);
+			
 		}else{
 			throw new ExcepcionNegocio("Este paciente ya se encuentra registrado");
 		}
