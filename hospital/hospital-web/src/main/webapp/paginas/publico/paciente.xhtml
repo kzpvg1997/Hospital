@@ -8,27 +8,28 @@
 		<h:form prependId="false">
 		
 		<p:fieldset legend="Busqueda" style="margin-top:10px">
-			<h:panelGrid columns="3">
+			<h:panelGrid id="buspa" columns="3">
 			
-			<p:commandButton styleClass="ui-priority-primary" value="Buscar" ajax="false" action="#{pacienteAjaxController.buscar()}" />
+			<p:commandButton styleClass="ui-priority-primary" value="Buscar" ajax="false" process="@htis buspa"
+				update="datospa " action="#{pacienteAjaxController.buscar()}" />
 				<p:inputText id="tfbuspa" class="form-control"  value="#{pacienteAjaxController.numeroDocumento}" />
 				<p:message for="tfbuspa" />
 			</h:panelGrid>
 		</p:fieldset>
 		
 		<p:fieldset legend="Datos paciente" style="margin-top:10px">
-			<h:panelGrid columns="3">
+			<h:panelGrid id="datospa" columns="3">
 			
 				<p:outputLabel for="tfnompa" id="nom" value="Nombre"  />
-				<p:inputText id="tfnompa" class="form-control"  value="" />
+				<p:inputText id="tfnompa" class="form-control"  value="#{pacienteAjaxController.nombre}" />
 				<p:message for="tfnompa" />
 				
 				<p:outputLabel for="tfapepa" id="ape" value="Apellido"  />
-				<p:inputText id="tfapepa" class="form-control"  value="" />
+				<p:inputText id="tfapepa" class="form-control"  value="#{pacienteAjaxController.apellido}" />
 				<p:message for="tfapepa" />
 				
 				<p:outputLabel for="tfnumpa" id="nunD" value="Numero documento"  />
-				<p:inputText id="tfnumpa" class="form-control"  value="" />
+				<p:inputText id="tfnumpa" class="form-control"  value="#{pacienteAjaxController.numeroDocumento}" />
 				<p:message for="tfnumpa" />
 				
 				<p:outputLabel for="tfgenpa" id="gen" value="Genero"  />
@@ -49,15 +50,15 @@
 				<p:message for="tfepspasss" />
 				
 				<p:outputLabel for="tffechpa" id="fech" value="Fecha nacimiento"  />
-				<p:inputText id="tffechpa" class="form-control"  value="" />
+				<p:inputText id="tffechpa" class="form-control"  value="#{pacienteAjaxController.fecha}" />
 				<p:message for="tffechpa" />
 				
 				<p:outputLabel for="tftelpa" id="tel" value="Telefono"  />
-				<p:inputText id="tftelpa" class="form-control"  value="" />
+				<p:inputText id="tftelpa" class="form-control"  value="#{pacienteAjaxController.telefono}" />
 				<p:message for="tftelpa" />
 				
 				<p:outputLabel for="tfemapa" id="ema" value="Email"  />
-				<p:inputText type="Email" id="tfemapa" class="form-control"  value="" />
+				<p:inputText type="Email" id="tfemapa" class="form-control"  value="#{pacienteAjaxController.email}" />
 				<p:message for="tfemapa" />
 				
 				<h:panelGrid columns="2">

@@ -19,7 +19,7 @@ import co.edu.eam.ingesoft.pa.negocio.excepciones.ExcepcionNegocio;
 import co.edu.ingesoft.hospital.persistencia.entidades.Eps;
 import co.edu.ingesoft.hospital.persistencia.entidades.Paciente;
 import co.edu.ingesoft.hospital.persistencia.entidades.Rol;
-
+import co.edu.ingesoft.hospital.persistencia.entidades.Persona;
 
 /**
  * @author TOSHIBAP55W
@@ -75,6 +75,21 @@ public class PacienteEJB {
 			throw new ExcepcionNegocio("Este paciente ya se encuentra registrado");
 		}
 		
+	}
+	
+	/**
+	 * metodo que sirve para buscar la eps del paciente
+	 * @param id que recibe
+	 * @return la eps
+	 */
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public Eps buscarEps(int id){
+		return em.find(Eps.class,id);
+	}
+	
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public Persona buscarPersona(int id){
+		return em.find(Persona.class,id);
 	}
 	
 	
