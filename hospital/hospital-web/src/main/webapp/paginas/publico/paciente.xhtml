@@ -10,7 +10,7 @@
 		<p:fieldset legend="Busqueda" style="margin-top:10px">
 			<h:panelGrid id="buspa" columns="3">
 			
-			<p:commandButton styleClass="ui-priority-primary" value="Buscar" ajax="false" process="@htis buspa"
+			<p:commandButton styleClass="ui-priority-primary" value="Buscar" process="@htis buspa"
 				update="datospa " action="#{pacienteAjaxController.buscar()}" />
 				<p:inputText id="tfbuspa" class="form-control"  value="#{pacienteAjaxController.numeroDocumento}" />
 				<p:message for="tfbuspa" />

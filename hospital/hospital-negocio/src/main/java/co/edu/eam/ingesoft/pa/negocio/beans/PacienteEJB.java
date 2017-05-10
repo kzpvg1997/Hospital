@@ -52,7 +52,7 @@ public class PacienteEJB {
 	 * @param cedula para buscar el paciente
 	 * @return el paciente bscado
 	 */
-	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	@TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
 	public Paciente buscarPaciente(int cedula){
 		return em.find(Paciente.class,cedula);
 	}

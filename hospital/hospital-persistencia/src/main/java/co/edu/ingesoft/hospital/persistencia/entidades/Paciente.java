@@ -23,7 +23,7 @@ import javax.persistence.TemporalType;
  *
  */
 @Entity
-@Table(name="Pacientes")
+@Table(name="PACIENTES")
 public class Paciente extends Persona implements Serializable{
 
 	

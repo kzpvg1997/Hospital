@@ -19,7 +19,7 @@ import javax.persistence.Table;
  *
  */
 @Entity
-@Table(name="Personas")
+@Table(name="PERSONAS")
 @Inheritance(strategy=InheritanceType.JOINED)
 public class Persona implements Serializable{
 

@@ -27,7 +27,7 @@ public class Medico  extends Persona implements Serializable{
 
 		
 	@ManyToOne
-	@JoinColumn(name="hospital_id")
+	@JoinColumn(name="Hospital")
 	private Hospital hospital;
 	
 	@Column(name="tipo_medico",length=40)

@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -20,7 +21,7 @@ import javax.persistence.Table;
  *
  */
 @Entity
-@Table(name="Usuario")
+@Table(name="Usuarios")
 public class Usuario implements Serializable{
 
 	@Id
@@ -35,7 +36,7 @@ public class Usuario implements Serializable{
 	@Column(name="password",length=40)
 	private String password;
 	
-	@ManyToOne
+	@OneToOne
 	@JoinColumn(name="Persona",unique=true)
 	private Persona persona;
 	
