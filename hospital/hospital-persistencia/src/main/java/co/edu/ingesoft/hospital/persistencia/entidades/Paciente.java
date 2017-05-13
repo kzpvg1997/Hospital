@@ -13,10 +13,11 @@ import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
 
 /**
  * @author TOSHIBAP55W
@@ -24,7 +25,12 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name="PACIENTES")
+@NamedQueries({
+	@NamedQuery(name=Paciente.ListaPaciente,query="SELECT p FROM Paciente p")
+})
 public class Paciente extends Persona implements Serializable{
+	
+	public static final String ListaPaciente = "Paciente.listarPaciente";
 
 	
 	@Column(name="email",length=200)

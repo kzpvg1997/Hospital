@@ -1,6 +1,9 @@
 package controladores;
 
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -15,6 +18,7 @@ import co.edu.eam.ingesoft.pa.negocio.beans.RolEJB;
 import co.edu.ingesoft.hospital.persistencia.entidades.Eps;
 import co.edu.ingesoft.hospital.persistencia.entidades.Paciente;
 import co.edu.ingesoft.hospital.persistencia.entidades.Persona;
+import co.edu.ingesoft.hospital.persistencia.entidades.Rol;
 
 
 @ViewScoped
@@ -27,18 +31,17 @@ public class PacienteAjaxController implements Serializable {
 	@EJB
 	private RolEJB rolEJB;
 	
-	
 	private String nombre;
-	
 	
 	private String apellido;
 	
+	private int busNumeroDocumento;
 	
 	private int numeroDocumento;
 	
 	private String generoSeleccionado;
 	
-	private String epsSeleccionada;
+	private int epsSeleccionada;
 	
 	private List<Eps> listaEps;
 	
@@ -48,59 +51,15 @@ public class PacienteAjaxController implements Serializable {
 
 	private String email;
 	
+	private List<Paciente> pacientes;
+	
+	private Date fechaNacimiento;
+	
 	@PostConstruct
 	public void inicializar(){
 	
 		listarCombos();
-		
-	}
-	
-	public void registrar(){
-		
-	}
-	
-	public void buscar(){
-		System.out.println("holaaaaaaa");
-		
-
-//		Paciente pa = pacienteEJB.buscarPaciente(numeroDocumento);
-//		if(pa != null){
-//			nombre = pa.getNombre();
-//			apellido = pa.getApellido();
-//			numeroDocumento = pa.getIdentificacion();
-//		//	generoSeleccionado = pa.getGenero();
-//			
-//		}else{
-//			
-//		}
-//		
-		//Paciente pa = pacienteEJB.buscarPaciente(numeroDocumento);
-		Persona pa = pacienteEJB.buscarPersona(numeroDocumento);
-		if(pa != null){
-			System.out.println("si");
-			nombre = pa.getNombre();
-			apellido = pa.getApellido();
-			numeroDocumento = pa.getIdentificacion();
-			///generoSeleccionado = pa.;
-		//	epsSeleccionada = pa.getEps().getNombre();
-			//fecha = pa.getFechaNacimiento().toString();
-			telefono = pa.getTelefono();
-		//	email = pa.getEmail();
-			
-			System.out.println(pa.getNombre());
-			System.out.println(pa.getApellido());
-			System.out.println(pa.getIdentificacion());
-		//	System.out.println(pa.getGenero());
-			//System.out.println(pa.getEps().getNombre());
-			//System.out.println(pa.getFechaNacimiento().toString());
-			System.out.println(pa.getTelefono());
-			//System.out.println(pa.getEmail());
-													
-		}else{
-			Messages.addFlashGlobalWarn("El paciente no existe");
-			System.out.println("no");
-		}
-		
+		pacientes = pacienteEJB.listarPacietes();
 		
 		
 	}
@@ -108,6 +67,79 @@ public class PacienteAjaxController implements Serializable {
 	public void listarCombos(){
 		listaEps = pacienteEJB.listarEps();
 		
+	}
+	
+	public void registrar() throws ParseException{
+		
+		if(numeroDocumento == 0){
+		
+		Paciente pa = pacienteEJB.buscarPaciente(numeroDocumento);
+		if(pa == null){
+			Paciente p = new Paciente();
+			
+			p.setNombre(nombre);
+			p.setApellido(apellido);
+			p.setIdentificacion(numeroDocumento);
+			p.setGenero(generoSeleccionado);
+			p.setEmail(email);
+			Eps e = pacienteEJB.buscarEps(epsSeleccionada);
+			p.setEps(e);
+			fechaNacimiento = new SimpleDateFormat("dd-MM-yyyy").parse(fecha);
+			p.setFechaNacimiento(fechaNacimiento);
+			p.setTelefono(telefono);
+
+			pacienteEJB.crearPaciente(p);
+			limpiar();
+			Messages.addFlashGlobalInfo("El paciente se ha registrado con exito");
+			
+		}else{
+			Messages.addFlashGlobalError("El paciente con identificacion: "+numeroDocumento+" ya existe");
+		}
+		
+		}else{
+			Messages.addFlashGlobalError("Ingrese todos los datos");
+		}
+	}
+	
+	public void buscar(){
+
+		Paciente pa = pacienteEJB.buscarPaciente(busNumeroDocumento);
+		
+		if(pa != null){
+			nombre = pa.getNombre();
+			apellido = pa.getApellido();
+			numeroDocumento = pa.getIdentificacion();
+			telefono = pa.getTelefono();
+			fecha = pa.getFechaNacimiento().toString();
+			email = pa.getEmail();
+			generoSeleccionado = pa.getGenero();
+			epsSeleccionada = pa.getEps().getIdEps();
+		}else{
+			Messages.addFlashGlobalWarn("El paciente no existe");
+			limpiar();
+		
+		}
+
+	}
+	
+	public void borrar(Paciente p) {
+		System.out.println("Entro");
+		pacienteEJB.borrarPaciente(p);
+		Messages.addFlashGlobalInfo("El paciente ha sido eliminada exitosamente");
+		//cuentasCliente = cuAsEJB.listaCuentasCliente(sesionCotroller.getCliente());
+	}
+	
+	
+	public void limpiar(){
+		nombre = "";
+		apellido = "";
+		numeroDocumento = 0;
+		telefono = "";
+		fecha = "";
+		email = "";
+		generoSeleccionado = "Seleccione";
+		epsSeleccionada = 111;
+		numeroDocumento = 0;
 	}
 
 	/**
@@ -183,14 +215,14 @@ public class PacienteAjaxController implements Serializable {
 	/**
 	 * @return the epsSeleccionada
 	 */
-	public String getEpsSeleccionada() {
+	public int getEpsSeleccionada() {
 		return epsSeleccionada;
 	}
 
 	/**
 	 * @param epsSeleccionada the epsSeleccionada to set
 	 */
-	public void setEpsSeleccionada(String epsSeleccionada) {
+	public void setEpsSeleccionada(int epsSeleccionada) {
 		this.epsSeleccionada = epsSeleccionada;
 	}
 
@@ -248,6 +280,34 @@ public class PacienteAjaxController implements Serializable {
 	 */
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	/**
+	 * @return the pacientes
+	 */
+	public List<Paciente> getPacientes() {
+		return pacientes;
+	}
+
+	/**
+	 * @param pacientes the pacientes to set
+	 */
+	public void setPacientes(List<Paciente> pacientes) {
+		this.pacientes = pacientes;
+	}
+
+	/**
+	 * @return the busNumeroDocumento
+	 */
+	public int getBusNumeroDocumento() {
+		return busNumeroDocumento;
+	}
+
+	/**
+	 * @param busNumeroDocumento the busNumeroDocumento to set
+	 */
+	public void setBusNumeroDocumento(int busNumeroDocumento) {
+		this.busNumeroDocumento = busNumeroDocumento;
 	}
 	
 	
