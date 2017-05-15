@@ -3,7 +3,8 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
-	 template="/template/template.xhtml">
+	 template="/template/template.xhtml"
+	 xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 	
 		<ui:define name="cuerpo">
 		<h:form prependId="false">
@@ -44,14 +45,14 @@
 				
 				<p:outputLabel for="tfepspasss" id="eps" value="Eps"  />
 				<h:selectOneMenu id="tfepspasss" class="form-control" value="#{pacienteAjaxController.epsSeleccionada}">
-					<f:selectItem itemValue="111" itemLabel="Seleccione..." />
+					<f:selectItem itemValue="0" itemLabel="Seleccione..." />
 					<f:selectItems value="#{pacienteAjaxController.listaEps}" var="eps"
 					itemValue="#{eps.idEps}" itemLabel="#{eps.nombre}"/>
 				</h:selectOneMenu>
 				<p:message for="tfepspasss" />
 				
 				<p:outputLabel for="tffechpa" id="fech" value="Fecha nacimiento"  />
-				<p:inputText id="tffechpa" class="form-control"  value="#{pacienteAjaxController.fecha}" />
+				<p:inputText id="tffechpa" class="form-control"  a:placeholder="fecha" value="#{pacienteAjaxController.fecha}" />
 				<p:message for="tffechpa" />
 				
 				<p:outputLabel for="tftelpa" id="tel" value="Telefono"  />

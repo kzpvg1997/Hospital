@@ -71,8 +71,12 @@ public class PacienteAjaxController implements Serializable {
 	
 	public void registrar() throws ParseException{
 		
-		if(numeroDocumento == 0){
-		
+		if(!fecha.isEmpty() && !nombre.isEmpty() && !apellido.isEmpty() && !telefono.isEmpty() && !email.isEmpty() &&
+				!generoSeleccionado.equalsIgnoreCase("Seleccione") && !(epsSeleccionada == 0) && !(numeroDocumento == 0) ){
+
+
+			System.out.println("entro");
+			
 		Paciente pa = pacienteEJB.buscarPaciente(numeroDocumento);
 		if(pa == null){
 			Paciente p = new Paciente();
@@ -87,10 +91,15 @@ public class PacienteAjaxController implements Serializable {
 			fechaNacimiento = new SimpleDateFormat("dd-MM-yyyy").parse(fecha);
 			p.setFechaNacimiento(fechaNacimiento);
 			p.setTelefono(telefono);
-
-			pacienteEJB.crearPaciente(p);
-			limpiar();
-			Messages.addFlashGlobalInfo("El paciente se ha registrado con exito");
+			if(p.getFechaNacimiento() != null){
+				pacienteEJB.crearPaciente(p);
+				limpiar();
+				Messages.addFlashGlobalInfo("El paciente se ha registrado con exito");
+			}else{
+				System.out.println("No entro fecha");
+				Messages.addFlashGlobalError("No entro fecha");
+			}
+			
 			
 		}else{
 			Messages.addFlashGlobalError("El paciente con identificacion: "+numeroDocumento+" ya existe");
@@ -98,6 +107,7 @@ public class PacienteAjaxController implements Serializable {
 		
 		}else{
 			Messages.addFlashGlobalError("Ingrese todos los datos");
+			System.out.println("No entro");
 		}
 	}
 	

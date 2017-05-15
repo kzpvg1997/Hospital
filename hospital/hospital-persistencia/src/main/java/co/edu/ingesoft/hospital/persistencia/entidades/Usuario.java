@@ -43,5 +43,63 @@ public class Usuario implements Serializable{
 	public Usuario(){
 		
 	}
+
+	/**
+	 * @return the codigo
+	 */
+	public int getCodigo() {
+		return codigo;
+	}
+
+	/**
+	 * @param codigo the codigo to set
+	 */
+	public void setCodigo(int codigo) {
+		this.codigo = codigo;
+	}
+
+	/**
+	 * @return the usuario
+	 */
+	public String getUsuario() {
+		return usuario;
+	}
+
+	/**
+	 * @param usuario the usuario to set
+	 */
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
+	}
+
+	/**
+	 * @return the password
+	 */
+	public String getPassword() {
+		return password;
+	}
+
+	/**
+	 * @param password the password to set
+	 */
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	/**
+	 * @return the persona
+	 */
+	public Persona getPersona() {
+		return persona;
+	}
+
+	/**
+	 * @param persona the persona to set
+	 */
+	public void setPersona(Persona persona) {
+		this.persona = persona;
+	}
+	
+	
 	
 }
