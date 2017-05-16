@@ -41,7 +41,7 @@ public class SessionController implements Serializable {
 
 	public String loginU() {
 
-		Usuario usu = seguridadEJB.buscarUsuario(password);
+		Usuario usu = seguridadEJB.buscarUsuario(user);
 		if (usu != null) {
 			if(usu.getPassword().equals(password)){
 				usuario = usu;

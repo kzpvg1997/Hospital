@@ -237,13 +237,6 @@ public class PacienteAjaxController implements Serializable {
 	}
 
 	/**
-	 * @return the epsSeleccionada
-	 */
-	public String getEpsSeleccionada() {
-		return epsSeleccionada;
-	}
-
-	/**
 	 * @param epsSeleccionada the epsSeleccionada to set
 	 */
 	public void setEpsSeleccionada(int epsSeleccionada) {

@@ -13,6 +13,7 @@ import co.edu.ingesoft.hospital.persistencia.entidades.Usuario;
 
 
 
+
 @LocalBean
 @Stateless
 public class SeguridadEJB implements Serializable{
