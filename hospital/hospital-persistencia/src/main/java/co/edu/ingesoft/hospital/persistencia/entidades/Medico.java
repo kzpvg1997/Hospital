@@ -14,6 +14,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 
@@ -23,8 +25,13 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="Medicos")
+@NamedQueries({
+	@NamedQuery(name=Medico.ListaMedico,query="SELECT m FROM Medico m")
+})
 public class Medico  extends Persona implements Serializable{
 
+	
+	public static final String ListaMedico = "Medico.listarMedico";
 		
 	@ManyToOne
 	@JoinColumn(name="Hospital")
@@ -49,5 +56,39 @@ public class Medico  extends Persona implements Serializable{
 		this.hospital = hospital;
 		this.tipoMedico = tipoMedico;
 	}
+
+	/**
+	 * @return the hospital
+	 */
+	public Hospital getHospital() {
+		return hospital;
+	}
+
+	/**
+	 * @param hospital the hospital to set
+	 */
+	public void setHospital(Hospital hospital) {
+		this.hospital = hospital;
+	}
+
+	/**
+	 * @return the tipoMedico
+	 */
+	public String getTipoMedico() {
+		return tipoMedico;
+	}
+
+	/**
+	 * @param tipoMedico the tipoMedico to set
+	 */
+	public void setTipoMedico(String tipoMedico) {
+		this.tipoMedico = tipoMedico;
+	}
+
+
+	
+	
+	
+	
 	
 }

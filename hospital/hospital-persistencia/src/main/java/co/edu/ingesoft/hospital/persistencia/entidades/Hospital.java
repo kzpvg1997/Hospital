@@ -27,10 +27,15 @@ import javax.persistence.Table;
 @NamedQueries({
 	@NamedQuery(name=Hospital.LISTA_HOSPITALES,query="SELECT h FROM Hospital h")
 })
+@NamedQueries({
+	@NamedQuery(name=Hospital.ListaHospital,query="SELECT h FROM Hospital h")
+})
 public class Hospital implements Serializable{
 	
 	public static final String LISTA_HOSPITALES = "Hospital.listaHospitales";
 
+	public static final String ListaHospital = "Hospital.listarHospitales";
+	
 	@Id
 	@Column(name="id_hospital")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "HOSPITAL_SEQ")

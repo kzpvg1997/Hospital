@@ -47,6 +47,14 @@ public class PacienteEJB {
 	}
 	
 	
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public List<Paciente> listarPacietes(){
+		Query q = em.createNamedQuery(Paciente.ListaPaciente);
+		List<Paciente> paciente = q.getResultList();
+		return paciente;
+	}
+	
+	
 	/**
 	 * Metodo que sirve para buscar un  paciente
 	 * @param cedula para buscar el paciente
@@ -78,19 +86,29 @@ public class PacienteEJB {
 	}
 	
 	/**
-	 * metodo que sirve para buscar la eps del paciente
-	 * @param id que recibe
-	 * @return la eps
+	 * Metodo para eliminar un paciente
+	 * @param p paciente que recibe
+	 */
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public void borrarPaciente(Paciente p){
+		Paciente pa = buscarPaciente(p.getIdentificacion());
+		if(pa != null){
+			em.remove(pa);
+		}
+		
+	}
+	
+	/**
+	 * Metodo para buscar una eps
+	 * @param id que recibe el metodo
+	 * @return la eps 
 	 */
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public Eps buscarEps(int id){
 		return em.find(Eps.class,id);
 	}
 	
-	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public Persona buscarPersona(int id){
-		return em.find(Persona.class,id);
-	}
+	
 	
 	
 }

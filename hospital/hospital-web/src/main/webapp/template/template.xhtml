@@ -3,8 +3,11 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:a="http//xmlns.jcp.org/jsf/passthrough">
+	
   <h:head>
+  
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>Medilab</title>
@@ -17,11 +20,15 @@
     <link rel="stylesheet" type="text/css" href="#{request.contextPath}/css/font-awesome.min.css"/>
     <link rel="stylesheet" type="text/css" href="#{request.contextPath}/css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="#{request.contextPath}/css/style.css"/>
+    
+	
 
   </h:head>
   <h:body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
   	<!--banner-->
+  	
 	<section id="banner" class="banner">
+	
 		<div class="bg-color">
 			<nav class="navbar navbar-default navbar-fixed-top">
 			  <div class="container">
@@ -71,19 +78,20 @@
 				<div class="body" align="center">
 
 					<section id="portfolio">
+					
+					<p:growl  sticky="true" autoUpdate="true"  />
 
 						<div class="container">
 
 							<div class="box">
-								<p:messages autoUpdate="true" globalOnly="true" />
 								<ui:insert name="cuerpo" />
+								
 							</div>
-
+								
 						</div>
 					</section>
-
-
 				</div>
+				
 			</h:form>
 	<!--footer-->
 	<footer id="footer">

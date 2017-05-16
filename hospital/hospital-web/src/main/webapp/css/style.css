@@ -66,6 +66,7 @@ banner
 }
 .navbar {
     border-radius: 0px;
+    z-index: 1;
 }
 .navbar-default {
     background-color: #fff;
@@ -98,6 +99,7 @@ banner
 .top-nav-collapse {
     padding: 0; 
     background: rgba(28,74,90, 0.9);
+    z-index: 1;
 }
 
 .white, .white:hover, .white:focus

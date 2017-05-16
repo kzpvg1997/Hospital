@@ -7,24 +7,36 @@
 	
 		<ui:define name="cuerpo">
 			<h:form prependId="false">
+			
+			<p:fieldset legend="Busqueda" style="margin-top:10px">
+			<h:panelGrid id="busme" columns="3">
+			
+			<p:commandButton styleClass="ui-priority-primary" value="Buscar" process="@this tfbusme "
+				update="dtmedi" action="#{medicoAjaxController.buscar}" />
+				<p:inputText id="tfbusme" class="form-control"  value="#{medicoAjaxController.busMedico}" />
+				<p:message for="tfbusme" />
+			</h:panelGrid>
+		</p:fieldset>
+			
 			<p:fieldset legend="Datos medico" style="margin-top:10px">
-				<h:panelGrid columns="3">
+				<h:panelGrid id="dtmedi" columns="3">
 					
 					<p:outputLabel for="tfnomdo" id="nomD" value="Nombre"  />
-				<p:inputText id="tfnomdo" class="form-control"  value="" />
+				<p:inputText id="tfnomdo" class="form-control"  value="#{medicoAjaxController.nombre}" />
 				<p:message for="tfnomdo" />
 				
 				<p:outputLabel for="tfapedo" id="apeD" value="Apellido"  />
-				<p:inputText id="tfapedo" class="form-control"  value="" />
+				<p:inputText id="tfapedo" class="form-control"  value="#{medicoAjaxController.apellido}" />
 				<p:message for="tfapedo" />
 				
 				
 				<p:outputLabel for="tfnumdo" id="nunDD" value="Numero documento"  />
-				<p:inputText id="tfnumdo" class="form-control"  value="" />
+				<p:inputText id="tfnumdo" class="form-control"  value="#{medicoAjaxController.numeroDocumento}" />
 				<p:message for="tfnumdo" />
 				
-				<p:outputLabel for="tfespdo" id="espD" value="Especialidad"  />
-				<h:selectOneMenu id="tfespdo" class="form-control" value="#">
+				<p:outputLabel for="tfespdo" id="espD" value="Tipo Mmedico"  />
+				<h:selectOneMenu id="tfespdo" class="form-control" value="#" disabled="#{medicoAjaxController.activo}">
+				 
 					<f:selectItem itemValue="Seleccione" itemLabel="Seleccione" />
 					<f:selectItem itemValue="General" itemLabel="General" />
 					<f:selectItem itemValue="Pediatra" itemLabel="Pediatra" />
@@ -34,10 +46,10 @@
 				<p:message for="tfespdo" />
 				
 				<p:outputLabel for="tfhosdo" id="hosD" value="Hospital"  />
-				<h:selectOneMenu id="tfhosdo" class="form-control" value="#{medicoAjaxController.hospitalSeleccionado}">
+				<h:selectOneMenu id="tfhosdo" class="form-control" value="#">
 					<f:selectItem itemValue="Seleccione" itemLabel="Seleccione" />
-					<f:selectItems value="#{medicoAjaxController.listaHospitales}" var="hos"
-					itemValue="#{hos.idHospital}" itemLabel="#{hos.nombre}" />
+					<f:selectItems value="#{medicoAjaxController.hospitales}" var="hos"
+					itemValue="#{hos.idHospital}" itemLabel="#{hos.nombre}"/>
 				</h:selectOneMenu>
 				<p:message for="tfhosdo" />
 				
@@ -47,48 +59,54 @@
 				
 				<h:panelGrid columns="2">
 				<p:commandButton styleClass="ui-priority-primary" value="Registrar" ajax="false" action="#" />
-				<p:commandButton styleClass="ui-priority-primary" value="Buscar" ajax="false" action="#" />
 				
 				</h:panelGrid>
 				
 				</h:panelGrid>
+				
+				<p:fieldset legend="Horario" style="margin-top:10px">
+			<h:panelGrid id="horme" columns="3">
+			
+			
+			</h:panelGrid>
+		</p:fieldset>
 				
 	
 			</p:fieldset>	
 			
 					 <p:accordionPanel>
         <p:tab title="Medicos">
-			<p:dataTable id="tablaDo" value="#" var="doc"
+			<p:dataTable id="tablaDo" value="#{medicoAjaxController.medicos}" var="me"
 				border="1">
 				<p:column>
 					<f:facet name="header">
 							Nombre
 						</f:facet>
-					<p:outputLabel value="" />
+					<p:outputLabel value="#{me.nombre}" />
 				</p:column>
 				<p:column>
 					<f:facet name="header">
 							Apellido
 						</f:facet>
-					<p:outputLabel value="" />
+					<p:outputLabel value="#{me.apellido}" />
 				</p:column>
 				<p:column>
 					<f:facet name="header">
 							Numero Documento
 						</f:facet>
-					<p:outputLabel value="" />
+					<p:outputLabel value="#{me.identificacion}" />
 				</p:column>
 				<p:column>
 					<f:facet name="header">
-							Especialidad
+							Tipo medico
 						</f:facet>
-					<p:outputLabel value="" />
+					<p:outputLabel value="#{me.tipoMedico}" />
 				</p:column>
 				<p:column>
 					<f:facet name="header">
 							Hospital
 						</f:facet>
-					<p:outputLabel value="" />
+					<p:outputLabel value="#{me.hospital}" />
 				</p:column>
 				<p:column>
 					<f:facet name="header">
