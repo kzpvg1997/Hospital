@@ -25,12 +25,11 @@ import javax.persistence.Table;
 @Entity
 @Table(name="Hospitales")
 @NamedQueries({
-	@NamedQuery(name=Hospital.LISTA_HOSPITALES,query="SELECT h FROM Hospital h")
+	@NamedQuery(name=Hospital.ListaHospital,query="SELECT h FROM Hospital h")
 })
-
 public class Hospital implements Serializable{
 	
-	public static final String LISTA_HOSPITALES = "Hospital.listaHospitales";
+	
 
 	public static final String ListaHospital = "Hospital.listarHospitales";
 	

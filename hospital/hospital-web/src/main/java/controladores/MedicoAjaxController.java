@@ -5,19 +5,18 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.bean.ViewScoped;
 import javax.inject.Named;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.Length;
-import org.omnifaces.cdi.ViewScoped;
 import org.omnifaces.util.Messages;
 
 import co.edu.eam.ingesoft.pa.negocio.beans.MedicoEJB;
 import co.edu.ingesoft.hospital.persistencia.entidades.Hospital;
 import co.edu.ingesoft.hospital.persistencia.entidades.Medico;
 
-import co.edu.eam.ingesoft.pa.negocio.beans.MedicoEJB;
-import co.edu.ingesoft.hospital.persistencia.entidades.Hospital;
+
 
 @ViewScoped
 @Named("medicoAjaxController")
@@ -85,188 +84,6 @@ public class MedicoAjaxController implements Serializable {
 		
 		
 	}
-
-	/**
-	 * @return the nombre
-	 */
-	public String getNombre() {
-		return nombre;
-	}
-
-	/**
-	 * @param nombre the nombre to set
-	 */
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	/**
-	 * @return the apellido
-	 */
-	public String getApellido() {
-		return apellido;
-	}
-
-	/**
-	 * @param apellido the apellido to set
-	 */
-	public void setApellido(String apellido) {
-		this.apellido = apellido;
-	}
-
-	/**
-	 * @return the numeroDocumento
-	 */
-	public int getNumeroDocumento() {
-		return numeroDocumento;
-	}
-
-	/**
-	 * @param numeroDocumento the numeroDocumento to set
-	 */
-	public void setNumeroDocumento(int numeroDocumento) {
-		this.numeroDocumento = numeroDocumento;
-	}
-
-	/**
-	 * @return the listaHospitales
-	 */
-	public List<Hospital> getListaHospitales() {
-		return listaHospitales;
-	}
-
-	/**
-	 * @param listaHospitales the listaHospitales to set
-	 */
-	public void setListaHospitales(List<Hospital> listaHospitales) {
-		this.listaHospitales = listaHospitales;
-	}
-
-	/**
-	 * @return the especialidadSeleccionda
-	 */
-	public String getEspecialidadSeleccionda() {
-		return especialidadSeleccionda;
-	}
-
-	/**
-	 * @param especialidadSeleccionda the especialidadSeleccionda to set
-	 */
-	public void setEspecialidadSeleccionda(String especialidadSeleccionda) {
-		this.especialidadSeleccionda = especialidadSeleccionda;
-	}
-
-	/**
-	 * @return the hospitalSeleccionado
-	 */
-	public String getHospitalSeleccionado() {
-		return hospitalSeleccionado;
-	}
-
-	/**
-	 * @param hospitalSeleccionado the hospitalSeleccionado to set
-	 */
-	public void setHospitalSeleccionado(String hospitalSeleccionado) {
-		this.hospitalSeleccionado = hospitalSeleccionado;
-	}
-
-	/**
-	 * @return the hospitales
-	 */
-	public List<Hospital> getHospitales() {
-		return hospitales;
-	}
-
-	/**
-	 * @param hospitales the hospitales to set
-	 */
-	public void setHospitales(List<Hospital> hospitales) {
-		this.hospitales = hospitales;
-	}
-
-	/**
-	 * @return the medicos
-	 */
-	public List<Medico> getMedicos() {
-		return medicos;
-	}
-
-	/**
-	 * @param medicos the medicos to set
-	 */
-	public void setMedicos(List<Medico> medicos) {
-		this.medicos = medicos;
-	}
-
-	/**
-	 * @return the horario
-	 */
-	public String getHorario() {
-		return horario;
-	}
-
-	/**
-	 * @param horario the horario to set
-	 */
-	public void setHorario(String horario) {
-		this.horario = horario;
-	}
-
-	/**
-	 * @return the busMedico
-	 */
-	public int getBusMedico() {
-		return busMedico;
-	}
-
-	/**
-	 * @param busMedico the busMedico to set
-	 */
-	public void setBusMedico(int busMedico) {
-		this.busMedico = busMedico;
-	}
-
-	/**
-	 * @return the general
-	 */
-	public boolean isGeneral() {
-		return general;
-	}
-
-	/**
-	 * @param general the general to set
-	 */
-	public void setGeneral(boolean general) {
-		this.general = general;
-	}
-
-	/**
-	 * @return the activo
-	 */
-	public boolean isActivo() {
-		return activo;
-	}
-
-	/**
-	 * @param activo the activo to set
-	 */
-	public void setActivo(boolean activo) {
-		this.activo = activo;
-	}
-
-	/**
-	 * @return the noActivo
-	 */
-	public boolean isNoActivo() {
-		return noActivo;
-	}
-
-	/**
-	 * @param noActivo the noActivo to set
-	 */
-	public void setNoActivo(boolean noActivo) {
-		this.noActivo = noActivo;
 	}
 	
 
-}

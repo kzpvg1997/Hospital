@@ -15,11 +15,8 @@ import org.omnifaces.util.Messages;
 
 import co.edu.eam.ingesoft.pa.negocio.beans.PacienteEJB;
 import co.edu.eam.ingesoft.pa.negocio.beans.RolEJB;
-import co.edu.ingesoft.hospital.persistencia.entidades.Accesos;
 import co.edu.ingesoft.hospital.persistencia.entidades.Eps;
 import co.edu.ingesoft.hospital.persistencia.entidades.Paciente;
-import co.edu.ingesoft.hospital.persistencia.entidades.Persona;
-import co.edu.ingesoft.hospital.persistencia.entidades.Rol;
 
 
 @ViewScoped
@@ -36,9 +33,9 @@ public class PacienteAjaxController implements Serializable {
 	
 	private String apellido;
 	
-	private int busNumeroDocumento;
+	private String busNumeroDocumento;
 	
-	private int numeroDocumento;
+	private String numeroDocumento;
 	
 	private String generoSeleccionado;
 	
@@ -74,18 +71,18 @@ public class PacienteAjaxController implements Serializable {
 	public void registrar() throws ParseException{
 		
 		if(!fecha.isEmpty() && !nombre.isEmpty() && !apellido.isEmpty() && !telefono.isEmpty() && !email.isEmpty() &&
-				!generoSeleccionado.equalsIgnoreCase("Seleccione") && !(epsSeleccionada == 0) && !(numeroDocumento == 0) ){
+				!generoSeleccionado.equalsIgnoreCase("Seleccione") && !(epsSeleccionada == 0) && !(numeroDocumento.isEmpty()) ){
 
 
 			System.out.println("entro");
 			
-		Paciente pa = pacienteEJB.buscarPaciente(numeroDocumento);
+		Paciente pa = pacienteEJB.buscarPaciente(Integer.parseInt(numeroDocumento));
 		if(pa == null){
 			Paciente p = new Paciente();
 			
 			p.setNombre(nombre);
 			p.setApellido(apellido);
-			p.setIdentificacion(numeroDocumento);
+			p.setIdentificacion(Integer.parseInt(numeroDocumento));
 			p.setGenero(generoSeleccionado);
 			p.setEmail(email);
 			Eps e = pacienteEJB.buscarEps(epsSeleccionada);
@@ -115,24 +112,11 @@ public class PacienteAjaxController implements Serializable {
 	
 	public void buscar(){
 
-		Paciente pa = pacienteEJB.buscarPaciente(busNumeroDocumento);
-		
-		List<Rol>listaRoles = rolEJB.ListaRolesPersona(numeroDocumento);
-		
-		Rol role = rolEJB.buscarRol(1);
-		List<Accesos> accesos = rolEJB.ListaAccesosRol(role);
-		for (Accesos acce : accesos) {
-			System.out.println("(((((((((((((((((((((---"+acce+"----))))))))))))))");
-		}
-		for (Rol rol : listaRoles) {
-		
-		System.out.println("(((((((((((((((((((((---"+rol+"----))))))))))))))");
-		
-		}
+		Paciente pa = pacienteEJB.buscarPaciente(Integer.parseInt(busNumeroDocumento));
 		if(pa != null){
 			nombre = pa.getNombre();
 			apellido = pa.getApellido();
-			numeroDocumento = pa.getIdentificacion();
+			numeroDocumento = String.valueOf(pa.getIdentificacion());
 			telefono = pa.getTelefono();
 			fecha = pa.getFechaNacimiento().toString();
 			email = pa.getEmail();
@@ -147,7 +131,7 @@ public class PacienteAjaxController implements Serializable {
 	}
 	
 	public void borrar(Paciente p) {
-		System.out.println("Entro");
+		System.out.println("Entrooo");
 		pacienteEJB.borrarPaciente(p);
 		Messages.addFlashGlobalInfo("El paciente ha sido eliminada exitosamente");
 		//cuentasCliente = cuAsEJB.listaCuentasCliente(sesionCotroller.getCliente());
@@ -157,27 +141,13 @@ public class PacienteAjaxController implements Serializable {
 	public void limpiar(){
 		nombre = "";
 		apellido = "";
-		numeroDocumento = 0;
+		numeroDocumento = "";
 		telefono = "";
 		fecha = "";
 		email = "";
 		generoSeleccionado = "Seleccione";
 		epsSeleccionada = 111;
-		numeroDocumento = 0;
-	}
-
-	/**
-	 * @return the pacienteEJB
-	 */
-	public PacienteEJB getPacienteEJB() {
-		return pacienteEJB;
-	}
-
-	/**
-	 * @param pacienteEJB the pacienteEJB to set
-	 */
-	public void setPacienteEJB(PacienteEJB pacienteEJB) {
-		this.pacienteEJB = pacienteEJB;
+		numeroDocumento = "";
 	}
 
 	/**
@@ -209,16 +179,30 @@ public class PacienteAjaxController implements Serializable {
 	}
 
 	/**
+	 * @return the busNumeroDocumento
+	 */
+	public String getBusNumeroDocumento() {
+		return busNumeroDocumento;
+	}
+
+	/**
+	 * @param busNumeroDocumento the busNumeroDocumento to set
+	 */
+	public void setBusNumeroDocumento(String busNumeroDocumento) {
+		this.busNumeroDocumento = busNumeroDocumento;
+	}
+
+	/**
 	 * @return the numeroDocumento
 	 */
-	public int getNumeroDocumento() {
+	public String getNumeroDocumento() {
 		return numeroDocumento;
 	}
 
 	/**
 	 * @param numeroDocumento the numeroDocumento to set
 	 */
-	public void setNumeroDocumento(int numeroDocumento) {
+	public void setNumeroDocumento(String numeroDocumento) {
 		this.numeroDocumento = numeroDocumento;
 	}
 
@@ -237,6 +221,16 @@ public class PacienteAjaxController implements Serializable {
 	}
 
 	/**
+<<<<<<< HEAD
+=======
+	 * @return the epsSeleccionada
+	 */
+	public int getEpsSeleccionada() {
+		return epsSeleccionada;
+	}
+
+	/**
+>>>>>>> branch 'master' of https://github.com/kzpvg1997/Hospital.git
 	 * @param epsSeleccionada the epsSeleccionada to set
 	 */
 	public void setEpsSeleccionada(int epsSeleccionada) {
@@ -299,7 +293,6 @@ public class PacienteAjaxController implements Serializable {
 		this.email = email;
 	}
 
-
 	/**
 	 * @return the pacientes
 	 */
@@ -315,18 +308,19 @@ public class PacienteAjaxController implements Serializable {
 	}
 
 	/**
-	 * @return the busNumeroDocumento
+	 * @return the fechaNacimiento
 	 */
-	public int getBusNumeroDocumento() {
-		return busNumeroDocumento;
+	public Date getFechaNacimiento() {
+		return fechaNacimiento;
 	}
 
 	/**
-	 * @param busNumeroDocumento the busNumeroDocumento to set
+	 * @param fechaNacimiento the fechaNacimiento to set
 	 */
-	public void setBusNumeroDocumento(int busNumeroDocumento) {
-		this.busNumeroDocumento = busNumeroDocumento;
+	public void setFechaNacimiento(Date fechaNacimiento) {
+		this.fechaNacimiento = fechaNacimiento;
 	}
+
 	
 	
 }
