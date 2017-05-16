@@ -34,12 +34,10 @@
 				<p:message for="tfespdo" />
 				
 				<p:outputLabel for="tfhosdo" id="hosD" value="Hospital"  />
-				<h:selectOneMenu id="tfhosdo" class="form-control" value="#">
+				<h:selectOneMenu id="tfhosdo" class="form-control" value="#{medicoAjaxController.hospitalSeleccionado}">
 					<f:selectItem itemValue="Seleccione" itemLabel="Seleccione" />
-					<f:selectItem itemValue="1" itemLabel="Medilab" />
-					<f:selectItem itemValue="2" itemLabel="San juan" />
-					<f:selectItem itemValue="3" itemLabel="Del sur" />
-					<f:selectItem itemValue="4" itemLabel="Quintana" />
+					<f:selectItems value="#{medicoAjaxController.listaHospitales}" var="hos"
+					itemValue="#{hos.idHospital}" itemLabel="#{hos.nombre}" />
 				</h:selectOneMenu>
 				<p:message for="tfhosdo" />
 				

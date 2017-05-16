@@ -12,6 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -22,8 +24,16 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="Usuarios")
+@NamedQueries({	
+	@NamedQuery(name=Usuario.PERSONA_POR_USUARIO,query="SELECT u.persona FROM Usuario u WHERE u.usuario=?1"),
+	@NamedQuery(name=Usuario.USUARIO_POR_PERSONA,query="SELECT u FROM Usuario u WHERE u.persona=?1")
+})
 public class Usuario implements Serializable{
 
+	public static final String PERSONA_POR_USUARIO= "Usuario.personaXUsuario";
+	
+	public static final String USUARIO_POR_PERSONA= "Usuario.UsuarioXPersona";
+	
 	@Id
 	@Column(name="codigo")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USUARIO_SEQ")
@@ -43,5 +53,63 @@ public class Usuario implements Serializable{
 	public Usuario(){
 		
 	}
+
+	/**
+	 * @return the codigo
+	 */
+	public int getCodigo() {
+		return codigo;
+	}
+
+	/**
+	 * @param codigo the codigo to set
+	 */
+	public void setCodigo(int codigo) {
+		this.codigo = codigo;
+	}
+
+	/**
+	 * @return the usuario
+	 */
+	public String getUsuario() {
+		return usuario;
+	}
+
+	/**
+	 * @param usuario the usuario to set
+	 */
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
+	}
+
+	/**
+	 * @return the password
+	 */
+	public String getPassword() {
+		return password;
+	}
+
+	/**
+	 * @param password the password to set
+	 */
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	/**
+	 * @return the persona
+	 */
+	public Persona getPersona() {
+		return persona;
+	}
+
+	/**
+	 * @param persona the persona to set
+	 */
+	public void setPersona(Persona persona) {
+		this.persona = persona;
+	}
+	
+	
 	
 }

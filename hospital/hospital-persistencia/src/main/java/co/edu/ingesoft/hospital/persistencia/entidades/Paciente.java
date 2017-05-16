@@ -13,6 +13,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -24,9 +26,9 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name="PACIENTES")
-public class Paciente extends Persona implements Serializable{
 
-	
+public class Paciente extends Persona implements Serializable{
+		
 	@Column(name="email",length=200)
 	private String email;
 	

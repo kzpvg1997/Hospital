@@ -12,9 +12,11 @@ import org.omnifaces.util.Messages;
 
 import co.edu.eam.ingesoft.pa.negocio.beans.PacienteEJB;
 import co.edu.eam.ingesoft.pa.negocio.beans.RolEJB;
+import co.edu.ingesoft.hospital.persistencia.entidades.Accesos;
 import co.edu.ingesoft.hospital.persistencia.entidades.Eps;
 import co.edu.ingesoft.hospital.persistencia.entidades.Paciente;
 import co.edu.ingesoft.hospital.persistencia.entidades.Persona;
+import co.edu.ingesoft.hospital.persistencia.entidades.Rol;
 
 
 @ViewScoped
@@ -43,6 +45,7 @@ public class PacienteAjaxController implements Serializable {
 	private List<Eps> listaEps;
 	
 	private String fecha;
+	
 	
 	private String telefono;
 
@@ -76,6 +79,18 @@ public class PacienteAjaxController implements Serializable {
 //		
 		//Paciente pa = pacienteEJB.buscarPaciente(numeroDocumento);
 		Persona pa = pacienteEJB.buscarPersona(numeroDocumento);
+		List<Rol>listaRoles = rolEJB.ListaRolesPersona(numeroDocumento);
+		
+		Rol role = rolEJB.buscarRol(1);
+		List<Accesos> accesos = rolEJB.ListaAccesosRol(role);
+		for (Accesos acce : accesos) {
+			System.out.println("(((((((((((((((((((((---"+acce+"----))))))))))))))");
+		}
+		for (Rol rol : listaRoles) {
+		
+		System.out.println("(((((((((((((((((((((---"+rol+"----))))))))))))))");
+		
+		}
 		if(pa != null){
 			System.out.println("si");
 			nombre = pa.getNombre();
@@ -249,8 +264,7 @@ public class PacienteAjaxController implements Serializable {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
-	
-	
 
+	
+	
 }

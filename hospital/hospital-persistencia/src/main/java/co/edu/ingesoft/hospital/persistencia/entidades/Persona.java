@@ -12,6 +12,8 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /**
@@ -21,8 +23,13 @@ import javax.persistence.Table;
 @Entity
 @Table(name="PERSONAS")
 @Inheritance(strategy=InheritanceType.JOINED)
+@NamedQueries({
+	@NamedQuery(name=Persona.ROLES_PERSONA,query="SELECT p.rol FROM Persona p WHERE p.identificacion=?1")
+})
 public class Persona implements Serializable{
-
+	
+	public static final String ROLES_PERSONA= "persona.rolXpersona";
+	
 	@Id
 	@Column(name="identificacion")
 	private int identificacion;

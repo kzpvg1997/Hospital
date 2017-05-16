@@ -13,6 +13,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import co.edu.ingesoft.hospital.persistencia.entidades.Accesos;
+import co.edu.ingesoft.hospital.persistencia.entidades.Persona;
 import co.edu.ingesoft.hospital.persistencia.entidades.Rol;
 
 
@@ -39,15 +41,30 @@ public class RolEJB {
 		return roles;
 	}
 	
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public List<Rol> ListaRolesPersona(int identificacion){
+		Query q = em.createNamedQuery(Persona.ROLES_PERSONA);
+		q.setParameter(1, identificacion);
+		List<Rol> rolesPersona = q.getResultList();
+		return rolesPersona;
+	}
+	
 	@TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
 	public Rol buscarRol (int id){
 		return em.find(Rol.class, id);
 	}
 	
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public List<Accesos> ListaAccesosRol(Rol rol){
+		Query q = em.createNamedQuery(Accesos.LISTA_ACCESOS_ROL);
+		q.setParameter(1, rol);
+		List<Accesos> accesosRoles = q.getResultList();
+		return accesosRoles;
+	}
 	
 	public int prueba (){
 		
-		Query q = em.createNativeQuery("SELECT R.ID FROM ROLES R WHERE R.NOMBRE='MEDICO'");
+		Query q = em.createNativeQuery("SELECT R.ID FROM ROLES R WHERE R.NOMBRE='ADMINISTRADOR'");
 		List<Integer> valores = q.getResultList();
 		
 		System.out.println("((((((((((((((("+valores.get(0)+")))))))))))");

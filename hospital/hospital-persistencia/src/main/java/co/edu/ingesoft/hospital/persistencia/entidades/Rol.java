@@ -28,6 +28,7 @@ public class Rol implements Serializable{
 
 	public static final String LISTA_ROLES= "Rol.lista";
 	
+		
 	@Id
 	@Column(name="id")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ROL_SEQ")
@@ -67,6 +68,14 @@ public class Rol implements Serializable{
 	 */
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return nombre;
 	}
 	
 	
