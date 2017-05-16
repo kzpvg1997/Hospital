@@ -134,7 +134,7 @@ public class PacienteAjaxController implements Serializable {
 	}
 	
 	public void borrar(Paciente p) {
-		System.out.println("Entroo");
+		System.out.println("Entrooo");
 		pacienteEJB.borrarPaciente(p);
 		Messages.addFlashGlobalInfo("El paciente ha sido eliminada exitosamente");
 		//cuentasCliente = cuAsEJB.listaCuentasCliente(sesionCotroller.getCliente());
