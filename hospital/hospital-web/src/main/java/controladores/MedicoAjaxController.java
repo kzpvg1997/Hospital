@@ -60,7 +60,6 @@ public class MedicoAjaxController implements Serializable {
 	
 	@PostConstruct
 	public void inicializar(){
-	listaHospitales = medicoEJB.listaHospitales();
 		hospitales = medicoEJB.listarHospitales();
 		medicos = medicoEJB.listarMedicos();
 	}
@@ -86,7 +85,6 @@ public class MedicoAjaxController implements Serializable {
 		
 		
 	}
-	
 
 	/**
 	 * @return the nombre
@@ -127,146 +125,6 @@ public class MedicoAjaxController implements Serializable {
 	 * @param numeroDocumento the numeroDocumento to set
 	 */
 	public void setNumeroDocumento(int numeroDocumento) {
-		this.numeroDocumento = numeroDocumento;
-	}
-
-	/**
-	 * @return the especialidadSeleccionda
-	 */
-	public String getEspecialidadSeleccionda() {
-		return especialidadSeleccionda;
-	}
-
-	/**
-	 * @param especialidadSeleccionda the especialidadSeleccionda to set
-	 */
-	public void setEspecialidadSeleccionda(String especialidadSeleccionda) {
-		this.especialidadSeleccionda = especialidadSeleccionda;
-	}
-
-	/**
-	 * @return the hospitalSeleccionado
-	 */
-	public String getHospitalSeleccionado() {
-		return hospitalSeleccionado;
-	}
-
-	/**
-	 * @param hospitalSeleccionado the hospitalSeleccionado to set
-	 */
-	public void setHospitalSeleccionado(String hospitalSeleccionado) {
-		this.hospitalSeleccionado = hospitalSeleccionado;
-	}
-
-	/**
-	 * @return the horario
-	 */
-	public String getHorario() {
-		return horario;
-	}
-
-	/**
-	 * @param horario the horario to set
-	 */
-	public void setHorario(String horario) {
-		this.horario = horario;
-	}
-
-	/**
-	 * @return the hospitales
-	 */
-	public List<Hospital> getHospitales() {
-		return hospitales;
-	}
-
-	/**
-	 * @param hospitales the hospitales to set
-	 */
-	public void setHospitales(List<Hospital> hospitales) {
-		this.hospitales = hospitales;
-	}
-
-	/**
-	 * @return the busMedico
-	 */
-	public int getBusMedico() {
-		return busMedico;
-	}
-
-	/**
-	 * @param busMedico the busMedico to set
-	 */
-	public void setBusMedico(int busMedico) {
-		this.busMedico = busMedico;
-	}
-
-	/**
-	 * @return the general
-//	 */
-	public boolean isGeneral() {
-		return general;
-	}
-
-	/**
-	 * @param general the general to set
-	 */
-	public void setGeneral(boolean general) {
-		this.general = general;
-	}
-
-	/**
-	 * @return the medicoEJB
-	 */
-	public MedicoEJB getMedicoEJB() {
-		return medicoEJB;
-	}
-
-	/**
-	 * @param medicoEJB the medicoEJB to set
-	 */
-	public void setMedicoEJB(MedicoEJB medicoEJB) {
-		this.medicoEJB = medicoEJB;
-	}
-
-	/**
-	 * @return the nombre
-	 */
-	public String getNombre() {
-		return nombre;
-	}
-
-	/**
-	 * @param nombre the nombre to set
-	 */
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	/**
-	 * @return the apellido
-	 */
-	public String getApellido() {
-		return apellido;
-	}
-
-	/**
-	 * @param apellido the apellido to set
-	 */
-	public void setApellido(String apellido) {
-		this.apellido = apellido;
-	}
-
-	/**
-	 * @return the numeroDocumento
-	 */
-	public String getNumeroDocumento() {
-		return numeroDocumento;
-	}
-
-	/**
-	 * @param numeroDocumento the numeroDocumento to set
-	 */
-	public void setNumeroDocumento(String numeroDocumento) {
 		this.numeroDocumento = numeroDocumento;
 	}
 
@@ -313,6 +171,34 @@ public class MedicoAjaxController implements Serializable {
 	}
 
 	/**
+	 * @return the hospitales
+	 */
+	public List<Hospital> getHospitales() {
+		return hospitales;
+	}
+
+	/**
+	 * @param hospitales the hospitales to set
+	 */
+	public void setHospitales(List<Hospital> hospitales) {
+		this.hospitales = hospitales;
+	}
+
+	/**
+	 * @return the medicos
+	 */
+	public List<Medico> getMedicos() {
+		return medicos;
+	}
+
+	/**
+	 * @param medicos the medicos to set
+	 */
+	public void setMedicos(List<Medico> medicos) {
+		this.medicos = medicos;
+	}
+
+	/**
 	 * @return the horario
 	 */
 	public String getHorario() {
@@ -326,7 +212,34 @@ public class MedicoAjaxController implements Serializable {
 		this.horario = horario;
 	}
 
-	
+	/**
+	 * @return the busMedico
+	 */
+	public int getBusMedico() {
+		return busMedico;
+	}
+
+	/**
+	 * @param busMedico the busMedico to set
+	 */
+	public void setBusMedico(int busMedico) {
+		this.busMedico = busMedico;
+	}
+
+	/**
+	 * @return the general
+	 */
+	public boolean isGeneral() {
+		return general;
+	}
+
+	/**
+	 * @param general the general to set
+	 */
+	public void setGeneral(boolean general) {
+		this.general = general;
+	}
+
 	/**
 	 * @return the activo
 	 */
@@ -354,22 +267,9 @@ public class MedicoAjaxController implements Serializable {
 	public void setNoActivo(boolean noActivo) {
 		this.noActivo = noActivo;
 	}
-
-	/**
-	 * @return the medicos
-	 */
-	public List<Medico> getMedicos() {
-		return medicos;
-	}
-
-	/**
-	 * @param medicos the medicos to set
-	 */
-	public void setMedicos(List<Medico> medicos) {
-		this.medicos = medicos;
-	}
-
-
+	
+	
+	
+}
 	
 
-}
