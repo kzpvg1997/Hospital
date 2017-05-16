@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
+import javax.servlet.http.HttpSession;
 
 import org.omnifaces.util.Faces;
 import org.omnifaces.util.Messages;
@@ -33,40 +34,51 @@ public class SessionController implements Serializable {
 	private PacienteEJB pacienteEJB;
 
 	private Paciente paciente;
+	
+	private Usuario usuario;
+	
+	
 
 	public String loginU() {
 
 		Usuario usu = seguridadEJB.buscarUsuario(password);
 		if (usu != null) {
-			if (usu.getUsuario().equals(user)) {
-				if (usu.getPassword().equals(password)) {
-
-					Paciente p = pacienteEJB.buscarPaciente(usu.getPersona().getIdentificacion());
-
-					if (p != null) {
-						p.getRol().getIdRol();
-
-						paciente = p;
-						Faces.setSessionAttribute("user", paciente);
-						return "/paginas/seguro/paciente.xhtml?faces-redirect=true";
-					}
-				} else {
+			if(usu.getPassword().equals(password)){
+				usuario = usu;
+				if(usuario.getPersona().getRol().getIdRol() == 1){
+					Faces.setSessionAttribute("user", usuario);
+					System.out.println("Inicio sesion administrador");
+					return "/paginas/seguro/administrador.xhtml?faces-redirect=true";
+					
+				}else if(usuario.getPersona().getRol().getIdRol() == 2){
+					Faces.setSessionAttribute("user", usuario);
+					System.out.println("Inicio sesion paciente");
+					return "/paginas/seguro/paciente.xhtml?faces-redirect=true";
+					
+				}else if(usuario.getPersona().getRol().getIdRol() == 3){
+					Faces.setSessionAttribute("user", usuario);
+					System.out.println("Inicio sesion medico");
+					return "/paginas/seguro/medico.xhtml?faces-redirect=true";
+					
+				}else if(usuario.getPersona().getRol().getIdRol() == 4){
+					Faces.setSessionAttribute("user", usuario);
+					System.out.println("Inicio sesion farmaceuta");
+					return "/paginas/seguro/farmaceuta.xhtml?faces-redirect=true";
+				}else{
 					Messages.addFlashGlobalError("Datos incorrectos");
-					System.out.println("Datos incorrectos");
 				}
-			} else {
+			}else{
 				Messages.addFlashGlobalError("Datos incorrectos");
-				System.out.println("Datos incorrectos");
 			}
-		} else {
+		}else{
 			Messages.addFlashGlobalError("Datos incorrectos");
-			System.out.println("Datos incorrectos");
 		}
 		return null;
+			
 	}
 
 	public String cerrarSesion() {
-		paciente = null;
+		usuario = null;
 		HttpSession sesion;
 		sesion = (HttpSession) Faces.getSession();
 		sesion.invalidate();
@@ -74,7 +86,7 @@ public class SessionController implements Serializable {
 	}
 
 	public boolean isSesion() {
-		return cliente != null;
+		return usuario != null;
 	}
 	
 	
