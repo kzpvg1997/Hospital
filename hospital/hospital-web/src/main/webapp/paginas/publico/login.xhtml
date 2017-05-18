@@ -7,14 +7,16 @@
 
 	<ui:define name="cuerpo">
 		<h:form prependId="false">
+		
+		<p:fieldset legend="Inicio sesion" style="margin-top:10px">
 			
 			<h:panelGrid columns="3">
-				<p:outputLabel for="tfusu" id="usu" value="user" />
-				<p:inputText id="tfusu" value="#{sessionControl.user}" />
+				<p:outputLabel for="tfusu" id="usu" value="Usuario" />
+				<p:inputText id="tfusu" class="form-control" value="#{sessionControl.user}" />
 				<p:message for="tfusu" />
 
-				<p:outputLabel for="tfpass" id="pass" value="Password" />
-				<h:inputSecret id="tfpass" value="#{sessionControl.password}" />
+				<p:outputLabel for="tfpass" id="pass" value="Contraseña" />
+				<h:inputSecret id="tfpass" class="form-control" value="#{sessionControl.password}" />
 				<p:message for="tfpass" />
 				
 
@@ -23,7 +25,7 @@
 			<p:commandButton value="Iniciar Sesion" ajax="false" 
 			action="#{sessionControl.loginU}" />
 
-
+</p:fieldset>
 
 		</h:form>
 	</ui:define>

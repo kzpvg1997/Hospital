@@ -13,7 +13,7 @@
 			
 			<p:commandButton styleClass="ui-priority-primary" value="Buscar" process="@this buspa"
 				update="datospa buspa" action="#{pacienteAjaxController.buscar}" />
-				<p:inputText id="tfbuspa" class="form-control"  value="#{pacienteAjaxController.busNumeroDocumento}" />
+				<p:inputText id="tfbuspa" class="form-control" placeholder="Documento" value="#{pacienteAjaxController.busNumeroDocumento}" />
 				<p:message for="tfbuspa" />
 			</h:panelGrid>
 		</p:fieldset>
