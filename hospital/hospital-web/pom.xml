@@ -7,6 +7,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   <artifactId>hospital-web</artifactId>
+  <packaging>war</packaging>
   <dependencies>
 
 <dependency>
@@ -54,17 +55,6 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
             <scope>provided</scope>
         </dependency>
   	
-  	<dependency>
-  		<groupId>edu.eam.ingesoft.avanzada</groupId>
-  		<artifactId>hospital-negocio</artifactId>
-  		<version>0.0.1-SNAPSHOT</version>
-  		<type>ejb</type>
-  	</dependency>
-  	<dependency>
-  		<groupId>edu.eam.ingesoft.avanzada</groupId>
-  		<artifactId>hospital-persistencia</artifactId>
-  		<version>0.0.1-SNAPSHOT</version>
-  	</dependency>
  
 		
 		<dependency>
@@ -72,7 +62,18 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
             <artifactId>all-themes</artifactId>
             <version>1.0.8</version>
         </dependency>
-  	
+
+		<dependency>
+			<groupId>edu.eam.ingesoft.avanzada</groupId>
+			<artifactId>hospital-negocio</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<type>ejb</type>
+		</dependency>
+		<dependency>
+			<groupId>edu.eam.ingesoft.avanzada</groupId>
+			<artifactId>hospital-persistencia</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
   </dependencies>
   
   <build>

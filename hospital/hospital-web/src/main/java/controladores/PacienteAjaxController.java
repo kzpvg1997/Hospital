@@ -111,6 +111,8 @@ public class PacienteAjaxController implements Serializable {
 	}
 	
 	public void buscar(){
+		
+		if(!busNumeroDocumento.isEmpty()){
 
 		Paciente pa = pacienteEJB.buscarPaciente(Integer.parseInt(busNumeroDocumento));
 		if(pa != null){
@@ -126,6 +128,9 @@ public class PacienteAjaxController implements Serializable {
 			Messages.addFlashGlobalWarn("El paciente no existe");
 			limpiar();
 		
+		}
+		}else{
+			Messages.addFlashGlobalWarn("Por favor ingrese documento");
 		}
 
 	}

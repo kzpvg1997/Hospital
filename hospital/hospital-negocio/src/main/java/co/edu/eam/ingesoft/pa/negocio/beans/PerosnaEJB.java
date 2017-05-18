@@ -43,20 +43,6 @@ public class PerosnaEJB {
 	}
 	
 
-
-	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public Usuario buscarUsuarioPorPersona(Persona persona){
-		Query q = em.createNamedQuery(Usuario.USUARIO_POR_PERSONA);
-		q.setParameter(1, persona);
-		List<Usuario> usuarios = q.getResultList();
-		for (Usuario usuario : usuarios) {
-			if(usuarios!=null){
-				return usuarios.get(0);
-			}
-		}
-		return null;
-	}
-	
 	@TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
 	public Persona buscarPersona(int identificacion){
 		return em.find(Persona.class, identificacion);

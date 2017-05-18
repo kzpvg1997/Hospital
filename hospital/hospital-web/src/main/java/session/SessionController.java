@@ -12,8 +12,10 @@ import org.omnifaces.util.Messages;
 
 import co.edu.eam.ingesoft.pa.negocio.beans.MedicoEJB;
 import co.edu.eam.ingesoft.pa.negocio.beans.PacienteEJB;
+import co.edu.eam.ingesoft.pa.negocio.beans.PerosnaEJB;
 import co.edu.eam.ingesoft.pa.negocio.beans.SeguridadEJB;
 import co.edu.ingesoft.hospital.persistencia.entidades.Paciente;
+import co.edu.ingesoft.hospital.persistencia.entidades.Persona;
 import co.edu.ingesoft.hospital.persistencia.entidades.Usuario;
 
 @Named("sessionControl")
@@ -33,6 +35,9 @@ public class SessionController implements Serializable {
 	@EJB
 	private PacienteEJB pacienteEJB;
 
+	@EJB
+	private PerosnaEJB personaEJB;
+	
 	private Paciente paciente;
 	
 	private Usuario usuario;
@@ -44,23 +49,25 @@ public class SessionController implements Serializable {
 		Usuario usu = seguridadEJB.buscarUsuario(user);
 		if (usu != null) {
 			if(usu.getPassword().equals(password)){
-				usuario = usu;
-				if(usuario.getPersona().getRol().getIdRol() == 1){
+				
+				Persona persona = personaEJB.buscarPersona(usu.getPersona().getIdentificacion());
+				
+				if(persona.getRol().getIdRol() == 3){
 					Faces.setSessionAttribute("user", usuario);
 					System.out.println("Inicio sesion administrador");
 					return "/paginas/seguro/administrador.xhtml?faces-redirect=true";
 					
-				}else if(usuario.getPersona().getRol().getIdRol() == 2){
+				}else if(persona.getRol().getIdRol() == 1){
 					Faces.setSessionAttribute("user", usuario);
 					System.out.println("Inicio sesion paciente");
 					return "/paginas/seguro/paciente.xhtml?faces-redirect=true";
 					
-				}else if(usuario.getPersona().getRol().getIdRol() == 3){
+				}else if(persona.getRol().getIdRol() == 2){
 					Faces.setSessionAttribute("user", usuario);
 					System.out.println("Inicio sesion medico");
 					return "/paginas/seguro/medico.xhtml?faces-redirect=true";
 					
-				}else if(usuario.getPersona().getRol().getIdRol() == 4){
+				}else if(persona.getRol().getIdRol() == 4){
 					Faces.setSessionAttribute("user", usuario);
 					System.out.println("Inicio sesion farmaceuta");
 					return "/paginas/seguro/farmaceuta.xhtml?faces-redirect=true";
@@ -88,13 +95,6 @@ public class SessionController implements Serializable {
 	public boolean isSesion() {
 		return usuario != null;
 	}
-	
-	
-	
-	
-	
-	
-	
 	
 
 	/**
