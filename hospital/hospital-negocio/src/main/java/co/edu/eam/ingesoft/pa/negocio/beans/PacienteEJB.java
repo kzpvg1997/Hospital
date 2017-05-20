@@ -21,10 +21,7 @@ import co.edu.ingesoft.hospital.persistencia.entidades.Paciente;
 import co.edu.ingesoft.hospital.persistencia.entidades.Rol;
 import co.edu.ingesoft.hospital.persistencia.entidades.Persona;
 
-/**
- * @author TOSHIBAP55W
- *
- */
+
 @LocalBean
 @Stateless
 public class PacienteEJB {

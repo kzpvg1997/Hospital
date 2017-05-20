@@ -23,7 +23,7 @@ import co.edu.ingesoft.hospital.persistencia.entidades.Usuario;
  */
 @LocalBean
 @Stateless
-public class PerosnaEJB {
+public class PersonaEJB {
 
 	@PersistenceContext
 	private EntityManager em;

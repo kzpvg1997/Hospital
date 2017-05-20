@@ -12,7 +12,7 @@ import org.omnifaces.util.Messages;
 
 import co.edu.eam.ingesoft.pa.negocio.beans.MedicoEJB;
 import co.edu.eam.ingesoft.pa.negocio.beans.PacienteEJB;
-import co.edu.eam.ingesoft.pa.negocio.beans.PerosnaEJB;
+import co.edu.eam.ingesoft.pa.negocio.beans.PersonaEJB;
 import co.edu.eam.ingesoft.pa.negocio.beans.SeguridadEJB;
 import co.edu.ingesoft.hospital.persistencia.entidades.Paciente;
 import co.edu.ingesoft.hospital.persistencia.entidades.Persona;
@@ -36,7 +36,7 @@ public class SessionController implements Serializable {
 	private PacienteEJB pacienteEJB;
 
 	@EJB
-	private PerosnaEJB personaEJB;
+	private PersonaEJB personaEJB;
 	
 	private Paciente paciente;
 	

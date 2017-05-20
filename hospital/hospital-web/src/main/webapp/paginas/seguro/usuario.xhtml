@@ -1,0 +1,42 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui" 
+	template="/template/template.xhtml">
+
+	<ui:define name="cuerpo">
+		<h:form prependId="false">
+
+			<p:fieldset legend="Registrarse" style="margin-top:10px">
+
+				<h:panelGrid id="datosusu" columns="2">
+
+					<p:outputLabel for="tfdousu" id="docusu" value="Documento" />
+					<p:inputText id="tfdousu" class="form-control" placeholder="Documento" value="#{usuarioAjaxController.cedula}" />
+					
+
+					<p:outputLabel for="tfusu" id="ususu" value="Usuario" />
+					<p:inputText id="tfusu" class="form-control" placeholder="Usuario" value="#{usuarioAjaxController.user}" />
+				
+
+					<p:outputLabel for="tfconusu" id="conusu" value="Contraseña" />
+					<h:inputSecret id="tfconusu" class="form-control" placeholder="Contraseña"	value="#{usuarioAjaxController.contraseña}" />
+				
+					
+					<p:outputLabel for="tfconcousu" id="nunD" value="Confirmar Contraseña" />
+					<h:inputSecret id="tfconcousu" class="form-control" placeholder="Confirmar contraseña"
+					 value="#{usuarioAjaxController.verContraseña}" />
+				
+					
+					
+				</h:panelGrid>
+				
+				<p:commandButton value="Registrar"  process="@this tfdousu"  action="#{usuarioAjaxController.buscar}" />
+				
+
+			</p:fieldset>
+		</h:form>
+	</ui:define>
+
+</ui:composition>
