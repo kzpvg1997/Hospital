@@ -45,7 +45,6 @@ public class PacienteAjaxController implements Serializable {
 	
 	private String fecha;
 	
-	
 	private String telefono;
 
 	private String email;
@@ -67,7 +66,7 @@ public class PacienteAjaxController implements Serializable {
 		listaEps = pacienteEJB.listarEps();
 		
 	}
-	
+	//
 	public void registrar() throws ParseException{
 		
 		if(!fecha.isEmpty() && !nombre.isEmpty() && !apellido.isEmpty() && !telefono.isEmpty() && !email.isEmpty() &&
