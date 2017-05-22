@@ -25,7 +25,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name="Usuarios")
 @NamedQueries({	
-	@NamedQuery(name=Usuario.PERSONA_POR_USUARIO,query="SELECT u.persona FROM Usuario u WHERE u.usuario=?1"),
+	@NamedQuery(name=Usuario.PERSONA_POR_USUARIO,query="SELECT u FROM Usuario u WHERE u.persona=?1"),
 	@NamedQuery(name=Usuario.BUSCAR_USUARIO,query="SELECT u FROM Usuario u WHERE u.usuario=?1")
 })
 public class Usuario implements Serializable{
@@ -108,6 +108,14 @@ public class Usuario implements Serializable{
 	 */
 	public void setPersona(Persona persona) {
 		this.persona = persona;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return String.valueOf(persona.getIdentificacion());
 	}
 	
 	

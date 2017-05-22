@@ -42,31 +42,36 @@ public class SeguridadEJB implements Serializable {
 	}
 	
 	/**
-	 * Metodo que sirve para buscar el usuario por la cedula
-	 * @param identificacion
+	 * Metodo que sirve para buscar el usuario por persona
+	 * @param persona
 	 * @return el usuario
 	 */
 	@TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
-	public Usuario buscarUsuarioCedula(int identificacion){
-		return em.find(Usuario.class, identificacion);
+	public Usuario buscarUsuarioPersona(Persona persona){
+		Query q = em.createNamedQuery(Usuario.PERSONA_POR_USUARIO);
+		q.setParameter(1, persona);
+		List<Usuario> usu = q.getResultList();
+		if (usu.isEmpty()) {
+			return null;
+		} else {
+			//System.out.println("(((((((((((((==="+usu.get(0)+"===)))))))))))");
+			return usu.get(0);
+			
+		}
 	}
 	
-
-	/**
-	 * MEtodo para crar usuarios
-	 * 
-	 * @param u el usuario que recibe
-	 */
+	
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public void registarUsuario(Usuario u) {
-		Usuario usu = buscarUsuarioCedula(u.getCodigo());
-		if (usu == null) {
-			em.persist(u);
-
+	public void borrarUsuarioPersona(Persona persona){
+		Query q = em.createNamedQuery(Usuario.PERSONA_POR_USUARIO);
+		q.setParameter(1, persona);
+		List<Usuario> usu = q.getResultList();
+		if (usu.isEmpty()) {
+			
 		} else {
-			throw new ExcepcionNegocio("Este usuario: " + u.getUsuario() + "ya se ecuentra registrado");
+			em.remove(usu.get(0));
+			//System.out.println("(((((((((((((==="+usu.get(0).getUsuario()+"===)))))))))))");
 		}
-
 	}
 
 }

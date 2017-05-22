@@ -74,7 +74,7 @@ banner
     transition: all 0.3s;
 }
 .navbar-default {
-    background-color: transparent;
+    background-color: #325c6a;
     border: 0px;
 }
 .navbar {

@@ -13,6 +13,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import co.edu.ingesoft.hospital.persistencia.entidades.Paciente;
 import co.edu.ingesoft.hospital.persistencia.entidades.Persona;
 import co.edu.ingesoft.hospital.persistencia.entidades.Rol;
 import co.edu.ingesoft.hospital.persistencia.entidades.Usuario;
@@ -47,4 +48,6 @@ public class PersonaEJB {
 	public Persona buscarPersona(int identificacion){
 		return em.find(Persona.class, identificacion);
 	}
+
+	
 }

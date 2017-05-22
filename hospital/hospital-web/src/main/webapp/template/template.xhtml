@@ -27,10 +27,7 @@
   <h:body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
   	<!--banner-->
   	
-	<section id="banner" class="banner">
-	
-		<div class="bg-color">
-			<nav class="navbar navbar-default navbar-fixed-top">
+  	<nav class="navbar navbar-default navbar-fixed-top">
 			  <div class="container">
 			  	<div class="col-md-12">
 				    <div class="navbar-header">
@@ -55,6 +52,13 @@
 				</div>
 			  </div>
 			</nav>
+  	
+  	<h:panelGroup rendered="#{!sessionControl.sesion}">
+  	
+	<section id="banner" class="banner">
+	
+		<div class="bg-color">
+			
 			<div class="container">
 				<div class="row">
 					<div class="banner-info">
@@ -63,7 +67,7 @@
 						</div>
 						<div class="banner-text text-center">
 							<h1 class="white">GESTIONES HOSPITALARIAS</h1>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod <br>tempor incididunt ut labore et dolore magna aliqua.</br></p>
+							<p>En el centro de gestiones Santa Maria puedes pedir tu cita con tan solo un click!.<br>Toda la facilidad de pedir citas medicas a disponibilidad de tu movil y computador.</br></p>
 							<p:commandButton process="@this" action="/paginas/publico/cita.xhtml?faces-redirect=true"  class="btn btn-appoint" value="Pedir una cita"/>
 						</div>
 						<div class="overlay-detail text-center">
@@ -74,6 +78,7 @@
 			</div>
 		</div>
 	</section>
+	</h:panelGroup>
 	<!--/ banner-->
 			<h:form prependId="false">
 

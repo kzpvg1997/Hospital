@@ -19,8 +19,7 @@ import co.edu.eam.ingesoft.pa.negocio.excepciones.ExcepcionNegocio;
 import co.edu.ingesoft.hospital.persistencia.entidades.Eps;
 import co.edu.ingesoft.hospital.persistencia.entidades.Paciente;
 import co.edu.ingesoft.hospital.persistencia.entidades.Rol;
-import co.edu.ingesoft.hospital.persistencia.entidades.Persona;
-
+import co.edu.ingesoft.hospital.persistencia.entidades.Usuario;
 
 @LocalBean
 @Stateless
@@ -31,6 +30,9 @@ public class PacienteEJB {
 	
 	@EJB
 	private RolEJB rolEJB;
+	
+	@EJB
+	private SeguridadEJB seguridadEJB;
 	
 	/**
 	 * Metodo que sirve para listar las eps
@@ -82,6 +84,18 @@ public class PacienteEJB {
 		
 	}
 	
+	
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public void registrarUsuarioPaciente(Usuario usuario,Paciente paciente){
+		
+		Usuario usu = seguridadEJB.buscarUsuarioPersona(paciente);
+		if(usu==null){
+			em.persist(usuario);
+		}else{
+			throw new ExcepcionNegocio("Este paciente ya registro su usuario");
+		}
+	}
+	
 	/**
 	 * Metodo para eliminar un paciente
 	 * @param p paciente que recibe
@@ -90,6 +104,7 @@ public class PacienteEJB {
 	public void borrarPaciente(Paciente p){
 		Paciente pa = buscarPaciente(p.getIdentificacion());
 		if(pa != null){
+			seguridadEJB.borrarUsuarioPersona(p);
 			em.remove(pa);
 		}
 		
