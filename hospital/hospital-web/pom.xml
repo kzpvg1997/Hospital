@@ -1,5 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>edu.eam.ingesoft.avanzada</groupId>
@@ -8,13 +8,19 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
   </parent>
   <artifactId>hospital-web</artifactId>
   <packaging>war</packaging>
+  
   <dependencies>
-
-<dependency>
+		<dependency>
 			<groupId>org.primefaces</groupId>
 			<artifactId>primefaces</artifactId>
 			<version>5.3</version>
 		</dependency>
+	<dependency>
+	    <groupId>org.primefaces.extensions</groupId>
+	    <artifactId>all-themes</artifactId>
+	    <version>1.0.8</version>
+	</dependency>
+			
 		<dependency>
 			<groupId>org.omnifaces</groupId>
 			<artifactId>omnifaces</artifactId>
@@ -48,45 +54,38 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 			<scope>provided</scope>
 			<version>5.3.4.Final</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>edu.eam.ingesoft.avanzada</groupId>
+			<artifactId>hospital-negocio</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<type>ejb</type>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>edu.eam.ingesoft.avanzada</groupId>
+			<artifactId>hospital-persistencia</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<scope>provided</scope>
+		</dependency>
 		<dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
             <version>3.0.1</version>
             <scope>provided</scope>
         </dependency>
-  	
- 
-		
-		<dependency>
-            <groupId>org.primefaces.extensions</groupId>
-            <artifactId>all-themes</artifactId>
-            <version>1.0.8</version>
-        </dependency>
-
-		<dependency>
-			<groupId>edu.eam.ingesoft.avanzada</groupId>
-			<artifactId>hospital-negocio</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-			<type>ejb</type>
-		</dependency>
-		<dependency>
-			<groupId>edu.eam.ingesoft.avanzada</groupId>
-			<artifactId>hospital-persistencia</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-  </dependencies>
-  
-  <build>
-	<finalName>${project.artifactId}</finalName>
-	<plugins>
-		<plugin>
-			<artifactId>maven-war-plugin</artifactId>
-			<version>3.0.0</version>
-			<configuration>
-			<failOnMissingWebXml>false</failOnMissingWebXml>
-			</configuration>
-		</plugin>
-	</plugins>
-</build>
-  
+       
+	</dependencies>
+	<build>
+		<finalName>${project.artifactId}</finalName>
+		<plugins>
+			<plugin>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>3.0.0</version>
+				<configuration>
+					<failOnMissingWebXml>false</failOnMissingWebXml>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 </project>

@@ -34,9 +34,10 @@ public class Eps implements Serializable{
 	public static final String LISTA_EPS ="eps.Lista";
 	
 	@Id
-	@Column(name="id_eps")
+	@Column(name="id_eps")										   /*nombre de la secuencia en el proyecto*/
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "EPS_SEQ")
     @SequenceGenerator(sequenceName = "eps_seq", allocationSize = 1, name = "EPS_SEQ")
+	                     /*sequenceName (Nombre de la secuencia en la BD)*/
 	private int idEps;
 	
 	@Column(name="nombre",length=40)

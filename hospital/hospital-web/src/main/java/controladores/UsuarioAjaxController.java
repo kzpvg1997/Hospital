@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.faces.bean.ViewScoped;
+import org.omnifaces.cdi.ViewScoped;
 import javax.inject.Named;
 
 import org.omnifaces.util.Messages;
@@ -12,10 +12,9 @@ import org.omnifaces.util.Messages;
 import co.edu.eam.ingesoft.pa.negocio.beans.PacienteEJB;
 import co.edu.eam.ingesoft.pa.negocio.beans.PersonaEJB;
 import co.edu.ingesoft.hospital.persistencia.entidades.Paciente;
-import co.edu.ingesoft.hospital.persistencia.entidades.Persona;
 
 @ViewScoped
-@Named("usuarioAjaxController")
+@Named("usuAjaxController")
 public class UsuarioAjaxController implements Serializable {
 
 	private String user;
@@ -24,7 +23,7 @@ public class UsuarioAjaxController implements Serializable {
 	
 	private String verContraseña;
 	
-	private String cedula;
+	private int cedula;
 
 	@EJB
 	private PersonaEJB personaEJB;
@@ -41,14 +40,19 @@ public class UsuarioAjaxController implements Serializable {
 	
 	
 	public void buscar(){
+		try{
 		System.out.println("ENtro");
-		Paciente pa = pacienteEJB.buscarPaciente(Integer.parseInt(cedula));
+		Paciente pa = pacienteEJB.buscarPaciente(cedula);
+		System.out.println("++++++++++++++++ "+cedula);
 		if(pa!=null){
 			System.out.println("Existe");
-			Messages.addFlashGlobalError("NO");
+			Messages.addFlashGlobalError("SI");
 		}else{
 			System.out.println("No Existe");
-			Messages.addFlashGlobalError("Si");
+			Messages.addFlashGlobalError("NO");
+		}
+		}catch (NumberFormatException ex){
+			Messages.addFlashGlobalError("Por favor, solo campos numericos en el documento");
 		}
 		
 		
@@ -106,7 +110,7 @@ public class UsuarioAjaxController implements Serializable {
 	/**
 	 * @return the cedula
 	 */
-	public String getCedula() {
+	public int getCedula() {
 		return cedula;
 	}
 
@@ -114,14 +118,10 @@ public class UsuarioAjaxController implements Serializable {
 	/**
 	 * @param cedula the cedula to set
 	 */
-	public void setCedula(String cedula) {
+	public void setCedula(int cedula) {
 		this.cedula = cedula;
 	}
-
-
-
 	
-
 	
 
 }

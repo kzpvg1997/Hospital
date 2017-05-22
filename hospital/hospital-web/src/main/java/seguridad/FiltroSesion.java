@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import co.edu.ingesoft.hospital.persistencia.entidades.Usuario;
 import session.SessionController;
 
-//@WebFilter(urlPatterns="/paginas/seguro/*")
+@WebFilter(urlPatterns="/paginas/seguro/*")
 public class FiltroSesion implements Filter {
 	
 

@@ -13,26 +13,26 @@
 				<h:panelGrid id="datosusu" columns="2">
 
 					<p:outputLabel for="tfdousu" id="docusu" value="Documento" />
-					<p:inputText id="tfdousu" class="form-control" placeholder="Documento" value="#{usuarioAjaxController.cedula}" />
+					<p:inputText id="tfdousu" class="form-control"  value="#{usuAjaxController.cedula}" />
 					
 
-					<p:outputLabel for="tfusu" id="ususu" value="Usuario" />
-					<p:inputText id="tfusu" class="form-control" placeholder="Usuario" value="#{usuarioAjaxController.user}" />
+					<p:outputLabel for="tfusu" id="ususu" value="Username" />
+					<p:inputText id="tfusu" class="form-control" placeholder="Username" value="#{usuAjaxController.user}" />
 				
 
 					<p:outputLabel for="tfconusu" id="conusu" value="Contraseña" />
-					<h:inputSecret id="tfconusu" class="form-control" placeholder="Contraseña"	value="#{usuarioAjaxController.contraseña}" />
+					<h:inputSecret id="tfconusu" class="form-control" placeholder="Contraseña"	value="#{usuAjaxController.contraseña}" />
 				
 					
 					<p:outputLabel for="tfconcousu" id="nunD" value="Confirmar Contraseña" />
 					<h:inputSecret id="tfconcousu" class="form-control" placeholder="Confirmar contraseña"
-					 value="#{usuarioAjaxController.verContraseña}" />
+					 value="#{usuAjaxController.verContraseña}" />
 				
 					
 					
 				</h:panelGrid>
 				
-				<p:commandButton value="Registrar"  process="@this tfdousu"  action="#{usuarioAjaxController.buscar}" />
+				<p:commandButton value="Registrar"  process="@this datosusu"  action="#{usuAjaxController.buscar()}" />
 				
 
 			</p:fieldset>
