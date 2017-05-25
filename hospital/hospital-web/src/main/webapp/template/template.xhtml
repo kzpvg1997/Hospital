@@ -42,12 +42,14 @@
 				    </div>
 				    <div class="collapse navbar-collapse navbar-right" id="myNavbar">
 				      <ul class="nav navbar-nav">
-				        <li class="active"><a href="#banner">Home</a></li>
-				        <li class=""><a href="#{request.contextPath}/#service">Services</a></li>
-				        <li class=""><a href="#{request.contextPath}/#about">About</a></li>
-				        <li class=""><a href="#{request.contextPath}/#testimonial">Testimonial</a></li>
-				        <li class=""><a href="#{request.contextPath}/#contact">Contact</a></li>
-				      </ul>
+				        <h:form>
+				        <ui:repeat var="pag" value="#{sessionControl.accesos}">
+				        <li>
+				        <h:commandLink action="#{pag.getUrl()}" value="#{pag.nombre}" />
+				        </li>
+				        </ui:repeat>
+				        </h:form>
+				        </ul>
 				    </div>
 				</div>
 			  </div>

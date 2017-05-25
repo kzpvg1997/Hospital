@@ -1,0 +1,27 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui" template="/template/template.xhtml">
+
+
+	<ui:define name="cuerpo">
+		<h:form prependId="false">
+
+			<p:fieldset legend="Administrador" style="margin-top:100px">
+				<p:tabView>
+					<p:tab title="Gestion de instalaciones" dynamic="true" cache="true">
+						
+						<label>MELO PAPA</label>
+
+					</p:tab>
+					<p:tab title="Gestion de Eps" dynamic="true" cache="true">
+
+						<label>AVECES MUY MELO</label>
+					</p:tab>
+				</p:tabView>
+			</p:fieldset>
+		</h:form>
+	</ui:define>
+
+</ui:composition>

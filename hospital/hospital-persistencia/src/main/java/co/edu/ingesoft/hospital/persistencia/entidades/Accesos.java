@@ -39,6 +39,9 @@ public class Accesos implements Serializable{
 	@Column(name="url",length=40)
 	private String url;
 	
+	@Column(name="nombre",length=20)
+	private String nombre;
+	
 	@ManyToOne
 	@JoinColumn(name="Rol")
 	private Rol rol;
@@ -87,6 +90,21 @@ public class Accesos implements Serializable{
 	 */
 	public void setRol(Rol rol) {
 		this.rol = rol;
+	}
+	
+
+	/**
+	 * @return the nombre
+	 */
+	public String getNombre() {
+		return nombre;
+	}
+
+	/**
+	 * @param nombre the nombre to set
+	 */
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
 	/* (non-Javadoc)
