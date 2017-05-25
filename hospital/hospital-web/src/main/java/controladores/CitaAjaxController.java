@@ -85,7 +85,7 @@ public class CitaAjaxController implements Serializable {
 					c.setTipoCita(tipoCita);
 					c.setDescripcion(detalle);
 					c.setHoraCita(horaInicioSeleccionado+" - "+horaFinSeleccionada);
-					c.setAnotacion(null);
+					c.setAnotacion("Pendiente");
 					c.setAtendida(false);
 					fechaCita = new SimpleDateFormat("dd-MM-yyyy").parse(fecha);
 					c.setFechaCita(fechaCita);

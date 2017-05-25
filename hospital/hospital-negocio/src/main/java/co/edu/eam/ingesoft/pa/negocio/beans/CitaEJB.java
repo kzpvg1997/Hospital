@@ -34,6 +34,17 @@ public class CitaEJB {
 	}
 	
 	/**
+	 * Metodo para listar todas las citas
+	 * @return una lista de citas
+	 */
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public List<Cita> listarCitas(){
+		Query q = em.createNamedQuery(Cita.LISTA_CITA);
+		List<Cita> citas = q.getResultList();
+		return citas;
+	}
+	
+	/**
 	 * Metodo que permite registar una cita de un paciente
 	 * @param c la cita que recibe
 	 */

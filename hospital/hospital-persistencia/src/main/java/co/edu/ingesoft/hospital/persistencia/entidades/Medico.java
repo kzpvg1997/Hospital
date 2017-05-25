@@ -85,6 +85,14 @@ public class Medico  extends Persona implements Serializable{
 		this.tipoMedico = tipoMedico;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return getNombre() +" "+getApellido();
+	}
+
 
 	
 	
