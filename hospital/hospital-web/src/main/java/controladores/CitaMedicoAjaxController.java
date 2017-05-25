@@ -36,9 +36,10 @@ public class CitaMedicoAjaxController implements Serializable{
 	
 	public String atender(Cita c){
 		cita = c;
-		return"/paginas/seguro/atenderCita.xhtml";
+		return"/paginas/seguro/medico/atenderCita.xhtml";
 	}
 	
+
 	
 	
 	
@@ -74,6 +75,22 @@ public class CitaMedicoAjaxController implements Serializable{
 	 */
 	public void setCitaSeleccionada(String citaSeleccionada) {
 		this.citaSeleccionada = citaSeleccionada;
+	}
+
+
+	/**
+	 * @return the cita
+	 */
+	public static Cita getCita() {
+		return cita;
+	}
+
+
+	/**
+	 * @param cita the cita to set
+	 */
+	public static void setCita(Cita cita) {
+		CitaMedicoAjaxController.cita = cita;
 	}
 
 	

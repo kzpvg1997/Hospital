@@ -12,6 +12,7 @@ import javax.persistence.Query;
 
 import co.edu.ingesoft.hospital.persistencia.entidades.Cita;
 import co.edu.ingesoft.hospital.persistencia.entidades.HorariosDisponibles;
+import co.edu.ingesoft.hospital.persistencia.entidades.Paciente;
 
 
 
@@ -42,6 +43,16 @@ public class CitaEJB {
 		Query q = em.createNamedQuery(Cita.LISTA_CITA);
 		List<Cita> citas = q.getResultList();
 		return citas;
+	}
+	
+	/**
+	 * Metodo apra buscar la cita
+	 * @param id parametro que recibe
+	 * @return la cita
+	 */
+	@TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
+	public Cita buscarCita(int id){
+		return em.find(Cita.class,id);
 	}
 	
 	/**
