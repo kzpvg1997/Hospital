@@ -1,0 +1,61 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	template="/template/template.xhtml">
+	
+		<ui:define name="cuerpo">
+			<h:form prependId="false">
+		
+			<p:fieldset legend="Pedir Cita" style="margin-top:100px">
+	
+	 	  	<h:panelGrid id="datocita" columns="2">
+	 	  	
+	 	  		<p:outputLabel for="tftpc" id="tpcita" value="Tipo cita"  />
+				<h:selectOneMenu id="tftpc" class="form-control" value="#{citaAjaxController.tipoCita}">
+					<f:selectItem itemValue="Seleccione" itemLabel="Seleccione..." />
+					<f:selectItem itemValue="General" itemLabel="General" />
+					<f:selectItem itemValue="Especializado" itemLabel="Especializado" />
+				</h:selectOneMenu>
+	 	  	
+	 	  		<p:outputLabel for="tftpc" id="decita" value="Detalle"  />
+	 	  		<p:inputTextarea rows="6" cols="33" value="#{citaAjaxController.detalle}"/>
+					
+				
+				<p:outputLabel for="tfhraios" id="hra" value="Hora Inicio"  />
+				<h:selectOneMenu id="tfhraios" class="form-control" value="#{citaAjaxController.horaInicioSeleccionado}">
+					<f:selectItem itemValue="0" itemLabel="Seleccione..." />
+					<f:selectItems value="#{citaAjaxController.horarios}" var="hora"
+					itemValue="#{hora.horaInicio}" itemLabel="#{hora.horaInicio}"/>
+				</h:selectOneMenu>
+				
+				<p:outputLabel for="tfhrafin" id="hraf" value="Hora Fin"  />
+				<h:selectOneMenu id="tfhrafin" class="form-control" value="#{citaAjaxController.horaFinSeleccionada}">
+					<f:selectItem itemValue="0" itemLabel="Seleccione..." />
+					<f:selectItems value="#{citaAjaxController.horarios}" var="horaf"
+					itemValue="#{horaf.horaFin}" itemLabel="#{horaf.horaFin}"/>
+				</h:selectOneMenu>
+				
+				<p:outputLabel for="tffechme" id="fechm" value="Fecha "  />
+				<p:inputText id="tffechme" class="form-control" placeholder="DD-MM-YYYY"  value="#{citaAjaxController.fecha}" />
+				
+				<p:outputLabel for="tfmedico" id="md" value="Medico"  />
+				<h:selectOneMenu id="tfmedico" class="form-control" value="#{citaAjaxController.medicoSeleccionado}">
+					<f:selectItem itemValue="0" itemLabel="Seleccione..." />
+					<f:selectItems value="#{citaAjaxController.medicos}" var="m"
+					itemValue="#{m.identificacion}" itemLabel="#{m.nombre}"/>
+				</h:selectOneMenu>
+				
+					<p:commandButton styleClass="ui-priority-primary" value="Pedir Cita" action="#{citaAjaxController.pedirCita}"
+					update="datocita" process="@this datocita" />
+				
+			
+			</h:panelGrid> 
+		
+		
+			</p:fieldset>	
+			</h:form>
+		</ui:define>
+	
+	</ui:composition>

@@ -1,0 +1,83 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	template="/template/template.xhtml">
+	
+		<ui:define name="cuerpo">
+			<h:form prependId="false">
+			<p:fieldset legend="Citas" style="margin-top:100px">
+			<p:accordionPanel>
+			
+			  <p:tab title="Atender Citas" id="citm">
+			<p:dataTable id="atenCita" value="#{citaMedicoAjaxController.citas}" var="c"
+				border="1">
+				<p:column>
+					<f:facet name="header">
+							Descripcion
+						</f:facet>
+					<p:outputLabel value="#{c.descripcion}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+							Anotacion
+						</f:facet>
+					<p:outputLabel value="#{c.anotacion}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+							Tipo cita
+						</f:facet>
+					<p:outputLabel value="#{c.tipoCita}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+							Atendida
+						</f:facet>
+					<p:outputLabel value="#{c.atendida}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+							Fecha Cita
+						</f:facet>
+					<p:outputLabel value="#{c.fechaCita}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+							Horario
+						</f:facet>
+					<p:outputLabel value="#{c.horaCita}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+							Paciente
+						</f:facet>
+					<p:outputLabel value="#{c.paciente}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+							Medico
+						</f:facet>
+					<p:outputLabel value="#{c.medico}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+							Atender
+						</f:facet>
+						<p:commandButton action="#{citaMedicoAjaxController.atender(c)}" process="@this atenCita" value="Atender"
+							update="atenCita" />
+					<p:outputLabel value="" />
+				</p:column>
+			</p:dataTable>
+			</p:tab>
+			
+			
+			
+			
+			</p:accordionPanel>
+		</p:fieldset>
+			</h:form>
+		</ui:define>
+	
+	</ui:composition>

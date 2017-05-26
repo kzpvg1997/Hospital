@@ -133,6 +133,16 @@ public class Paciente extends Persona implements Serializable{
 	public void setEps(Eps eps) {
 		this.eps = eps;
 	}
+
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return getNombre()+" "+getApellido();
+	}
+	
 	
 	
 }

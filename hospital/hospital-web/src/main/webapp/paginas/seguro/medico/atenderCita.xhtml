@@ -1,0 +1,54 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	template="/template/template.xhtml">
+	
+		<ui:define name="cuerpo">
+			<h:form prependId="false">
+		
+			<p:fieldset legend="Atender Cita" style="margin-top:100px">
+	
+	 	  	<h:panelGrid id="atecita" columns="2">
+	 	  	
+	 	  		<p:outputLabel for="tfpaate" id="paate" value="Paciente"  />
+				<p:inputText id="tfpaate" class="form-control"  disabled="true" value="#{atenderCitaAjaxController.paciente}" />
+				
+				<p:outputLabel for="tfdocate" id="doate" value="Documento"  />
+				<p:inputText id="tfdocate" class="form-control" disabled="true" value="#{atenderCitaAjaxController.documento}" />
+	 	  	
+	 	  		<p:outputLabel for="tftpca" id="tpcitaat" value="Tipo cita"  />
+				<p:inputText id="tftpca" class="form-control" disabled="true" value="#{atenderCitaAjaxController.tipoCita}" />
+	 	  	
+	 	  		<p:outputLabel for="tftpca" id="decitaat" value="Detalle"  />
+	 	  		<p:inputTextarea rows="6" cols="33" disabled="true" value="#{atenderCitaAjaxController.detalle}"/>
+
+				<p:outputLabel for="tfeat" id="fate" value="Fecha"  />
+				<p:inputText id="tfeat" class="form-control" disabled="true" value="#{atenderCitaAjaxController.fecha}" />
+								
+				<p:outputLabel for="tfhoraat" id="hate" value="Hora"  />
+				<p:inputText id="tfhoraat" class="form-control" disabled="true" value="#{atenderCitaAjaxController.horaCita}" />
+				
+				<p:outputLabel for="tfmedicoat" id="mdate" value="Medico"  />
+				<p:inputText id="tfmedicoat" class="form-control" disabled="true" value="#{atenderCitaAjaxController.medico}" />
+				
+				<p:outputLabel for="tfanota" id="tfanota" value="Anotacion"  />
+	 	  		<p:inputTextarea rows="6" cols="33" value="#{atenderCitaAjaxController.anotacion}"/>
+				
+				
+				<p:commandButton styleClass="ui-priority-primary" value="Atendida" action="#"
+					update="atecita" process="@this atecita" />
+					
+				<p:commandButton styleClass="ui-priority-primary" value="Cancelar" action="#"
+					update="atecita" process="@this " />
+				
+			
+			</h:panelGrid> 
+		
+		
+			</p:fieldset>	
+			</h:form>
+		</ui:define>
+	
+	</ui:composition>
