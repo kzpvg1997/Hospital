@@ -30,7 +30,7 @@ public class PersonaEJB {
 	private EntityManager em;
 	
 	
-	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	@TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
 	public Persona buscarPersonaPorUsuario(String username){
 		Query q = em.createNamedQuery(Usuario.PERSONA_POR_USUARIO);
 		q.setParameter(1, username);
