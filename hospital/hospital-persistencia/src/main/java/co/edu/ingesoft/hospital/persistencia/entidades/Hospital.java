@@ -25,13 +25,16 @@ import javax.persistence.Table;
 @Entity
 @Table(name="Hospitales")
 @NamedQueries({
-	@NamedQuery(name=Hospital.ListaHospital,query="SELECT h FROM Hospital h")
+	@NamedQuery(name=Hospital.ListaHospital,query="SELECT h FROM Hospital h"),
+	@NamedQuery(name=Hospital.usuarioHospital,query="SELECT h FROM Hospital h WHERE h.usuario=?1")
 })
 public class Hospital implements Serializable{
 	
 	
 
 	public static final String ListaHospital = "Hospital.listarHospitales";
+	
+	public static final String usuarioHospital ="Hospital.UsuarioXHospital";
 	
 	@Id
 	@Column(name="id_hospital")
@@ -104,6 +107,14 @@ public class Hospital implements Serializable{
 	 */
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return nombre;
 	}
 	
 	

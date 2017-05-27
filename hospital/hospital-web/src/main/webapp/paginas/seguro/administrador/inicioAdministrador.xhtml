@@ -8,18 +8,179 @@
 	<ui:define name="cuerpo">
 		<h:form prependId="false">
 
-			<p:fieldset legend="Administrador" style="margin-top:100px">
-				<p:tabView>
-					<p:tab title="Gestion de instalaciones" dynamic="true" cache="true">
+
+			<p:fieldset legend="Gestion de Instalaciones" style="margin-top:10px">
+				<p:tabView id="tablaDatosAdmin">
+					<p:tab title="Gestion de Quirofanos" dynamic="true" cache="true">
+
+						<p:fieldset legend="Buscar Quirofano" style="margin-top:10px">
+
+							<h:panelGrid id="busQuirofano" columns="2">
+								<p:inputText id="tfNumeroBu" class="form-control"
+									placeholder="ingrese numero"
+									value="#{adminQuirofanoAjaxController.busNumeroQuirofano}" />
+								<p:commandButton styleClass="ui-priority-primary" value="Buscar"
+									process="@this busQuirofano" update="busQuirofano tablaDatosAdmin"
+									action="#{adminQuirofanoAjaxController.buscarQuirofano()}" />
+							</h:panelGrid>
+
+						</p:fieldset>
+
+						<p:fieldset legend="Registrar Quirofano" style="margin-top:5px">
+							<h:panelGrid id="panelQuirofano" columns="2">
+
+
+								<h:panelGrid id="datosQuiro1" columns="1">
+
+									<p:outputLabel for="tNombreQui" id="ol4"
+										value="Nombre Quirofano" />
+									<p:inputText id="tNombreQui" class="form-control"
+										value="#{adminQuirofanoAjaxController.nombre}"
+										placeholder="Nombre Quirofano" />
+
+									<p:outputLabel for="tfLocalizacion" id="ol1"
+										value="Localizacion" />
+									<p:inputTextarea id="tfLocalizacion" rows="6" cols="33"
+										placeholder="localizacion del quirofano"
+										value="#{adminQuirofanoAjaxController.localizacion}" />
+
+									<p:outputLabel for="tfgenpa" id="ol2" value="Tipo de Quirofano" />
+									<h:selectOneMenu id="tfgenpa" class="form-control"
+										value="#{adminQuirofanoAjaxController.tipoQuirofanoSeleccionado}">
+										<f:selectItem itemValue="Seleccione" itemLabel="Seleccione..." />
+										<f:selectItem itemValue="Alta Tecnologia" itemLabel="Alta Tecnologia" />
+										<f:selectItem itemValue="Convencional" itemLabel="Convencional" />
+										<f:selectItem itemValue="Urgencias" itemLabel="Urgencias" />
+										<f:selectItem itemValue="Sala de partos"
+											itemLabel="Sala de Partos" />
+									</h:selectOneMenu>
+
+								</h:panelGrid>
+
+								<h:panelGrid id="datosQuiro2" columns="1">
+
+									<p:outputLabel for="tNumeroQui" id="ol5"
+										value="Numero Quirofano" />
+									<p:inputText id="tNumeroQui" class="form-control"
+										value="#{adminQuirofanoAjaxController.numeroQuirofano}"
+										placeholder="Numero Quirofano" />
+
+									<p:outputLabel for="tfdescripcion" id="desc"
+										value="Descripcion" />
+									<p:inputTextarea id="tfdescripcion" rows="6" cols="33"
+										value="#{adminQuirofanoAjaxController.descripcion}"
+										placeholder="Descripcion del quirofano" />
+
+									<p:outputLabel for="tfOcupado" id="ol3" value="Ocupado" />
+									<p:inputText id="tfOcupado" class="form-control"
+										value="#{adminQuirofanoAjaxController.ocupado}"
+										disabled="true" placeholder="no disponible para registro" />
+
+								</h:panelGrid>
+
+							</h:panelGrid>
+
+						</p:fieldset>
+
+						<p:commandButton styleClass="ui-priority-primary"
+							value="Registrar" process="@this tablaDatosAdmin" update="tablaDatosAdmin"
+							action="#{adminQuirofanoAjaxController.registrarQuirofano()}" />
+						<h:panelGrid id="editQuirofano" columns="1">
+							<p:commandButton styleClass="ui-priority-primary"
+								value="Editar Quirofano" process="@this tablaDatosAdmin"
+								update="tablaDatosAdmin"
+								action="#{adminQuirofanoAjaxController.editarQuirofano()}"
+								style="margin-left:630px" />
+						</h:panelGrid>
+					</p:tab>
+
+					<p:tab title="Gestion de Camas" dynamic="true" cache="true" id="tablaCama">
+
+
+						<p:fieldset legend="Buscar Cama" style="margin-top:10px">
+
+							<h:panelGrid id="busCama" columns="2">
+								<p:inputText id="tfNumeroCama" class="form-control"
+									placeholder="ingrese numero de cama"
+									value="#{adminQuirofanoAjaxController.busNumeroCama}" />
+								<p:commandButton styleClass="ui-priority-primary" value="Buscar"
+									process="@this busCama" update="panelCama"
+									action="#{adminQuirofanoAjaxController.buscarCama()}" />
+							</h:panelGrid>
+
+						</p:fieldset>
+
+						<p:fieldset legend="Registrar Cama" style="margin-top:5px">
+
+						<h:panelGrid id="panelCama" columns="1">
+							
+								<p:outputLabel for="tNumCama" id="ol9" value="Numero Cama" />
+								<p:inputText id="tNumCama" class="form-control"
+								 value="#{adminQuirofanoAjaxController.numeroCama}" placeholder="Numero Cama" />
+									
+								<p:outputLabel for="tfdescripcionCama" id="descCama"
+										value="Descripcion" />
+									<p:inputTextarea id="tfdescripcionCama" rows="6" cols="33"
+										value="#{adminQuirofanoAjaxController.descripcionCama}"
+									placeholder="Descripcion de la Cama" />	
+									
+								<p:outputLabel for="tDispoCama" id="ol10" value="Disponible" />
+								<p:inputText id="tDispoCama" class="form-control" 
+								value="#{adminQuirofanoAjaxController.disponibleCama}" placeholder="No apto para registro" 
+								disabled="true"/>
+									
+								<p:outputLabel for="tHospiCama" id="ol11" value="Cama de Hospital" />
+								<p:inputText id="tHospiCama" class="form-control"
+								value="#{adminQuirofanoAjaxController.hospitalCama}" placeholder="No apto para registro" 
+								disabled="true"/>
+
+							
+							</h:panelGrid>
+							<p:commandButton styleClass="ui-priority-primary"
+							value="Registrar" process="@this panelCama" update="tablaDatosAdmin" 
+							action="#{adminQuirofanoAjaxController.registrarCama()}" style="margin-top:10px"/>
+							
+							
 						
-						<label>MELO PAPA</label>
-
-					</p:tab>
-					<p:tab title="Gestion de Eps" dynamic="true" cache="true">
-
-						<label>AVECES MUY MELO</label>
-					</p:tab>
-				</p:tabView>
+							
+	 <h:panelGrid id="listaCam" columns="1">
+        <p:tab title="Camas" >
+			<p:dataTable  value="#{adminQuirofanoAjaxController.listaCamas}" var="cam" border="1">
+				<p:column>
+					<f:facet name="header">
+							Numero
+						</f:facet>
+					<p:outputLabel value="#{cam.numeroCama}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+							Estado
+						</f:facet>
+					<p:outputLabel value="No Disponible" rendered="#{cam.disponible==false}"/>
+					<p:outputLabel value="Disponible" rendered="#{cam.disponible==true}"/>
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+							Hospital
+						</f:facet>
+					<p:outputLabel value="#{cam.hospital}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+							Opciones
+						</f:facet>
+						<p:commandButton action="#{adminQuirofanoAjaxController.borrarCama(cam)}"  value="Borrar" process="@this listaCam"
+							update="listaCam" />
+							<p:commandButton action="#{adminQuirofanoAjaxController.buscarCamaTabla(cam)}"  value="Ver" process="@this listaCam"
+							update="panelCama" />
+				</p:column>
+			</p:dataTable>
+			</p:tab>
+			</h:panelGrid>
+  			
+  			</p:tab>
+  			
+			</p:tabView>
 			</p:fieldset>
 		</h:form>
 	</ui:define>

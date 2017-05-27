@@ -30,11 +30,12 @@ public class Quirofano implements Serializable{
 
 	@Id
 	@Column(name="id_quirofano")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "QUIROFANO_SEQ")
-    @SequenceGenerator(sequenceName = "quirofano_seq", allocationSize = 1, name = "QUIROFANO_SEQ")
 	private int idQuirofano;
 	
-	@Column(name="localzacion",length=100)
+	@Column(name="nombre")
+	private String nombre;
+	
+	@Column(name="localizacion",length=100)
 	private String localizacion;
 	
 	@Column(name="descripcion",length=200)
@@ -53,6 +54,128 @@ public class Quirofano implements Serializable{
 	
 	public Quirofano(){
 		
+
 	}
+	/**
+	 * @param idQuirofano
+	 * @param nombre
+	 * @param localizacion
+	 * @param descripcion
+	 * @param tipoQuirofano
+	 * @param ocupado
+	 * @param hospital
+	 */
+	public Quirofano(int idQuirofano, String nombre, String localizacion, String descripcion, String tipoQuirofano,
+			boolean ocupado, Hospital hospital) {
+		super();
+		this.idQuirofano = idQuirofano;
+		this.nombre = nombre;
+		this.localizacion = localizacion;
+		this.descripcion = descripcion;
+		this.tipoQuirofano = tipoQuirofano;
+		this.ocupado = ocupado;
+		this.hospital = hospital;
+	}
+
+
+	/**
+	 * @return the nombre
+	 */
+	public String getNombre() {
+		return nombre;
+	}
+
+	/**
+	 * @param nombre the nombre to set
+	 */
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	/**
+	 * @return the idQuirofano
+	 */
+	public int getIdQuirofano() {
+		return idQuirofano;
+	}
+
+	/**
+	 * @param idQuirofano the idQuirofano to set
+	 */
+	public void setIdQuirofano(int idQuirofano) {
+		this.idQuirofano = idQuirofano;
+	}
+
+	/**
+	 * @return the localizacion
+	 */
+	public String getLocalizacion() {
+		return localizacion;
+	}
+
+	/**
+	 * @param localizacion the localizacion to set
+	 */
+	public void setLocalizacion(String localizacion) {
+		this.localizacion = localizacion;
+	}
+
+	/**
+	 * @return the descripcion
+	 */
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	/**
+	 * @param descripcion the descripcion to set
+	 */
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+	/**
+	 * @return the tipoQuirofano
+	 */
+	public String getTipoQuirofano() {
+		return tipoQuirofano;
+	}
+
+	/**
+	 * @param tipoQuirofano the tipoQuirofano to set
+	 */
+	public void setTipoQuirofano(String tipoQuirofano) {
+		this.tipoQuirofano = tipoQuirofano;
+	}
+
+	/**
+	 * @return the ocupado
+	 */
+	public boolean isOcupado() {
+		return ocupado;
+	}
+
+	/**
+	 * @param ocupado the ocupado to set
+	 */
+	public void setOcupado(boolean ocupado) {
+		this.ocupado = ocupado;
+	}
+
+	/**
+	 * @return the hospital
+	 */
+	public Hospital getHospital() {
+		return hospital;
+	}
+
+	/**
+	 * @param hospital the hospital to set
+	 */
+	public void setHospital(Hospital hospital) {
+		this.hospital = hospital;
+	}
+	
+	
 	
 }
