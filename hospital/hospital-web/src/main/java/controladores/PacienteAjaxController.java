@@ -134,6 +134,41 @@ public class PacienteAjaxController implements Serializable {
 
 	}
 	
+	public void editar() throws ParseException{
+		
+		if(!fecha.isEmpty() || nombre.isEmpty() || apellido.isEmpty() || telefono.isEmpty() || email.isEmpty() ||
+				generoSeleccionado.equalsIgnoreCase("Seleccione") || (epsSeleccionada == 0) || (numeroDocumento.isEmpty()) ){
+
+			System.out.println("entro");
+
+			Paciente p = new Paciente();
+			
+			p.setNombre(nombre);
+			p.setApellido(apellido);
+			p.setIdentificacion(Integer.parseInt(numeroDocumento));
+			p.setGenero(generoSeleccionado);
+			p.setEmail(email);
+			Eps e = pacienteEJB.buscarEps(epsSeleccionada);
+			p.setEps(e);
+			fechaNacimiento = new SimpleDateFormat("dd-MM-yyyy").parse(fecha);
+			p.setFechaNacimiento(fechaNacimiento);
+			p.setTelefono(telefono);
+			if(p.getFechaNacimiento() != null){
+				pacienteEJB.editarPaciente(p);
+				limpiar();
+				Messages.addFlashGlobalInfo("El paciente se editado correctamente");
+			}else{
+				System.out.println("No entro fecha");
+				Messages.addFlashGlobalError("Vrifique la fecha");
+			}
+
+		
+		}else{
+			Messages.addFlashGlobalError("Ingrese todos los datos");
+			System.out.println("No entro");
+		}
+	}
+	
 	public void borrar(Paciente p) {
 		pacienteEJB.borrarPaciente(p);
 		Messages.addFlashGlobalInfo("El paciente ha sido eliminada exitosamente");

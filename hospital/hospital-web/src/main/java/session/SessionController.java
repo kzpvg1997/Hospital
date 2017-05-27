@@ -81,7 +81,7 @@ public class SessionController implements Serializable {
 					roles = rolEJB.ListaRolesPersona(persona.getIdentificacion());
 	                accesos = rolEJB.ListaAccesosRol(persona.getRol());
 					
-					return "/paginas/seguro/paciente.xhtml?faces-redirect=true";
+					return "/paginas/seguro/paciente/inicio.xhtml?faces-redirect=true";
 					
 				}else if(persona.getRol().getIdRol() == 2){
 					Faces.setSessionAttribute("user", usuario);

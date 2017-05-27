@@ -47,7 +47,11 @@
 				        <li>
 				        <h:commandLink action="#{pag.getUrl()}" value="#{pag.nombre}" />
 				        </li>
+				        	
 				        </ui:repeat>
+				        <li><h:commandLink action="#{sessionControl.cerrarSesion()}"
+								value="Salir" rendered="#{sessionControl.sesion}"></h:commandLink>
+						</li>	
 				        </h:form>
 				        </ul>
 				    </div>

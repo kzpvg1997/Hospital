@@ -120,6 +120,15 @@ public class PacienteEJB {
 		return em.find(Eps.class,id);
 	}
 	
+	/**
+	 * Metodo para editar un paciente
+	 * @param paciente parametro que recibe
+	 */
+	public void editarPaciente(Paciente paciente) {
+		Rol rol= rolEJB.buscarRol(1);
+		paciente.setRol(rol);
+		em.merge(paciente); // Actualizar
+	}
 	
 	
 	
