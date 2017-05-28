@@ -2,130 +2,116 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui"
-	template="/template/template.xhtml">
-	
-		<ui:define name="cuerpo">
-			<h:form prependId="false">
-			
-			<p:fieldset legend="Busqueda" style="margin-top:100px">
-			<h:panelGrid id="busme" columns="3">
-			
-			<p:commandButton styleClass="ui-priority-primary" value="Buscar" process="@this tfbusme "
-				update="dtmedi" action="#" />
-				<p:inputText id="tfbusme" class="form-control"  value="#" />
-				<p:message for="tfbusme" />
-			</h:panelGrid>
-		</p:fieldset>
-			
+	xmlns:p="http://primefaces.org/ui" template="/template/template.xhtml">
+
+	<ui:define name="cuerpo">
+		<h:form prependId="false">
+		
+		<p:tabView id="tablaDatosMedico" style="margin-top:100px">
+					<p:tab title="Gestion de Medicos" dynamic="true" cache="true">
+
+			<p:fieldset legend="Busqueda" style="margin-top:10px">
+				<h:panelGrid id="busme" columns="2">
+
+					<p:commandButton styleClass="ui-priority-primary" value="Buscar"
+						process="@this busme" update="dtmedi"
+						action="#{medicoAjaxController.buscar()}" />
+						
+					<p:inputText id="tfbusmed" class="form-control"
+						value="#{medicoAjaxController.busMedico}" placeholder="ingrese documento"/>
+				</h:panelGrid>
+			</p:fieldset>
+
 			<p:fieldset legend="Datos medico" style="margin-top:10px">
-				<h:panelGrid id="dtmedi" columns="3">
-					
-					<p:outputLabel for="tfnomdo" id="nomD" value="Nombre"  />
-				<p:inputText id="tfnomdo" class="form-control"  value="#{medicoAjaxController.nombre}" />
-				<p:message for="tfnomdo" />
-				
-				<p:outputLabel for="tfapedo" id="apeD" value="Apellido"  />
-				<p:inputText id="tfapedo" class="form-control"  value="#{medicoAjaxController.apellido}" />
-				<p:message for="tfapedo" />
-				
-				
-				<p:outputLabel for="tfnumdo" id="nunDD" value="Numero documento"  />
-				<p:inputText id="tfnumdo" class="form-control"  value="#{medicoAjaxController.numeroDocumento}" />
-				<p:message for="tfnumdo" />
-				
-				<p:outputLabel for="tfespdo" id="espD" value="Tipo Mmedico"  />
-				<h:selectOneMenu id="tfespdo" class="form-control" value="#" disabled="#{medicoAjaxController.activo}">
-				 
-					<f:selectItem itemValue="Seleccione" itemLabel="Seleccione" />
-					<f:selectItem itemValue="General" itemLabel="General" />
-					<f:selectItem itemValue="Pediatra" itemLabel="Pediatra" />
-					<f:selectItem itemValue="Dermatologo" itemLabel="Dermatologo" />
-					<f:selectItem itemValue="Cirujano" itemLabel="Cirujano" />
-				</h:selectOneMenu>
-				<p:message for="tfespdo" />
-				
-				<p:outputLabel for="tfhosdo" id="hosD" value="Hospital"  />
-				<h:selectOneMenu id="tfhosdo" class="form-control" value="#">
-					<f:selectItem itemValue="Seleccione" itemLabel="Seleccione" />
-					<f:selectItems value="#{medicoAjaxController.hospitales}" var="hos"
-					itemValue="#{hos.idHospital}" itemLabel="#{hos.nombre}"/>
-				</h:selectOneMenu>
-				<p:message for="tfhosdo" />
-				
-				<p:outputLabel for="tfhordo" id="horD" value="Horario disponible"  />
-				<p:inputText id="tfhordo" class="form-control"  value="" />
-				<p:message for="tfhordo" />
-				
-				<h:panelGrid columns="2">
-				<p:commandButton styleClass="ui-priority-primary" value="Registrar" ajax="false" action="#" />
-				
+				<h:panelGrid id="dtmedi" columns="2">
+
+					<p:outputLabel for="tfnomdo" id="nomD" value="Nombre" />
+					<p:inputText id="tfnomdo" class="form-control"
+						value="#{medicoAjaxController.nombre}" placeholder="Nombre Medico"/>
+
+
+					<p:outputLabel for="tfapedo" id="apeD" value="Apellido" />
+					<p:inputText id="tfapedo" class="form-control"
+						value="#{medicoAjaxController.apellido}" placeholder="Apellido Medico"/>
+
+
+
+					<p:outputLabel for="tfnumeroMed" id="numeMed" value="Numero Documento" />
+					<p:inputText id="tfnumeroMed" class="form-control"
+						value="#{medicoAjaxController.numeroDocumento}" placeholder="Documento Medico"/>
+
+
+					<p:outputLabel for="tfnumeroTelMed" id="numeroTel"
+						value="Numero Telefono" />
+					<p:inputText id="tfnumeroTelMed" class="form-control"
+						value="#{medicoAjaxController.telefono}" placeholder="Telefono Medico"/>
+
+
+					<p:outputLabel for="tfhosMed" id="hosmedico" value="Hospital" />
+					<h:selectOneMenu id="tfhosMed" class="form-control"
+						value="#{medicoAjaxController.hospitalSeleccionado}">
+						<f:selectItem itemValue="0" itemLabel="Seleccione" />
+						<f:selectItems value="#{medicoAjaxController.listaHospitales}"
+							var="hos" itemValue="#{hos.idHospital}" itemLabel="#{hos.nombre}" />
+					</h:selectOneMenu>
+
 				</h:panelGrid>
 				
-				</h:panelGrid>
-				
-				<p:fieldset legend="Horario" style="margin-top:10px">
-			<h:panelGrid id="horme" columns="3">
+				<p:commandButton styleClass="ui-priority-primary" value="Registrar" process="@this :tablaDatosMedico:dtmedi :tablaDatosMedico:panelTablaMed"
+					update=":tablaDatosMedico:dtmedi :tablaDatosMedico:panelTablaMed" action="#{medicoAjaxController.registrar()}" style="margin-top:15px"/>
+
 			
-			
-			</h:panelGrid>
-		</p:fieldset>
-				
-	
-			</p:fieldset>	
-			
-					 <p:accordionPanel>
-        <p:tab title="Medicos">
-			<p:dataTable id="tablaDo" value="#{medicoAjaxController.medicos}" var="me"
-				border="1">
-				<p:column>
-					<f:facet name="header">
+
+			<p:accordionPanel id="panelTablaMed"  style="margin-top:15px">
+				<p:tab title="Medicos">
+					<p:dataTable value="#{medicoAjaxController.medicos}" id="tablaMed"
+						var="me" border="1">
+						<p:column>
+							<f:facet name="header">
 							Nombre
 						</f:facet>
-					<p:outputLabel value="#{me.nombre}" />
-				</p:column>
-				<p:column>
-					<f:facet name="header">
+							<p:outputLabel value="#{me.nombre}" />
+						</p:column>
+						<p:column>
+							<f:facet name="header">
 							Apellido
 						</f:facet>
-					<p:outputLabel value="#{me.apellido}" />
-				</p:column>
-				<p:column>
-					<f:facet name="header">
+							<p:outputLabel value="#{me.apellido}" />
+						</p:column>
+						<p:column>
+							<f:facet name="header">
 							Numero Documento
 						</f:facet>
-					<p:outputLabel value="#{me.identificacion}" />
-				</p:column>
-				<p:column>
-					<f:facet name="header">
+							<p:outputLabel value="#{me.identificacion}" />
+						</p:column>
+						<p:column>
+							<f:facet name="header">
 							Tipo medico
 						</f:facet>
-					<p:outputLabel value="#{me.tipoMedico}" />
-				</p:column>
-				<p:column>
-					<f:facet name="header">
+							<p:outputLabel value="#{me.tipoMedico}" />
+						</p:column>
+						<p:column>
+							<f:facet name="header">
 							Hospital
 						</f:facet>
-					<p:outputLabel value="#{me.hospital}" />
-				</p:column>
-				<p:column>
-					<f:facet name="header">
-							Horario Disponible
+							<p:outputLabel value="#{me.hospital}" />
+						</p:column>
+						<p:column>
+							<f:facet name="header">
+							Eliminar
 						</f:facet>
-					<p:outputLabel value="" />
-				</p:column>
-				<p:column>
-					<f:facet name="header">
-							Borrar
-						</f:facet>
-						<p:commandButton action="#" process="@this" value="Quitar"
-							update="tablaDo" />
-					<p:outputLabel value="" />
-				</p:column>
-			</p:dataTable>
+							<p:commandButton action="#{medicoAjaxController.eliminarMedico(me)}" process="@this :tablaDatosMedico:panelTablaMed" value="Eliminar"
+								update=":tablaDatosMedico:panelTablaMed tablaDatosMedico" />
+							<p:outputLabel value="" />
+						</p:column>
+					</p:dataTable>
+				</p:tab>
+			</p:accordionPanel>
+			</p:fieldset>
+			
 			</p:tab>
-    </p:accordionPanel>
-			</h:form>
-		</ui:define>
-	
-	</ui:composition>
+			</p:tabView>
+		</h:form>
+	</ui:define>
+
+</ui:composition>

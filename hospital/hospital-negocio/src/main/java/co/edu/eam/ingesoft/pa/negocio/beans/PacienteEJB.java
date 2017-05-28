@@ -18,6 +18,7 @@ import javax.persistence.Query;
 import co.edu.eam.ingesoft.pa.negocio.excepciones.ExcepcionNegocio;
 import co.edu.ingesoft.hospital.persistencia.entidades.Eps;
 import co.edu.ingesoft.hospital.persistencia.entidades.Paciente;
+import co.edu.ingesoft.hospital.persistencia.entidades.Persona;
 import co.edu.ingesoft.hospital.persistencia.entidades.Rol;
 import co.edu.ingesoft.hospital.persistencia.entidades.Usuario;
 
@@ -34,6 +35,8 @@ public class PacienteEJB {
 	@EJB
 	private SeguridadEJB seguridadEJB;
 	
+	@EJB
+	private PersonaEJB personaEJB;
 	/**
 	 * Metodo que sirve para listar las eps
 	 * @return las eps
@@ -71,12 +74,15 @@ public class PacienteEJB {
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void crearPaciente(Paciente p){
 		Paciente paciente = buscarPaciente(p.getIdentificacion());
+		Persona persona = personaEJB.buscarPersona(p.getIdentificacion());
 		if(paciente == null){
-			
+			if(persona==null){
 			Rol rol= rolEJB.buscarRol(1);
 			p.setRol(rol);
-			
 			em.persist(p);
+			}else{
+				throw new ExcepcionNegocio("La persona con documento: "+p.getIdentificacion()+" ya esta en el sistema");
+			}
 			
 		}else{
 			throw new ExcepcionNegocio("Este paciente ya se encuentra registrado");
@@ -103,9 +109,11 @@ public class PacienteEJB {
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void borrarPaciente(Paciente p){
 		Paciente pa = buscarPaciente(p.getIdentificacion());
+		Persona pe = personaEJB.buscarPersona(p.getIdentificacion());
 		if(pa != null){
 			seguridadEJB.borrarUsuarioPersona(p);
 			em.remove(pa);
+			personaEJB.eliminarPersona(pe);
 		}
 		
 	}

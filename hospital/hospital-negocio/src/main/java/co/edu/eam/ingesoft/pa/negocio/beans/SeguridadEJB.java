@@ -11,7 +11,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import co.edu.eam.ingesoft.pa.negocio.excepciones.ExcepcionNegocio;
 import co.edu.ingesoft.hospital.persistencia.entidades.Persona;
 import co.edu.ingesoft.hospital.persistencia.entidades.Usuario;
 
@@ -70,7 +69,6 @@ public class SeguridadEJB implements Serializable {
 			
 		} else {
 			em.remove(usu.get(0));
-			//System.out.println("(((((((((((((==="+usu.get(0).getUsuario()+"===)))))))))))");
 		}
 	}
 

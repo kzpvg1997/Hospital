@@ -33,4 +33,42 @@ public class Especializaciones implements Serializable{
 	public Especializaciones(){
 		
 	}
+
+	/**
+	 * @return the idEspecializacion
+	 */
+	public int getIdEspecializacion() {
+		return idEspecializacion;
+	}
+
+	/**
+	 * @param idEspecializacion the idEspecializacion to set
+	 */
+	public void setIdEspecializacion(int idEspecializacion) {
+		this.idEspecializacion = idEspecializacion;
+	}
+
+	/**
+	 * @return the nombre
+	 */
+	public String getNombre() {
+		return nombre;
+	}
+
+	/**
+	 * @param nombre the nombre to set
+	 */
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return nombre;
+	}
+	
+	
 }

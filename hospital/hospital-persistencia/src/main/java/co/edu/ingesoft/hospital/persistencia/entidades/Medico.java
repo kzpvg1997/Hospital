@@ -92,11 +92,5 @@ public class Medico  extends Persona implements Serializable{
 	public String toString() {
 		return getNombre() +" "+getApellido();
 	}
-
-
-	
-	
-	
-	
 	
 }

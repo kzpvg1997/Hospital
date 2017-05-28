@@ -11,9 +11,10 @@
 		<p:fieldset legend="Busqueda" style="margin-top:100px">
 			<h:panelGrid id="buspa" columns="3">
 			
-			<p:commandButton styleClass="ui-priority-primary" value="Buscar" process="@this buspa"
-				update="datospa buspa" action="#{pacienteAjaxController.buscar}" />
+			
 				<p:inputText id="tfbuspa" class="form-control" placeholder="Documento" value="#{pacienteAjaxController.busNumeroDocumento}" />
+				<p:commandButton styleClass="ui-priority-primary" value="Buscar" process="@this buspa"
+				update="datospa buspa" action="#{pacienteAjaxController.buscar}" />
 				<p:message for="tfbuspa" />
 			</h:panelGrid>
 		</p:fieldset>
@@ -63,14 +64,14 @@
 				<p:inputText type="Email" id="tfemapa" class="form-control" placeholder="Email" value="#{pacienteAjaxController.email}" />
 				<p:message for="tfemapa" />
 				
-				<h:panelGrid columns="2">
+				
 				<p:commandButton styleClass="ui-priority-primary" value="Registrar"  action="#{pacienteAjaxController.registrar}"
 					update="j_idt29" process="@this datospa j_idt29" />
 				
 				<p:commandButton styleClass="ui-priority-primary" value="Editar"  action="#{pacienteAjaxController.editar}"
 					update="j_idt29" process="@this datospa j_idt29" />	
 				
-				</h:panelGrid>
+			
 			</h:panelGrid>
 		</p:fieldset>
 		

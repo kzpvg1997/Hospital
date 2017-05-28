@@ -9,7 +9,7 @@
 		<h:form prependId="false">
 
 
-			<p:fieldset legend="Gestion de Instalaciones" style="margin-top:10px">
+			<p:fieldset legend="Gestion de Instalaciones" style="margin-top:100px">
 				<p:tabView id="tablaDatosAdmin">
 					<p:tab title="Gestion de Quirofanos" dynamic="true" cache="true">
 
@@ -136,16 +136,16 @@
 
 							
 							</h:panelGrid>
+							
 							<p:commandButton styleClass="ui-priority-primary"
-							value="Registrar" process="@this panelCama" update="tablaDatosAdmin" 
+							value="Registrar" process="@this panelCama" update="panelCama :tablaDatosAdmin:panelLista" 
 							action="#{adminQuirofanoAjaxController.registrarCama()}" style="margin-top:10px"/>
 							
 							
-						
 							
-	 <h:panelGrid id="listaCam" columns="1">
-        <p:tab title="Camas" >
-			<p:dataTable  value="#{adminQuirofanoAjaxController.listaCamas}" var="cam" border="1">
+				<p:dataTable  value="#{adminQuirofanoAjaxController.listaCamas}" 
+				var="cam" border="1" id="panelLista" style="margin-top:10px">
+				
 				<p:column>
 					<f:facet name="header">
 							Numero
@@ -169,19 +169,20 @@
 					<f:facet name="header">
 							Opciones
 						</f:facet>
-						<p:commandButton action="#{adminQuirofanoAjaxController.borrarCama(cam)}"  value="Borrar" process="@this listaCam"
-							update="listaCam" />
-							<p:commandButton action="#{adminQuirofanoAjaxController.buscarCamaTabla(cam)}"  value="Ver" process="@this listaCam"
-							update="panelCama" />
+						<p:commandButton action="#{adminQuirofanoAjaxController.borrarCama(cam)}"  value="Borrar" process="@this :tablaDatosAdmin:panelCama :tablaDatosAdmin:panelLista"
+							update=":tablaDatosAdmin:panelLista :tablaDatosAdmin:panelCama" />
+							<p:commandButton action="#{adminQuirofanoAjaxController.buscarCamaTabla(cam)}"  value="Ver" process="@this :tablaDatosAdmin:panelCama tablaDatosAdmin"
+							update=":tablaDatosAdmin:tablaCama tablaDatosAdmin"/>
 				</p:column>
+				
 			</p:dataTable>
-			</p:tab>
-			</h:panelGrid>
-  			
-  			</p:tab>
-  			
+							
+							</p:fieldset>
+							
+				</p:tab>
 			</p:tabView>
-			</p:fieldset>
+			</p:fieldset>				
+			
 		</h:form>
 	</ui:define>
 

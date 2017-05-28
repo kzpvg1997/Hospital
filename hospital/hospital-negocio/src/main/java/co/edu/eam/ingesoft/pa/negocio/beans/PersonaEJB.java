@@ -50,4 +50,10 @@ public class PersonaEJB {
 	}
 
 	
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public void eliminarPersona(Persona persona){
+		
+	em.remove(persona);
+	}
+	
 }

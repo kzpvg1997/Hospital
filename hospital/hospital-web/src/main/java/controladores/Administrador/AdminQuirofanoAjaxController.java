@@ -66,6 +66,9 @@ public class AdminQuirofanoAjaxController implements Serializable{
 	public void borrarCama(Cama cama){
 		quirofanoEJB.eliminarCama(cama);
 		Messages.addFlashGlobalInfo("Se ha eliminado correctamente!");
+		Hospital hospital = quirofanoEJB.buscarHospital(sesionController.getUsuario());
+		listaCamas = quirofanoEJB.listaCamasHospital(hospital);
+		limpiarCama();
 	}
 	
 	public void buscarCamaTabla(Cama cama){
@@ -100,6 +103,8 @@ public class AdminQuirofanoAjaxController implements Serializable{
 				Messages.addFlashGlobalInfo("Se ha resgistrado una cama exitosamente en el hospital: ''"+
 						hospital.getNombre()+"''. ");
 				limpiarCama();
+
+				listaCamas = quirofanoEJB.listaCamasHospital(hospital);
 				
 			}else{
 				Messages.addFlashGlobalError("por favor ingrese el numero de la cama y su descripcion");
@@ -252,6 +257,8 @@ public class AdminQuirofanoAjaxController implements Serializable{
 	public void limpiarCama(){
 		numeroCama= "";
 		descripcionCama="";
+		disponibleCama="";
+		hospitalCama="";
 	}
 
 	/**

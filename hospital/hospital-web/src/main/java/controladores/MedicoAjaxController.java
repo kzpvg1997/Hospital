@@ -5,84 +5,125 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.faces.bean.ViewScoped;
 import javax.inject.Named;
-import javax.validation.constraints.Pattern;
 
-import org.hibernate.validator.constraints.Length;
+import org.omnifaces.cdi.ViewScoped;
 import org.omnifaces.util.Messages;
 
 import co.edu.eam.ingesoft.pa.negocio.beans.MedicoEJB;
+import co.edu.eam.ingesoft.pa.negocio.excepciones.ExcepcionNegocio;
 import co.edu.ingesoft.hospital.persistencia.entidades.Hospital;
 import co.edu.ingesoft.hospital.persistencia.entidades.Medico;
-
-
 
 @ViewScoped
 @Named("medicoAjaxController")
 public class MedicoAjaxController implements Serializable {
-	
+
 	@EJB
 	private MedicoEJB medicoEJB;
-	
-	@Pattern(regexp="[A-Za-z ]*",message="Ingrese solo letras")
-	@Length(min=4,max=30,message="Lonitud entre 4 y 30")
+
 	private String nombre;
-	
-	@Pattern(regexp="[A-Za-z ]*",message="Ingrese solo letras")
-	@Length(min=4,max=30,message="Lonitud entre 4 y 30")
+
 	private String apellido;
-	
-	@Pattern(regexp="[0-9]*",message="Ingrese solo numeros")
-	@Length(min=3,max=10,message="Lonitud entre 3 y 10")
-	private int numeroDocumento;
-	
+
+	private String numeroDocumento;
+
 	private List<Hospital> listaHospitales;
-		
-	private String especialidadSeleccionda;
-	
-	private String hospitalSeleccionado;
-	
-	private List<Hospital> hospitales;
-	
+
+	private String especialidad;
+
+	private int hospitalSeleccionado;
+
 	private List<Medico> medicos;
-	
+
 	private String horario;
 	
-	private int busMedico;
-	
-	private boolean general;
-	
-	private boolean activo;
-	
-	private boolean noActivo;
-	
+	private String telefono;
+
+	private String busMedico;
+
+
 	@PostConstruct
-	public void inicializar(){
-		hospitales = medicoEJB.listarHospitales();
+	public void inicializar() {
+		listaHospitales = medicoEJB.listarHospitales();
 		medicos = medicoEJB.listarMedicos();
 	}
 	
-	public void registrar(){
-		
+	public void eliminarMedico(Medico medico){
+		medicoEJB.eliminarMedico(medico);
+		Messages.addFlashGlobalInfo("Se ha eliminado el medico Exitosamente");
+		medicos = medicoEJB.listarMedicos();
+	}
+
+	public void registrar() {
+		try{
+			if(!nombre.isEmpty()&&!apellido.isEmpty()&&!numeroDocumento.isEmpty()&&!telefono.isEmpty()&&hospitalSeleccionado>0){
+				System.out.println(numeroDocumento+"////////////////////");
+				
+				Hospital hospital = medicoEJB.buscarHospital(hospitalSeleccionado);
+				Medico m = new Medico();
+				m.setIdentificacion(Integer.parseInt(numeroDocumento));
+				m.setNombre(nombre);
+				m.setApellido(apellido);
+				m.setTelefono(telefono);
+				m.setHospital(hospital);
+				m.setTipoMedico("GENERAL");
+				
+				medicoEJB.registrarMedico(m);
+				medicos = medicoEJB.listarMedicos();
+				Messages.addFlashGlobalInfo("Se ha registrado el medico Exitosamente");
+				limpiar();
+			
+			}else{
+				Messages.addFlashGlobalError("Por favor ingrese todos los datos");
+			}
+			
+		}catch (ExcepcionNegocio e) {
+			Messages.addFlashGlobalError(e.getMessage());
+		}catch (NumberFormatException ex) {
+			Messages.addFlashGlobalError("Por favor solo campos numericos en documento");
+		}
+	}
+
+	public void buscar() {
+		try {
+
+			if (!busMedico.isEmpty()) {
+				Medico me = medicoEJB.buscarMedico(Integer.parseInt(busMedico));
+				if (me != null) {
+
+					nombre = me.getNombre();
+					apellido = me.getApellido();
+					numeroDocumento = String.valueOf(me.getIdentificacion());
+					especialidad = me.getTipoMedico();
+					hospitalSeleccionado = me.getHospital().getIdHospital();
+
+				} else {
+					Messages.addFlashGlobalWarn("Este medico no se encuentra registrado");
+				}
+				
+			} else {
+				Messages.addFlashGlobalError("Por favor ingrese la cedula del medico");
+			}
+		} catch (ExcepcionNegocio e) {
+			Messages.addFlashGlobalError(e.getMessage());
+		} catch (NumberFormatException ex) {
+			Messages.addFlashGlobalError("Por favor solo campos numericos en documento");
+		//}catch (NullPointerException ex) {
+		//	Messages.addFlashGlobalError("ingrese documento y solo campos numericos");
+		//}
+		}
+
 	}
 	
-	public void buscar(){
+	public void limpiar(){
 		
-		Medico me = medicoEJB.buscarMedico(busMedico);
-		if(me != null){
-			
-			nombre = me.getNombre();
-			apellido = me.getApellido();
-			numeroDocumento = me.getIdentificacion();
-			especialidadSeleccionda = me.getTipoMedico();
-			hospitalSeleccionado = me.getHospital().getNombre();			
-	
-		}else{
-			Messages.addFlashGlobalInfo("El Medico no existe");
-		}
-		
-		
+		nombre = "";
+		apellido = "";
+		numeroDocumento = "";
+		telefono ="";
+		especialidad = "";
+		hospitalSeleccionado = 0;
 	}
 
 	/**
@@ -93,7 +134,8 @@ public class MedicoAjaxController implements Serializable {
 	}
 
 	/**
-	 * @param nombre the nombre to set
+	 * @param nombre
+	 *            the nombre to set
 	 */
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
@@ -107,23 +149,25 @@ public class MedicoAjaxController implements Serializable {
 	}
 
 	/**
-	 * @param apellido the apellido to set
+	 * @param apellido
+	 *            the apellido to set
 	 */
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
 	}
 
+	
 	/**
 	 * @return the numeroDocumento
 	 */
-	public int getNumeroDocumento() {
+	public String getNumeroDocumento() {
 		return numeroDocumento;
 	}
 
 	/**
 	 * @param numeroDocumento the numeroDocumento to set
 	 */
-	public void setNumeroDocumento(int numeroDocumento) {
+	public void setNumeroDocumento(String numeroDocumento) {
 		this.numeroDocumento = numeroDocumento;
 	}
 
@@ -135,52 +179,38 @@ public class MedicoAjaxController implements Serializable {
 	}
 
 	/**
-	 * @param listaHospitales the listaHospitales to set
+	 * @param listaHospitales
+	 *            the listaHospitales to set
 	 */
 	public void setListaHospitales(List<Hospital> listaHospitales) {
 		this.listaHospitales = listaHospitales;
 	}
 
 	/**
-	 * @return the especialidadSeleccionda
+	 * @return the especialidad
 	 */
-	public String getEspecialidadSeleccionda() {
-		return especialidadSeleccionda;
+	public String getEspecialidad() {
+		return especialidad;
 	}
 
 	/**
-	 * @param especialidadSeleccionda the especialidadSeleccionda to set
+	 * @param especialidad the especialidad to set
 	 */
-	public void setEspecialidadSeleccionda(String especialidadSeleccionda) {
-		this.especialidadSeleccionda = especialidadSeleccionda;
+	public void setEspecialidad(String especialidad) {
+		this.especialidad = especialidad;
 	}
-
 	/**
 	 * @return the hospitalSeleccionado
 	 */
-	public String getHospitalSeleccionado() {
+	public int getHospitalSeleccionado() {
 		return hospitalSeleccionado;
 	}
 
 	/**
 	 * @param hospitalSeleccionado the hospitalSeleccionado to set
 	 */
-	public void setHospitalSeleccionado(String hospitalSeleccionado) {
+	public void setHospitalSeleccionado(int hospitalSeleccionado) {
 		this.hospitalSeleccionado = hospitalSeleccionado;
-	}
-
-	/**
-	 * @return the hospitales
-	 */
-	public List<Hospital> getHospitales() {
-		return hospitales;
-	}
-
-	/**
-	 * @param hospitales the hospitales to set
-	 */
-	public void setHospitales(List<Hospital> hospitales) {
-		this.hospitales = hospitales;
 	}
 
 	/**
@@ -191,7 +221,8 @@ public class MedicoAjaxController implements Serializable {
 	}
 
 	/**
-	 * @param medicos the medicos to set
+	 * @param medicos
+	 *            the medicos to set
 	 */
 	public void setMedicos(List<Medico> medicos) {
 		this.medicos = medicos;
@@ -205,7 +236,8 @@ public class MedicoAjaxController implements Serializable {
 	}
 
 	/**
-	 * @param horario the horario to set
+	 * @param horario
+	 *            the horario to set
 	 */
 	public void setHorario(String horario) {
 		this.horario = horario;
@@ -214,60 +246,31 @@ public class MedicoAjaxController implements Serializable {
 	/**
 	 * @return the busMedico
 	 */
-	public int getBusMedico() {
+	public String getBusMedico() {
 		return busMedico;
 	}
 
 	/**
-	 * @param busMedico the busMedico to set
+	 * @param busMedico
+	 *            the busMedico to set
 	 */
-	public void setBusMedico(int busMedico) {
+	public void setBusMedico(String busMedico) {
 		this.busMedico = busMedico;
 	}
-
 	/**
-	 * @return the general
+	 * @return the telefono
 	 */
-	public boolean isGeneral() {
-		return general;
+	public String getTelefono() {
+		return telefono;
 	}
 
 	/**
-	 * @param general the general to set
+	 * @param telefono the telefono to set
 	 */
-	public void setGeneral(boolean general) {
-		this.general = general;
-	}
-
-	/**
-	 * @return the activo
-	 */
-	public boolean isActivo() {
-		return activo;
-	}
-
-	/**
-	 * @param activo the activo to set
-	 */
-	public void setActivo(boolean activo) {
-		this.activo = activo;
-	}
-
-	/**
-	 * @return the noActivo
-	 */
-	public boolean isNoActivo() {
-		return noActivo;
-	}
-
-	/**
-	 * @param noActivo the noActivo to set
-	 */
-	public void setNoActivo(boolean noActivo) {
-		this.noActivo = noActivo;
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
 	}
 	
 	
-	}
-	
 
+}
