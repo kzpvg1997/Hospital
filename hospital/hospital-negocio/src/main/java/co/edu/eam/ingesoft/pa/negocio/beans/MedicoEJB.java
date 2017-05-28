@@ -108,4 +108,14 @@ public class MedicoEJB {
 			personaEJB.eliminarPersona(pe);
 		}
 	}
+	
+	/**
+	 * Metodo para editar un medico
+	 * @param medico parametro que recibe
+	 */
+	public void editarMedico(Medico medico) {
+		Rol rol= rolEJB.buscarRol(2);
+		medico.setRol(rol);
+		em.merge(medico); // Actualizar
+	}
 }

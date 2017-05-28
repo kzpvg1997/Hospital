@@ -97,6 +97,7 @@ public class MedicoAjaxController implements Serializable {
 					numeroDocumento = String.valueOf(me.getIdentificacion());
 					especialidad = me.getTipoMedico();
 					hospitalSeleccionado = me.getHospital().getIdHospital();
+					telefono = me.getTelefono();
 
 				} else {
 					Messages.addFlashGlobalWarn("Este medico no se encuentra registrado");
@@ -115,6 +116,43 @@ public class MedicoAjaxController implements Serializable {
 		}
 
 	}
+	
+	
+	public void editarMedico(){
+		
+		try{
+		if(!nombre.isEmpty() && !apellido.isEmpty() && !numeroDocumento.isEmpty() && !telefono.isEmpty() && hospitalSeleccionado != 0){
+			
+			Medico m = new Medico();
+			Hospital h = medicoEJB.buscarHospital(hospitalSeleccionado);
+			m.setHospital(h);
+			m.setApellido(apellido);
+			m.setIdentificacion(Integer.parseInt(numeroDocumento));
+			m.setNombre(nombre);
+			m.setTelefono(telefono);
+			m.setTipoMedico(especialidad);
+			
+			Medico bm = medicoEJB.buscarMedico(m.getIdentificacion());
+			if(bm != null){
+				medicoEJB.editarMedico(m);
+				Messages.addFlashGlobalInfo("Medico editado correctamente");
+			}else{
+				Messages.addFlashGlobalInfo("El medico con documento "+numeroDocumento+" no existe");
+			}
+		
+		}else{
+			Messages.addFlashGlobalError("Verifique que haya buscado el medico y que todos los campos esten llenos");
+		}
+		}catch (ExcepcionNegocio e) {
+			Messages.addFlashGlobalError(e.getMessage());
+		}catch (NumberFormatException ex) {
+			Messages.addFlashGlobalError("Por favor solo campos numericos en documento");
+		}
+	}
+	
+	
+	
+	
 	
 	public void limpiar(){
 		
