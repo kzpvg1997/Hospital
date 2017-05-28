@@ -59,13 +59,13 @@ public class SessionController implements Serializable {
 
 	 System.out.println(user+"*******************"+password);
 	 
-		Usuario usu = seguridadEJB.buscarUsuario("admin"); //user
+		Usuario usu = seguridadEJB.buscarUsuario(user); //user
 		 
 		if (usu != null) {
 			
 			usuario = usu;
 			 
-			if(usu.getPassword().equals("123")){ //password
+			if(usu.getPassword().equals(password)){ //password
 				
 				Persona persona = personaEJB.buscarPersona(usu.getPersona().getIdentificacion());
 				
@@ -97,7 +97,7 @@ public class SessionController implements Serializable {
 					roles = rolEJB.ListaRolesPersona(persona.getIdentificacion());
 	                accesos = rolEJB.ListaAccesosRol(persona.getRol());
 					
-					return "/paginas/seguro/medico.xhtml?faces-redirect=true";
+					return "/paginas/seguro/medico/citaMedico.xhtml?faces-redirect=true";
 					
 				}else if(persona.getRol().getIdRol() == 4){
 					Faces.setSessionAttribute("user", usuario);

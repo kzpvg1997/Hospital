@@ -52,8 +52,11 @@ public class PersonaEJB {
 	
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void eliminarPersona(Persona persona){
-		
-	em.remove(persona);
+		Persona p= buscarPersona(persona.getIdentificacion());
+		if(p!=null){ 
+			em.remove(persona);
+		}
+	
 	}
 	
 }

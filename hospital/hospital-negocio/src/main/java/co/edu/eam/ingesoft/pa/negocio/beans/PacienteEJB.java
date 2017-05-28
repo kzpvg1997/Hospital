@@ -118,6 +118,13 @@ public class PacienteEJB {
 		
 	}
 	
+	
+	
+	
+	
+	
+	
+	
 	/**
 	 * Metodo para buscar una eps
 	 * @param id que recibe el metodo
