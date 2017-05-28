@@ -80,7 +80,7 @@ public class SessionController implements Serializable {
 	                  accesos = rolEJB.ListaAccesosRol(persona.getRol());
 	                  
 	                return "/paginas/seguro/administrador/inicioAdministrador.xhtml?faces-redirect=true";
-					
+										
 				}else if(persona.getRol().getIdRol() == 1){
 					Faces.setSessionAttribute("user", usuario);
 					System.out.println("Inicio sesion paciente");
