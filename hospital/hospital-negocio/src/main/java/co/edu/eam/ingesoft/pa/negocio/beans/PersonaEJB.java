@@ -42,6 +42,7 @@ public class PersonaEJB {
 		}
 		return null;
 	}
+	 
 	
 
 	@TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
