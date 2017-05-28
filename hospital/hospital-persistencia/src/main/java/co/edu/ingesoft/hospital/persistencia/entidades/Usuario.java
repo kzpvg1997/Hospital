@@ -26,13 +26,16 @@ import javax.persistence.Table;
 @Table(name="Usuarios")
 @NamedQueries({	
 	@NamedQuery(name=Usuario.PERSONA_POR_USUARIO,query="SELECT u FROM Usuario u WHERE u.persona=?1"),
-	@NamedQuery(name=Usuario.BUSCAR_USUARIO,query="SELECT u FROM Usuario u WHERE u.usuario=?1")
+	@NamedQuery(name=Usuario.BUSCAR_USUARIO,query="SELECT u FROM Usuario u WHERE u.usuario=?1"),
+	@NamedQuery(name=Usuario.LISTA_USUARIOS,query="SELECT u FROM Usuario u")
 })
 public class Usuario implements Serializable{
 
 	public static final String PERSONA_POR_USUARIO= "Usuario.personaXUsuario";
 	
 	public static final String BUSCAR_USUARIO = "Usuario.BuscarUsuario";
+	
+	public static final String LISTA_USUARIOS = "Usuario.ListaUsuarios";
 	
 	@Id
 	@Column(name="codigo")

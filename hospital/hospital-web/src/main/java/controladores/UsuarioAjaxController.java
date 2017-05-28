@@ -9,10 +9,12 @@ import javax.inject.Named;
 import org.omnifaces.cdi.ViewScoped;
 import org.omnifaces.util.Messages;
 
+import co.edu.eam.ingesoft.pa.negocio.beans.MedicoEJB;
 import co.edu.eam.ingesoft.pa.negocio.beans.PacienteEJB;
 import co.edu.eam.ingesoft.pa.negocio.beans.PersonaEJB;
 import co.edu.eam.ingesoft.pa.negocio.excepciones.ExcepcionNegocio;
 import co.edu.ingesoft.hospital.persistencia.entidades.Paciente;
+import co.edu.ingesoft.hospital.persistencia.entidades.Persona;
 import co.edu.ingesoft.hospital.persistencia.entidades.Usuario;
 
 @ViewScoped
@@ -33,6 +35,9 @@ public class UsuarioAjaxController implements Serializable {
 	@EJB
 	private PacienteEJB pacienteEJB;
 
+	@EJB
+	private MedicoEJB medicoEJB;
+	
 	@PostConstruct
 	public void inicializar() {
 
@@ -48,20 +53,20 @@ public class UsuarioAjaxController implements Serializable {
 					Messages.addFlashGlobalError("las contraseñas no coinciden");
 				}else{
 					
-				Paciente pa = pacienteEJB.buscarPaciente(Integer.parseInt(cedula));
-				if(pa!=null){
+				Persona pe = personaEJB.buscarPersona(Integer.parseInt(cedula));
+				if(pe!=null){
 					
 				Usuario usuario =  new Usuario();
 				usuario.setUsuario(user);
 				usuario.setPassword(contraseña);
-				usuario.setPersona(pa);
+				usuario.setPersona(pe);
 				
-				pacienteEJB.registrarUsuarioPaciente(usuario, pa);
+				personaEJB.registrarUsuarioPersona(usuario, pe);
 				Messages.addFlashGlobalInfo("Se ha registrado exitosamente el usuario");
 				limpiarCampos();
 				
 				}else{
-					Messages.addFlashGlobalError("Este paciente no se encuentra registrado");
+					Messages.addFlashGlobalError("Esta persona no se encuentra registrada");
 				}
 				}
 				

@@ -110,6 +110,23 @@
 			</p:fieldset>
 			
 			</p:tab>
+			
+			<p:tab title="Registrar Especialistas" dynamic="true" cache="true">
+			
+			<p:fieldset legend="BusquedaEspe" style="margin-top:10px">
+				<h:panelGrid id="busEsp" columns="2">
+
+					<p:commandButton styleClass="ui-priority-primary" value="Buscar"
+						process="@this busEsp" update="dtmedi"
+						action="#{medicoAjaxController.buscar()}" />
+						
+					<p:inputText id="tfBusEsp" class="form-control"
+						value="#{medicoAjaxController.busMedico}" placeholder="Busque medico"/>
+				</h:panelGrid>
+			</p:fieldset>
+			
+			</p:tab>
+			
 			</p:tabView>
 		</h:form>
 	</ui:define>
