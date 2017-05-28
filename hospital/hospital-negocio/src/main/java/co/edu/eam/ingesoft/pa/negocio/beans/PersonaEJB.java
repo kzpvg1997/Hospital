@@ -5,6 +5,7 @@ package co.edu.eam.ingesoft.pa.negocio.beans;
 
 import java.util.List;
 
+import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
@@ -13,6 +14,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import co.edu.eam.ingesoft.pa.negocio.excepciones.ExcepcionNegocio;
 import co.edu.ingesoft.hospital.persistencia.entidades.Paciente;
 import co.edu.ingesoft.hospital.persistencia.entidades.Persona;
 import co.edu.ingesoft.hospital.persistencia.entidades.Rol;
@@ -29,6 +31,8 @@ public class PersonaEJB {
 	@PersistenceContext
 	private EntityManager em;
 	
+	@EJB
+	private SeguridadEJB seguridadEJB;
 	
 	@TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
 	public Persona buscarPersonaPorUsuario(String username){
@@ -55,5 +59,22 @@ public class PersonaEJB {
 		
 	em.remove(persona);
 	}
+	
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public void registrarUsuarioPersona(Usuario usuario,Persona persona){
+		
+		Usuario usu = seguridadEJB.buscarUsuarioPersona(persona);
+		if(usu==null){
+			boolean username = seguridadEJB.verificarUsername(usuario.getUsuario());
+		if(username==true){	
+		em.persist(usuario);
+		}else{
+			throw new ExcepcionNegocio("Este nombre de usuario (username) no esta disponible");
+		}
+		}else{
+			throw new ExcepcionNegocio("Esta persona ya registro su usuario");
+		}
+	}
+	
 	
 }

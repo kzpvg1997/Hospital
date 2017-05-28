@@ -41,6 +41,24 @@ public class SeguridadEJB implements Serializable {
 	}
 	
 	/**
+	 * Metodo que sirve para validar si el username esta disponible en la base de datos
+	 * @param username el nombre de usuario que se va a ingresar
+	 * @return true en caso de que no exista/false en caso de existir 
+	 */
+	public boolean verificarUsername (String username){
+		
+		boolean estado = true;
+		Query q = em.createNamedQuery(Usuario.LISTA_USUARIOS);
+		List<Usuario> usu = q.getResultList();
+		for (Usuario usuario : usu) {
+			if(usuario.getUsuario().equals(username)){
+				estado =false;
+			}
+		}
+		return estado;
+	}
+	
+	/**
 	 * Metodo que sirve para buscar el usuario por persona
 	 * @param persona
 	 * @return el usuario

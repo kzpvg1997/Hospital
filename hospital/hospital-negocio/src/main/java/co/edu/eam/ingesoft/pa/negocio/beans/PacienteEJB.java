@@ -90,18 +90,6 @@ public class PacienteEJB {
 		
 	}
 	
-	
-	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public void registrarUsuarioPaciente(Usuario usuario,Paciente paciente){
-		
-		Usuario usu = seguridadEJB.buscarUsuarioPersona(paciente);
-		if(usu==null){
-			em.persist(usuario);
-		}else{
-			throw new ExcepcionNegocio("Este paciente ya registro su usuario");
-		}
-	}
-	
 	/**
 	 * Metodo para eliminar un paciente
 	 * @param p paciente que recibe
