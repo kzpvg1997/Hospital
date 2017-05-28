@@ -47,7 +47,6 @@ public class PersonaEJB {
 		return null;
 	}
 	 
-	
 
 	@TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
 	public Persona buscarPersona(int identificacion){
