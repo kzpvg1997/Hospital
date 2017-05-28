@@ -31,11 +31,20 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name="Citas")
 @NamedQueries({
-	@NamedQuery(name=Cita.LISTA_CITA,query="SELECT c FROM Cita c ")
+	@NamedQuery(name=Cita.LISTA_CITA,query="SELECT c FROM Cita c "),
+	@NamedQuery(name=Cita.LISTA_CITA_NO_ATENDIDAS,query="SELECT c FROM Cita c WHERE atendida=false ")
 })
 public class Cita implements Serializable{
 	
+	/**
+	 * Consulta que retorna todas las citas
+	 */
 	public static final String LISTA_CITA ="cita.Lista";
+	
+	/**
+	 * Consulta que retorna las citas que NO han sido atendidas
+	 */
+	public static final String LISTA_CITA_NO_ATENDIDAS ="cita.ListaA";
 
 	@Id
 	@Column(name="id_cita")

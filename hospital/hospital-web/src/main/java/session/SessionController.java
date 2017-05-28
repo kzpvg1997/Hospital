@@ -57,40 +57,40 @@ public class SessionController implements Serializable {
 
 	public String loginU() {
 
-		Usuario usu = seguridadEJB.buscarUsuario("admin"); //user
+		Usuario usu = seguridadEJB.buscarUsuario(user); //user
 		if (usu != null) {
 			
 			usuario = usu;
-			if(usu.getPassword().equals("123")){ //password
+			if(usu.getPassword().equals(password)){ //password
 				
 				Persona persona = personaEJB.buscarPersona(usu.getPersona().getIdentificacion());
 				
-				if(persona.getRol().getIdRol() == 3){
+				if(persona.getRol().getIdRol() == 1){
 					Faces.setSessionAttribute("user", usuario);
-					System.out.println("Inicio sesion administrador");
+					System.out.println("Inicio sesion paciente");
 					
 					  roles = rolEJB.ListaRolesPersona(persona.getIdentificacion());
 	                  accesos = rolEJB.ListaAccesosRol(persona.getRol());
 					
-					return "/paginas/seguro/administrador/inicioAdministrador.xhtml?faces-redirect=true";
+					return "/paginas/seguro/paciente/inicio.xhtml?faces-redirect=true";
 					
-				}else if(persona.getRol().getIdRol() == 1){
+				}else if(persona.getRol().getIdRol() == 2){
 					Faces.setSessionAttribute("user", usuario);
-					System.out.println("Inicio sesion paciente");
+					System.out.println("Inicio sesion administrador");
 					
 					roles = rolEJB.ListaRolesPersona(persona.getIdentificacion());
 	                accesos = rolEJB.ListaAccesosRol(persona.getRol());
 					
-					return "/paginas/seguro/paciente/inicio.xhtml?faces-redirect=true";
+					return "/paginas/seguro/administrador/inicioAdministrador.xhtml?faces-redirect=true";
 					
-				}else if(persona.getRol().getIdRol() == 2){
+				}else if(persona.getRol().getIdRol() == 3){
 					Faces.setSessionAttribute("user", usuario);
 					System.out.println("Inicio sesion medico");
 					
 					roles = rolEJB.ListaRolesPersona(persona.getIdentificacion());
 	                accesos = rolEJB.ListaAccesosRol(persona.getRol());
 					
-					return "/paginas/seguro/medico.xhtml?faces-redirect=true";
+					return "/paginas/seguro/medico/citaMedico.xhtml?faces-redirect=true";
 					
 				}else if(persona.getRol().getIdRol() == 4){
 					Faces.setSessionAttribute("user", usuario);

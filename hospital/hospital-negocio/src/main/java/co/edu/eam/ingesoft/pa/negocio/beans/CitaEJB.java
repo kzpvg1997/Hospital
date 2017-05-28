@@ -35,12 +35,12 @@ public class CitaEJB {
 	}
 	
 	/**
-	 * Metodo para listar todas las citas
+	 * Metodo para listar todas las citas NO atendidas
 	 * @return una lista de citas
 	 */
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public List<Cita> listarCitas(){
-		Query q = em.createNamedQuery(Cita.LISTA_CITA);
+		Query q = em.createNamedQuery(Cita.LISTA_CITA_NO_ATENDIDAS);
 		List<Cita> citas = q.getResultList();
 		return citas;
 	}
