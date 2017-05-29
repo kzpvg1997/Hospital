@@ -17,7 +17,6 @@ import co.edu.ingesoft.hospital.persistencia.entidades.Hospital;
 import co.edu.ingesoft.hospital.persistencia.entidades.Medico;
 import co.edu.ingesoft.hospital.persistencia.entidades.MedicoEspecialista;
 import co.edu.ingesoft.hospital.persistencia.entidades.MedicoEspecialistaPK;
-import co.edu.ingesoft.hospital.persistencia.entidades.Paciente;
 import co.edu.ingesoft.hospital.persistencia.entidades.Persona;
 import co.edu.ingesoft.hospital.persistencia.entidades.Rol;
 
@@ -116,13 +115,12 @@ public class MedicoEJB {
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void eliminarMedico(Medico medico) {
+		
 		Medico me = buscarMedico(medico.getIdentificacion());
 		Persona pe = personaEJB.buscarPersona(medico.getIdentificacion());
 		if (me != null) {
-			System.out.println(pe);
-			System.out.println(me);
 
-			// seguridadEJB.borrarUsuarioPersona(medico);
+			seguridadEJB.borrarUsuarioPersona(medico);
 			em.remove(me);
 			personaEJB.eliminarPersona(pe);
 		}

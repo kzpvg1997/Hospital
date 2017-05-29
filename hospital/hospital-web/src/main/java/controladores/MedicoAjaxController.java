@@ -157,7 +157,7 @@ public class MedicoAjaxController implements Serializable {
 			Messages.addFlashGlobalError("Por favor solo campos numericos en documento");
 		}
 	}
-//buscar
+
 	public void buscar() {
 		try {
 
