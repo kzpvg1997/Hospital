@@ -7,16 +7,30 @@
 	
 		<ui:define name="cuerpo">
 			<h:form prependId="false">
+			
+			<p:fieldset legend="Busqueda" style="margin-top:100px">
+			<h:panelGrid id="busmedica" columns="2">
+			
+			
+				<p:inputText id="tfbusmedi" class="form-control" placeholder="Nombre Medicamento" value="#{gestionMedicamentoAjaxController.busMedicamento}" />
+				<p:commandButton styleClass="ui-priority-primary" value="Buscar" process="@this busmedica"
+				update="busmedica datoMed" action="#{gestionMedicamentoAjaxController.buscarMEdicamento}" />
+				
+			</h:panelGrid>
+		</p:fieldset>
 		
-			<p:fieldset legend="Registro Medicamentos" style="margin-top:100px">
-	
+			<p:fieldset legend="Registro Medicamentos" style="margin-top:10px">
+		
 	 	  	<h:panelGrid id="datoMed" columns="2">
 	 	  	
 	 	  		<p:outputLabel for="tfnomed" id="fechor" value="Nombre "  />
 				<p:inputText id="tfnomed" class="form-control" placeholder="Nombre"  value="#{gestionMedicamentoAjaxController.nombre}" />
 				
 				<p:outputLabel for="tfdeme" id="tfdeme" value="Descripcion"  />
-	 	  		<p:inputTextarea rows="6" cols="33" value="#{gestionMedicamentoAjaxController.descripcion}"/>
+	 	  		<p:inputTextarea rows="6" cols="33" placeholder="Descripcion" value="#{gestionMedicamentoAjaxController.descripcion}"/>
+	 	  		
+	 	  		<h:outputLabel for="minMax" value="Cantidad" />
+       			 <p:spinner id="minMax"  value="#{gestionMedicamentoAjaxController.cantidad}" min="0" max="100" />
 	 	  		
 	 	  		<p:outputLabel for="tfprem" id="preme" value="Precio"  />
 				<p:inputText id="tfprem" class="form-control" placeholder="Precio"  value="#{gestionMedicamentoAjaxController.precio}" />

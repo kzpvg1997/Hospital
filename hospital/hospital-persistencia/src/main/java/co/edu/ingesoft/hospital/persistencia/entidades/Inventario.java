@@ -39,5 +39,51 @@ public class Inventario implements Serializable{
 	public Inventario(){
 		
 	}
+
+	/**
+	 * @return the medicamento
+	 */
+	public Medicamento getMedicamento() {
+		return medicamento;
+	}
+
+	/**
+	 * @param medicamento the medicamento to set
+	 */
+	public void setMedicamento(Medicamento medicamento) {
+		this.medicamento = medicamento;
+	}
+
+	/**
+	 * @return the farmacia
+	 */
+	public Farmacia getFarmacia() {
+		return farmacia;
+	}
+
+	/**
+	 * @param farmacia the farmacia to set
+	 */
+	public void setFarmacia(Farmacia farmacia) {
+		this.farmacia = farmacia;
+	}
+
+	/**
+	 * @return the cantidad
+	 */
+	public int getCantidad() {
+		return cantidad;
+	}
+
+	/**
+	 * @param cantidad the cantidad to set
+	 */
+	public void setCantidad(int cantidad) {
+		this.cantidad = cantidad;
+	}
+	
+	
+	
+	
 	
 }
