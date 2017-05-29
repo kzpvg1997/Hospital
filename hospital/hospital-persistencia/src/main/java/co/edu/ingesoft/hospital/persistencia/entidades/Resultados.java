@@ -54,4 +54,76 @@ public class Resultados implements Serializable{
 	public Resultados(){
 		
 	}
+
+	/**
+	 * @return the id
+	 */
+	public int getId() {
+		return id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	/**
+	 * @return the nombreResultado
+	 */
+	public String getNombreResultado() {
+		return nombreResultado;
+	}
+
+	/**
+	 * @param nombreResultado the nombreResultado to set
+	 */
+	public void setNombreResultado(String nombreResultado) {
+		this.nombreResultado = nombreResultado;
+	}
+
+	/**
+	 * @return the descripcion
+	 */
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	/**
+	 * @param descripcion the descripcion to set
+	 */
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+	/**
+	 * @return the citaExamen
+	 */
+	public CitaExamen getCitaExamen() {
+		return citaExamen;
+	}
+
+	/**
+	 * @param citaExamen the citaExamen to set
+	 */
+	public void setCitaExamen(CitaExamen citaExamen) {
+		this.citaExamen = citaExamen;
+	}
+
+	/**
+	 * @return the fechaResultado
+	 */
+	public Date getFechaResultado() {
+		return fechaResultado;
+	}
+
+	/**
+	 * @param fechaResultado the fechaResultado to set
+	 */
+	public void setFechaResultado(Date fechaResultado) {
+		this.fechaResultado = fechaResultado;
+	}
+	
+	
 }
