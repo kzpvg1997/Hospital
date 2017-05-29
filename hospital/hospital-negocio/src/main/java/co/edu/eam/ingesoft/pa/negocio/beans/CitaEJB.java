@@ -65,6 +65,7 @@ public class CitaEJB {
 		em.persist(c);
 		
 	}
+	//
 	
 	/**
 	 * Metodo que sirve para listar las citas por medico
