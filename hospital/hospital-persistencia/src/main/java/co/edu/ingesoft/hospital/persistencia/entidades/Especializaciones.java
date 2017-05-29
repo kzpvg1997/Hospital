@@ -10,6 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -19,8 +21,16 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="Especializaciones")
+@NamedQueries({
+	@NamedQuery(name=Especializaciones.LISTA_ESPECIALIZACIONES,query="SELECT e FROM Especializaciones e "),
+	@NamedQuery(name=Especializaciones.ESPECIALIZACIONES_MEDICO,query="SELECT me FROM MedicoEspecialista me WHERE me.medico=?1")
+})
 public class Especializaciones implements Serializable{
 
+	public static final String LISTA_ESPECIALIZACIONES ="Especializaciones.Lista";
+	
+	public static final String ESPECIALIZACIONES_MEDICO ="Especializaciones.Medico";
+	
 	@Id
 	@Column(name="id_especializacion")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ESPECIALIZACIONES_SEQ")
