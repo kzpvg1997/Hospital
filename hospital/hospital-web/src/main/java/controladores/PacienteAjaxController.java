@@ -15,6 +15,7 @@ import org.omnifaces.util.Messages;
 
 import co.edu.eam.ingesoft.pa.negocio.beans.PacienteEJB;
 import co.edu.eam.ingesoft.pa.negocio.beans.RolEJB;
+import co.edu.eam.ingesoft.pa.negocio.excepciones.ExcepcionNegocio;
 import co.edu.ingesoft.hospital.persistencia.entidades.Eps;
 import co.edu.ingesoft.hospital.persistencia.entidades.Paciente;
 
@@ -67,8 +68,9 @@ public class PacienteAjaxController implements Serializable {
 		
 	}
 	//registrar
-	public void registrar() throws ParseException{
+	public void registrar() {
 		
+		try{
 		if(!(fecha.isEmpty() || nombre.isEmpty() || apellido.isEmpty() || telefono.isEmpty() || email.isEmpty() ||
 				generoSeleccionado.equalsIgnoreCase("Seleccione") || (epsSeleccionada == 0) || (numeroDocumento.isEmpty())) ){
 
@@ -91,6 +93,7 @@ public class PacienteAjaxController implements Serializable {
 			p.setTelefono(telefono);
 			if(p.getFechaNacimiento() != null){
 				pacienteEJB.crearPaciente(p);
+				pacientes = pacienteEJB.listarPacietes();
 				limpiar();
 				Messages.addFlashGlobalInfo("El paciente se ha registrado con exito");
 			}else{
@@ -106,6 +109,13 @@ public class PacienteAjaxController implements Serializable {
 		}else{
 			Messages.addFlashGlobalError("Ingrese todos los datos");
 			System.out.println("No entro");
+		}
+		}catch (ExcepcionNegocio e) {
+			Messages.addFlashGlobalError(e.getMessage());
+		}catch (NumberFormatException ex) {
+			Messages.addFlashGlobalError("Por favor solo campos numericos en el documento");
+		} catch (ParseException e1) {
+			e1.printStackTrace();
 		}
 	}
 	
@@ -155,6 +165,7 @@ public class PacienteAjaxController implements Serializable {
 			p.setTelefono(telefono);
 			if(p.getFechaNacimiento() != null){
 				pacienteEJB.editarPaciente(p);
+				pacientes = pacienteEJB.listarPacietes();
 				limpiar();
 				Messages.addFlashGlobalInfo("El paciente se editado correctamente");
 			}else{

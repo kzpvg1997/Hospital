@@ -36,4 +36,34 @@ public class MedicoEspecialista implements Serializable{
 	public MedicoEspecialista(){
 		
 	}
+
+	/**
+	 * @return the especializacion
+	 */
+	public Especializaciones getEspecializacion() {
+		return especializacion;
+	}
+
+	/**
+	 * @param especializacion the especializacion to set
+	 */
+	public void setEspecializacion(Especializaciones especializacion) {
+		this.especializacion = especializacion;
+	}
+
+	/**
+	 * @return the medico
+	 */
+	public Medico getMedico() {
+		return medico;
+	}
+
+	/**
+	 * @param medico the medico to set
+	 */
+	public void setMedico(Medico medico) {
+		this.medico = medico;
+	}
+	
+	
 }

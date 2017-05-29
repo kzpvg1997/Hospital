@@ -19,7 +19,7 @@
 			</h:panelGrid>
 		</p:fieldset>
 		
-		<p:fieldset legend="Datos paciente" style="margin-top:10px">
+		<p:fieldset legend="Datos paciente" style="margin-top:10px" id="dataPac">
 			<h:panelGrid id="datospa" columns="3">
 			
 			
@@ -66,18 +66,19 @@
 				
 				
 				<p:commandButton styleClass="ui-priority-primary" value="Registrar"  action="#{pacienteAjaxController.registrar}"
-					update="j_idt29" process="@this datospa j_idt29" />
+					update="datospa tabPaciente" process="@this datospa tabPaciente" />
 				
 				<p:commandButton styleClass="ui-priority-primary" value="Editar"  action="#{pacienteAjaxController.editar}"
-					update="j_idt29" process="@this datospa j_idt29" />	
+					update="datospa tabPaciente" process="@this datospa tabPaciente" />	
 				
 			
 			</h:panelGrid>
-		</p:fieldset>
+			  </p:fieldset>
 		
-		 <p:accordionPanel>
+		
+		 <p:accordionPanel id="tabPaciente">
         <p:tab title="Pacientes" id="pes">
-			<p:dataTable id="j_idt29" value="#{pacienteAjaxController.pacientes}" var="pa"
+			<p:dataTable id="tablaPaci" value="#{pacienteAjaxController.pacientes}" var="pa"
 				border="1">
 				<p:column>
 					<f:facet name="header">
@@ -125,13 +126,13 @@
 					<f:facet name="header">
 							Borrar
 						</f:facet>
-						<p:commandButton action="#{pacienteAjaxController.borrar(pa)}" process="@this j_idt29" value="Borrar"
-							update="j_idt29" />
-					<p:outputLabel value="" />
+						<p:commandButton action="#{pacienteAjaxController.borrar(pa)}" process="@this tabPaciente" value="Borrar"
+							update="tabPaciente tablaPaci" />
 				</p:column>
 			</p:dataTable>
 			</p:tab>
     </p:accordionPanel>
+  
 			
 		</h:form>
 	</ui:define>

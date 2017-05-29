@@ -54,6 +54,11 @@
 						<f:selectItems value="#{medicoAjaxController.listaHospitales}"
 							var="hos" itemValue="#{hos.idHospital}" itemLabel="#{hos.nombre}" />
 					</h:selectOneMenu>
+					
+					<p:outputLabel for="tfEspecialidadaMed" id="espcMedi"
+						value="Tipo Medico" />
+					<p:inputText id="tfEspecialidadaMed" class="form-control"
+						value="#{medicoAjaxController.especialidad}" placeholder="No apto para registro" disabled="true"/>
 
 				</h:panelGrid>
 				
@@ -102,7 +107,7 @@
 							Eliminar
 						</f:facet>
 							<p:commandButton action="#{medicoAjaxController.eliminarMedico(me)}" process="@this :tablaDatosMedico:panelTablaMed" value="Eliminar"
-								update=":tablaDatosMedico:panelTablaMed tablaDatosMedico" />
+								update=":tablaDatosMedico:panelTablaMed" />
 							<p:outputLabel value="" />
 						</p:column>
 					</p:dataTable>
@@ -114,18 +119,79 @@
 			
 			<p:tab title="Registrar Especialistas" dynamic="true" cache="true">
 			
-			<p:fieldset legend="BusquedaEspe" style="margin-top:10px">
+			<p:fieldset legend="Busque Medico" style="margin-top:10px">
 				<h:panelGrid id="busEsp" columns="2">
 
-					<p:commandButton styleClass="ui-priority-primary" value="Buscar"
-						process="@this busEsp" update="dtmedi"
-						action="#{medicoAjaxController.buscar()}" />
+						<p:inputText id="tfBusEsp" class="form-control"
+						value="#{medicoAjaxController.busMedEspe}" placeholder="Busque medico"/>
 						
-					<p:inputText id="tfBusEsp" class="form-control"
-						value="#{medicoAjaxController.busMedico}" placeholder="Busque medico"/>
+						<p:commandButton styleClass="ui-priority-primary" value="Buscar"
+						process="@this busEsp panelTablaEsp" update=":tablaDatosMedico:datosEspecialista panelTablaEsp"
+						action="#{medicoAjaxController.buscarMedEsp()}" />
 				</h:panelGrid>
 			</p:fieldset>
 			
+			<p:fieldset legend="Registrar Especialidad" style="margin-top:10px">
+				
+				<h:panelGrid id="datosEspecialista" columns="3">
+				
+						<p:inputText id="tfIdEsp" class="form-control"
+						value="#{medicoAjaxController.idmedicoEsp}" placeholder="documento Medico" disabled="true"/>
+						
+						<p:inputText id="tfnomMedEsp" class="form-control"
+						value="#{medicoAjaxController.nomMedEsp}" placeholder="Nombre Medico" disabled="true"/>
+						
+						<p:inputText id="tfapellidoEsp" class="form-control"
+						value="#{medicoAjaxController.apellidoEsp}" placeholder="Apellido Medico" disabled="true"/>
+				
+				</h:panelGrid>
+				
+				<h:panelGrid id="panlEsp" columns="1">
+				<h:selectOneMenu id="cbEspecialidad" class="form-control" style="margin-top:15px"
+						value="#{medicoAjaxController.especialidadEsp}">
+						<f:selectItem itemValue="0" itemLabel="Seleccione Especialidad" />
+						<f:selectItems value="#{medicoAjaxController.listaEspecializaciones}"
+							var="esp" itemValue="#{esp.idEspecializacion}" itemLabel="#{esp.nombre}" />
+				</h:selectOneMenu>
+				
+				<p:commandButton styleClass="ui-priority-primary" value="Asignar Especialidad" process="@this :tablaDatosMedico:datosEspecialista panelTablaEsp panlEsp"
+					update=":tablaDatosMedico:datosEspecialista panelTablaEsp" action="#{medicoAjaxController.agregarEspecialidad()}" style="margin-top:15px"/>
+				</h:panelGrid>
+				
+				<p:accordionPanel id="panelTablaEsp"  style="margin-top:15px">
+				<p:tab title="Especializaciones del Medico">
+					<p:dataTable value="#{medicoAjaxController.especializacionesMedico}" id="tablaEsp"
+						var="es" border="1">
+						<p:column>
+							<f:facet name="header">
+							Especialidad
+						</f:facet>
+							<p:outputLabel value="#{es.especializacion.nombre}" />
+						</p:column>
+						<p:column>
+							<f:facet name="header">
+							Nombre
+						</f:facet>
+							<p:outputLabel value="#{es.medico.nombre}" />
+						</p:column>
+						<p:column>
+							<f:facet name="header">
+							Apellido
+						</f:facet>
+							<p:outputLabel value="#{es.medico.apellido}" />
+						</p:column>
+						<p:column>
+							<f:facet name="header">
+							Telefono
+						</f:facet>
+							<p:outputLabel value="#{es.medico.telefono}" />
+						</p:column>
+					</p:dataTable>
+				</p:tab>
+			</p:accordionPanel>
+				
+				</p:fieldset>
+				
 			</p:tab>
 			
 			</p:tabView>

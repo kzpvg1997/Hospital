@@ -45,6 +45,34 @@ public class MedicoEspecialistaPK implements Serializable{
 			return false;
 		return true;
 	}
+
+	/**
+	 * @return the especializacion
+	 */
+	public int getEspecializacion() {
+		return especializacion;
+	}
+
+	/**
+	 * @param especializacion the especializacion to set
+	 */
+	public void setEspecializacion(int especializacion) {
+		this.especializacion = especializacion;
+	}
+
+	/**
+	 * @return the medico
+	 */
+	public int getMedico() {
+		return medico;
+	}
+
+	/**
+	 * @param medico the medico to set
+	 */
+	public void setMedico(int medico) {
+		this.medico = medico;
+	}
 	
 	
 }
