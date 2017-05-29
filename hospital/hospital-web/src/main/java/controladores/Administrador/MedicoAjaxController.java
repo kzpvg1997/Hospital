@@ -1,4 +1,4 @@
-package controladores;
+package controladores.Administrador;
 
 import java.io.Serializable;
 import java.util.List;
