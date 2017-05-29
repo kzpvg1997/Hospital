@@ -64,4 +64,22 @@ public class CitaEJB {
 		em.persist(c);
 		
 	}
+	
+	/**
+	 * Metodo que sirve para listar las citas por medico
+	 * @param m identificacion 	
+	 * @return la lista de citas
+	 */
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public List<Cita> ListaCitasPorMedico(int m){
+		Query q = em.createNamedQuery(Cita.LISTA_CITA_NO_ATENDIDAS);
+		q.setParameter(1, m);
+		List<Cita> citas = q.getResultList();
+		return citas;
+	}
+
+
+	
+	
+	
 }

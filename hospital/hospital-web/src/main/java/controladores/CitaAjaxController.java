@@ -96,7 +96,7 @@ public class CitaAjaxController implements Serializable {
 					if(c.getFechaCita() != null){
 						citaEJB.crearCita(c);
 						limpiarCita();
-						Messages.addFlashGlobalInfo("El paciente se ha registrado con exito");
+						Messages.addFlashGlobalInfo("La cita se ha asignado correctamente");
 					}else{
 						Messages.addFlashGlobalError("Verifique que la fecha este correcta");
 					}			 

@@ -32,7 +32,7 @@ import javax.persistence.TemporalType;
 @Table(name="Citas")
 @NamedQueries({
 	@NamedQuery(name=Cita.LISTA_CITA,query="SELECT c FROM Cita c "),
-	@NamedQuery(name=Cita.LISTA_CITA_NO_ATENDIDAS,query="SELECT c FROM Cita c WHERE c.atendida=false ")
+	@NamedQuery(name=Cita.LISTA_CITA_NO_ATENDIDAS,query="SELECT c FROM Cita c WHERE c.atendida=false AND c.medico.identificacion = ?1")
 })
 public class Cita implements Serializable{
 	

@@ -104,7 +104,7 @@ public class SessionController implements Serializable {
 					roles = rolEJB.ListaRolesPersona(persona.getIdentificacion());
 	                accesos = rolEJB.ListaAccesosRol(persona.getRol());
 					
-					return "/paginas/seguro/farmaceuta.xhtml?faces-redirect=true";
+					return "/paginas/seguro/farmaceuta/GestionMedicametos.xhtml?faces-redirect=true";
 				}else{
 					Messages.addFlashGlobalError("Usuario o Password incorrectos");
 				}

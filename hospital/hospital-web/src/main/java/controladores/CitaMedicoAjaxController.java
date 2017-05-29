@@ -5,16 +5,28 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.omnifaces.cdi.ViewScoped;
 
 import co.edu.eam.ingesoft.pa.negocio.beans.CitaEJB;
+import co.edu.eam.ingesoft.pa.negocio.beans.MedicoEJB;
 import co.edu.ingesoft.hospital.persistencia.entidades.Cita;
+import co.edu.ingesoft.hospital.persistencia.entidades.Medico;
+import co.edu.ingesoft.hospital.persistencia.entidades.Persona;
+import co.edu.ingesoft.hospital.persistencia.entidades.Usuario;
+import session.SessionController;
 
 @ViewScoped
 @Named("citaMedicoAjaxController")
 public class CitaMedicoAjaxController implements Serializable{
+	
+	@Inject
+	private SessionController sesionController;
+	
+	@EJB
+	private MedicoEJB medicoEJB;
 	
 	@EJB
 	private CitaEJB citaEJB;
@@ -29,7 +41,10 @@ public class CitaMedicoAjaxController implements Serializable{
 	@PostConstruct
 	public void inicializar() {
 
-		citas = citaEJB.listarCitas();
+		Usuario u = sesionController.getUsuario();
+		Persona m = medicoEJB.buscarMedico(u.getPersona().getIdentificacion());
+	
+		citas = citaEJB.ListaCitasPorMedico(u.getPersona().getIdentificacion());
 		
 	}
 	

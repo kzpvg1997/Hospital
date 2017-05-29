@@ -39,4 +39,64 @@ public class Medicamento implements Serializable{
 	public Medicamento(){
 		
 	}
+
+	/**
+	 * @return the idMedicamento
+	 */
+	public int getIdMedicamento() {
+		return idMedicamento;
+	}
+
+	/**
+	 * @param idMedicamento the idMedicamento to set
+	 */
+	public void setIdMedicamento(int idMedicamento) {
+		this.idMedicamento = idMedicamento;
+	}
+
+	/**
+	 * @return the nombre
+	 */
+	public String getNombre() {
+		return nombre;
+	}
+
+	/**
+	 * @param nombre the nombre to set
+	 */
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	/**
+	 * @return the descripcion
+	 */
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	/**
+	 * @param descripcion the descripcion to set
+	 */
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+	/**
+	 * @return the precio
+	 */
+	public double getPrecio() {
+		return precio;
+	}
+
+	/**
+	 * @param precio the precio to set
+	 */
+	public void setPrecio(double precio) {
+		this.precio = precio;
+	}
+	
+	
+	
+	
 }
