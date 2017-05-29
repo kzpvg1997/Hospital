@@ -39,6 +39,32 @@ public class AtenderCitaAjaxController implements Serializable {
 
 	private String documento;
 
+	
+
+	public void aceptar(){
+		
+		if(!tipoCita.isEmpty()){
+		
+		if(!anotacion.isEmpty()){
+		Cita c = new Cita();
+		c = citaEJB.buscarCita(controladorCita.getCita().getIdCita());
+		if(c !=  null){
+			
+			c.setAnotacion(anotacion);
+			c.setAtendida(true);
+			
+			citaEJB.editarCita(c);
+			Messages.addFlashGlobalInfo("La cita fue atendida correctamente");
+			limpiar();
+		}
+		}else{
+			Messages.addFlashGlobalWarn("Por favor ingrese anotacion de la cita");
+		}
+		}else{
+			Messages.addFlashGlobalError("Para atender la cita debe elegir una cita en estado pendiente");
+		}
+	}
+	
 
 	@PostConstruct
 	public void inicializar() {
@@ -71,29 +97,6 @@ public class AtenderCitaAjaxController implements Serializable {
 	}
 
 	
-	public void aceptar(){
-		
-		if(!tipoCita.isEmpty()){
-		
-		if(!anotacion.isEmpty()){
-		Cita c = new Cita();
-		c = citaEJB.buscarCita(controladorCita.getCita().getIdCita());
-		if(c !=  null){
-			
-			c.setAnotacion(anotacion);
-			c.setAtendida(true);
-			
-			citaEJB.editarCita(c);
-			Messages.addFlashGlobalInfo("La cita fue atendida correctamente");
-			limpiar();
-		}
-		}else{
-			Messages.addFlashGlobalWarn("Por favor ingrese anotacion de la cita");
-		}
-		}else{
-			Messages.addFlashGlobalError("Para atender la cita debe elegir una cita en estado pendiente");
-		}
-	}
 	
 	
 	public void limpiar(){
