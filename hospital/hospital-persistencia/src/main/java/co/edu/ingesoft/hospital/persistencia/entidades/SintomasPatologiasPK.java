@@ -46,6 +46,34 @@ public class SintomasPatologiasPK implements Serializable{
 			return false;
 		return true;
 	}
+
+	/**
+	 * @return the patologiaDescrita
+	 */
+	public int getPatologiaDescrita() {
+		return patologiaDescrita;
+	}
+
+	/**
+	 * @param patologiaDescrita the patologiaDescrita to set
+	 */
+	public void setPatologiaDescrita(int patologiaDescrita) {
+		this.patologiaDescrita = patologiaDescrita;
+	}
+
+	/**
+	 * @return the sintoma
+	 */
+	public int getSintoma() {
+		return sintoma;
+	}
+
+	/**
+	 * @param sintoma the sintoma to set
+	 */
+	public void setSintoma(int sintoma) {
+		this.sintoma = sintoma;
+	}
 	
 	
 }

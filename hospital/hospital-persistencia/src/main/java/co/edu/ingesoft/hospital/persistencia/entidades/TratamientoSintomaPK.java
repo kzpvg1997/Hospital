@@ -45,6 +45,34 @@ public class TratamientoSintomaPK implements Serializable{
 			return false;
 		return true;
 	}
+
+	/**
+	 * @return the tratamiento
+	 */
+	public int getTratamiento() {
+		return tratamiento;
+	}
+
+	/**
+	 * @param tratamiento the tratamiento to set
+	 */
+	public void setTratamiento(int tratamiento) {
+		this.tratamiento = tratamiento;
+	}
+
+	/**
+	 * @return the sintoma
+	 */
+	public int getSintoma() {
+		return sintoma;
+	}
+
+	/**
+	 * @param sintoma the sintoma to set
+	 */
+	public void setSintoma(int sintoma) {
+		this.sintoma = sintoma;
+	}
 	
 	
 	

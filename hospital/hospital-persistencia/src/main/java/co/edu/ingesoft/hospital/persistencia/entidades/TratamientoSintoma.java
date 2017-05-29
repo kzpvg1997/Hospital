@@ -36,4 +36,34 @@ public class TratamientoSintoma implements Serializable{
 	public TratamientoSintoma(){
 		
 	}
+
+	/**
+	 * @return the tratamiento
+	 */
+	public Tratamiento getTratamiento() {
+		return tratamiento;
+	}
+
+	/**
+	 * @param tratamiento the tratamiento to set
+	 */
+	public void setTratamiento(Tratamiento tratamiento) {
+		this.tratamiento = tratamiento;
+	}
+
+	/**
+	 * @return the sintoma
+	 */
+	public Sintoma getSintoma() {
+		return sintoma;
+	}
+
+	/**
+	 * @param sintoma the sintoma to set
+	 */
+	public void setSintoma(Sintoma sintoma) {
+		this.sintoma = sintoma;
+	}
+	
+	
 }

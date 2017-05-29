@@ -34,5 +34,34 @@ public class SintomasPatologias implements Serializable {
 	public SintomasPatologias(){
 		
 	}
+
+	/**
+	 * @return the patologiaDescrita
+	 */
+	public PatologiasDescritas getPatologiaDescrita() {
+		return patologiaDescrita;
+	}
+
+	/**
+	 * @param patologiaDescrita the patologiaDescrita to set
+	 */
+	public void setPatologiaDescrita(PatologiasDescritas patologiaDescrita) {
+		this.patologiaDescrita = patologiaDescrita;
+	}
+
+	/**
+	 * @return the sintoma
+	 */
+	public Sintoma getSintoma() {
+		return sintoma;
+	}
+
+	/**
+	 * @param sintoma the sintoma to set
+	 */
+	public void setSintoma(Sintoma sintoma) {
+		this.sintoma = sintoma;
+	}
+	
 	
 }

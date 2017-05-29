@@ -1,4 +1,4 @@
-package controladores;
+package controladores.Paciente;
 
 import java.io.Serializable;
 import java.text.ParseException;

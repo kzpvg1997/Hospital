@@ -1,0 +1,89 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui" template="/template/template.xhtml">
+
+	<ui:define name="cuerpo">
+		<h:form prependId="false">
+
+
+			<p:tabView id="tablaDatosSP" style="margin-top:100px">
+				<p:tab title="Gestion de Sintomas y Patologias" dynamic="true"
+					cache="true">
+
+					<p:fieldset legend="Registro" style="margin-top:10px">
+						<h:panelGrid id="registroPatologias" columns="3">
+
+							<p:outputLabel for="tfNombrePatologia" id="patNom"
+								value="Nombre Patologia" />
+							<p:inputText id="tfNombrePatologia" class="form-control"
+								value="#{patoSintAjaxController.nombrePatologia}"
+								placeholder="Nombre Patologia" />
+								
+								<p:commandButton styleClass="ui-priority-primary" value="Buscar Patologia" process="@this :tablaDatosSP:registroPatologias"
+						update=":tablaDatosSP:registroPatologias" action="#{patoSintAjaxController.buscarPatologia()}" style="margin-top:15px"/>
+
+							<p:outputLabel for="tfDescripcionPatologia" id="patdesc"
+								value="Descripcion Patologia" />
+							<p:inputTextarea id="tfDescripcionPatologia" rows="6" cols="33"
+								placeholder="descripcion de Patologia"
+								value="#{patoSintAjaxController.descripcionPatologia}" />
+
+						</h:panelGrid>
+						
+						<p:commandButton styleClass="ui-priority-primary" value="Registrar Patologia" process="@this :tablaDatosSP:registroPatologias"
+						update=":tablaDatosSP:registroPatologias" action="#{patoSintAjaxController.registrarPatologia()}" style="margin-top:15px"/>
+					
+						<h:panelGrid id="registroSintomas" columns="3">
+						
+						<p:outputLabel for="tfNombreSintoma" id="sinNom"
+								value="Nombre Sintoma" />
+							<p:inputText id="tfNombreSintoma" class="form-control"
+								value="#{patoSintAjaxController.nombreSintoma}"
+								placeholder="Nombre Sintoma" />
+								
+								<p:commandButton styleClass="ui-priority-primary" value="Buscar Sintoma" process="@this :tablaDatosSP:registroSintomas"
+						update=":tablaDatosSP:registroSintomas" action="#{patoSintAjaxController.buscarSintoma()}" style="margin-top:15px"/>
+								
+								<p:outputLabel for="tfDescripcionSintoma" id="sindesc"
+								value="Descripcion Sintoma" />
+							<p:inputTextarea id="tfDescripcionSintoma" rows="6" cols="33"
+								placeholder="Descripcion de Sintoma"
+								value="#{patoSintAjaxController.descripcionSintoma}" />
+						
+						</h:panelGrid>
+						
+						<p:commandButton styleClass="ui-priority-primary" value="Registrar Sintoma" process="@this :tablaDatosSP:registroPatologias :tablaDatosSP:registroSintomas"
+						update=":tablaDatosSP:registroSintomas" action="#{patoSintAjaxController.registrarSintoma()}" style="margin-top:15px"/>
+					
+					<h:panelGrid id="registroTratamiento" columns="3">
+					
+					<p:outputLabel for="tfNombreTratamiento" id="tratNom"
+								value="Nombre Tratamiento" />
+							<p:inputText id="tfNombreTratamiento" class="form-control"
+								value="#{patoSintAjaxController.nombreTratamiento}"
+								placeholder="Nombre Tratamiento" />
+					
+					<p:commandButton styleClass="ui-priority-primary" value="Buscar Tratamiento" process="@this :tablaDatosSP:registroTratamiento"
+						update=":tablaDatosSP:registroTratamiento" action="#{patoSintAjaxController.buscarTratamiento()}" style="margin-top:15px"/>
+					
+					<p:outputLabel for="tfDescripcionTratamiento" id="tratdesc"
+								value="Descripcion Tratamiento" />
+							<p:inputTextarea id="tfDescripcionTratamiento" rows="6" cols="33"
+								placeholder="Descripcion de Tratamiento"
+								value="#{patoSintAjaxController.descripcionTratamiento}" />
+					
+					</h:panelGrid>
+					
+					<p:commandButton styleClass="ui-priority-primary" value="Registrar Sintoma" process="@this :tablaDatosSP:registroTratamiento :tablaDatosSP:registroSintomas"
+						update=":tablaDatosSP:registroTratamiento" action="#{patoSintAjaxController.registrarTratamiento()}" style="margin-top:15px"/>
+					
+					</p:fieldset>
+				</p:tab>
+			</p:tabView>
+
+		</h:form>
+	</ui:define>
+
+</ui:composition>
