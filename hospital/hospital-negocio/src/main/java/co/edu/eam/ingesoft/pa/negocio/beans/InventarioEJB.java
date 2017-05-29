@@ -29,7 +29,8 @@ public class InventarioEJB {
 	private MedicamentoEJB medicamentoEJB;
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public void asignarInventario(Inventario i) {
+		public void asignarInventario(Inventario i) {
+		
 		Farmacia farmacia = buscarFarmacia(i.getFarmacia().getIdFarmacia());
 		if (farmacia != null) {
 			Medicamento medicamento = medicamentoEJB.buscarMedicamento(i.getMedicamento().getIdMedicamento());
