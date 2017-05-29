@@ -44,4 +44,65 @@ public class CitaExamen implements Serializable{
 	public CitaExamen(){
 		
 	}
+
+
+	/**
+	 * @param cita
+	 * @param examen
+	 */
+	public CitaExamen(Cita cita, Examen examen) {
+		super();
+		this.cita = cita;
+		this.examen = examen;
+	}
+
+
+	/**
+	 * @return the id
+	 */
+	public int getId() {
+		return id;
+	}
+
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(int id) {
+		this.id = id;
+	}
+
+
+	/**
+	 * @return the cita
+	 */
+	public Cita getCita() {
+		return cita;
+	}
+
+
+	/**
+	 * @param cita the cita to set
+	 */
+	public void setCita(Cita cita) {
+		this.cita = cita;
+	}
+
+
+	/**
+	 * @return the examen
+	 */
+	public Examen getExamen() {
+		return examen;
+	}
+
+
+	/**
+	 * @param examen the examen to set
+	 */
+	public void setExamen(Examen examen) {
+		this.examen = examen;
+	}
+	
+	
 }
