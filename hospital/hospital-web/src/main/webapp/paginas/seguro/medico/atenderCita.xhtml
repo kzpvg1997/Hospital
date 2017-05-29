@@ -37,8 +37,8 @@
 	 	  		<p:inputTextarea rows="6" cols="33" value="#{atenderCitaAjaxController.anotacion}"/>
 				
 				
-				<p:commandButton styleClass="ui-priority-primary" value="Atendida" action="#"
-					update="atecita" process="@this atecita" />
+				<p:commandButton styleClass="ui-priority-primary" value="Atendida"  process="@this" update="atecita"
+				action="#{atenderCitaAjaxController.aceptar}" />
 					
 				<p:commandButton styleClass="ui-priority-primary" value="Cancelar" action="/paginas/seguro/medico/citaMedico.xhtml"
 					 process="@this " />
