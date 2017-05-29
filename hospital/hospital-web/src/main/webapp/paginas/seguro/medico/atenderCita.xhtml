@@ -35,21 +35,10 @@
 				
 				<p:outputLabel for="tfanota" id="tfanota" value="Anotacion"  />
 	 	  		<p:inputTextarea id="anoctm" rows="6" cols="33" value="#{atenderCitaAjaxController.anotacion}"/>
-				
-<<<<<<< HEAD
-				
-				<p:commandButton styleClass="ui-priority-primary" value="Atendida" process="@this anoctm" update="atecita"
-				action="#{atenderCitaAjaxController.aceptar}" />
-					
-				<p:commandButton styleClass="ui-priority-primary" value="Cancelar" action="/paginas/seguro/medico/citaMedico.xhtml"
-					 process="@this " />
-				
-=======
->>>>>>> branch 'master' of https://github.com/kzpvg1997/Hospital.git
-			
+
 			</h:panelGrid> 
 		
-				<p:commandButton styleClass="ui-priority-primary" value="Atendida"  process="@this atecita" update="atecita"
+				<p:commandButton styleClass="ui-priority-primary" value="Atender"  process="@this atecita" update="atecita"
 				action="#{atenderCitaAjaxController.aceptar()}" />
 					
 				<p:commandButton styleClass="ui-priority-primary" value="Cancelar" action="/paginas/seguro/medico/citaMedico.xhtml"
