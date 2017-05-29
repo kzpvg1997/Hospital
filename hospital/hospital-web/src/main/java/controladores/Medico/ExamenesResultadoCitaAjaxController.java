@@ -36,12 +36,9 @@ public class ExamenesResultadoCitaAjaxController implements Serializable{
 	private String citaExamen;
 	private String fecha;
 	private Date fechaResultado;
-	
-	
-	
 
-	
-	
+		
+	//b
 	/**
 	 * @return the descripcionCita
 	 */
