@@ -51,7 +51,7 @@ public class GestionMedicamentoAjaxController implements Serializable {
 			Messages.addFlashGlobalInfo("Se registro correctamento el medicamento");
 			
 		}else{
-			Messages.addFlashGlobalWarn("Verifique que esten llenos los campos");
+			Messages.addFlashGlobalWarn("Verifique que esten llenos los campos.");
 		}
 		
 		}catch (ExcepcionNegocio e) {
