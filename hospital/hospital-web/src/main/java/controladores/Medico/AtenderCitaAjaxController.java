@@ -64,14 +64,15 @@ public class AtenderCitaAjaxController implements Serializable {
 		String nombre = controladorCita.getCita().getMedico().getNombre();
 		String apellido = controladorCita.getCita().getMedico().getApellido();
 		medico = nombre+" "+apellido;
-		
-		anotacion = "";
+
 		documento =  String.valueOf(controladorCita.getCita().getPaciente().getIdentificacion());
 		System.out.println(controladorCita.getCita().getIdCita());
 
 	}
 	
 	public void aceptar(){
+		
+		if(!tipoCita.isEmpty()){
 		
 		if(!anotacion.isEmpty()){
 		Cita c = new Cita();
@@ -83,10 +84,27 @@ public class AtenderCitaAjaxController implements Serializable {
 			
 			citaEJB.editarCita(c);
 			Messages.addFlashGlobalInfo("La cita fue atendida correctamente");
+			limpiar();
 		}
 		}else{
 			Messages.addFlashGlobalWarn("Por favor ingrese anotacion de la cita");
 		}
+		}else{
+			Messages.addFlashGlobalError("Para atender la cita debe elegir una cita en estado pendiente");
+		}
+	}
+	
+	
+	public void limpiar(){
+		
+		tipoCita = "";
+		detalle = "";
+		horaCita = "";
+		fecha = "";
+		paciente = "";
+		medico = "";
+		anotacion = "";
+		documento = "";
 	}
 	
 

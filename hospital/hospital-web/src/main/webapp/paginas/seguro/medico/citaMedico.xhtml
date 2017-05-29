@@ -8,21 +8,13 @@
 		<ui:define name="cuerpo">
 			<h:form prependId="false">
 			<p:fieldset legend="Citas" style="margin-top:100px">
-			
-			<p:tabView id="tablaDatomed">
-					<p:tab title="dsddsdsdsdsds" dynamic="true" cache="true">
+						
 			
 			<p:accordionPanel>
 			
 			  <p:tab title="Atender Citas" id="citm">
 			<p:dataTable id="atenCita" value="#{citaMedicoAjaxController.citas}" var="c"
 				border="1">
-				<p:column>
-					<f:facet name="header">
-							Descripcion
-						</f:facet>
-					<p:outputLabel value="#{c.descripcion}" />
-				</p:column>
 				<p:column>
 					<f:facet name="header">
 							Anotacion
@@ -77,9 +69,7 @@
 			</p:tab>
 			
 			</p:accordionPanel>
-			</p:tab>
 
-			</p:tabView>
 		</p:fieldset>
 			</h:form>
 		</ui:define>
