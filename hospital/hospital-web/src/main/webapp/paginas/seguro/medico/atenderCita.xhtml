@@ -5,7 +5,7 @@
 	xmlns:p="http://primefaces.org/ui"
 	template="/template/template.xhtml">
 	
-		<ui:define name="cuerpo">
+	<ui:define name="cuerpo">
 			<h:form prependId="false">
 		
 			<p:fieldset legend="Atender Cita" style="margin-top:100px">
@@ -36,16 +36,14 @@
 				<p:outputLabel for="tfanota" id="tfanota" value="Anotacion"  />
 	 	  		<p:inputTextarea rows="6" cols="33" value="#{atenderCitaAjaxController.anotacion}"/>
 				
-				
-				<p:commandButton styleClass="ui-priority-primary" value="Atendida"  process="@this" update="atecita"
-				action="#{atenderCitaAjaxController.aceptar}" />
-					
-				<p:commandButton styleClass="ui-priority-primary" value="Cancelar" action="/paginas/seguro/medico/citaMedico.xhtml"
-					 process="@this " />
-				
 			
 			</h:panelGrid> 
 		
+				<p:commandButton styleClass="ui-priority-primary" value="Atendida"  process="@this atecita" update="atecita"
+				action="#{atenderCitaAjaxController.aceptar()}" />
+					
+				<p:commandButton styleClass="ui-priority-primary" value="Cancelar" action="/paginas/seguro/medico/citaMedico.xhtml"
+					 process="@this atecita" />
 		
 			</p:fieldset>	
 			</h:form>
