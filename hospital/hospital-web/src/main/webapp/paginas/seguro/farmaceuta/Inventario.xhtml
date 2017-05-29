@@ -1,0 +1,53 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	template="/template/template.xhtml">
+	
+		<ui:define name="cuerpo">
+			<h:form prependId="false">
+			<p:fieldset legend="Inventario" style="margin-top:100px">
+
+			<p:accordionPanel>
+			
+			  <p:tab title="Inventario" id="citm">
+			<p:dataTable id="invm" value="#" var="c"
+				border="1">
+				<p:column>
+					<f:facet name="header">
+							Nombre
+						</f:facet>
+					<p:outputLabel value="#" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+							Descripcion
+						</f:facet>
+					<p:outputLabel value="#" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+							Precio
+						</f:facet>
+					<p:outputLabel value="#" />
+				</p:column>
+				
+				<p:column>
+					<f:facet name="header">
+							Borrar
+						</f:facet>
+						<p:commandButton action="#" process="@this " value="Borrar"
+							update="invm" />
+					<p:outputLabel value="" />
+				</p:column>
+			</p:dataTable>
+			</p:tab>
+			
+			</p:accordionPanel>
+		
+		</p:fieldset>
+			</h:form>
+		</ui:define>
+	
+	</ui:composition>

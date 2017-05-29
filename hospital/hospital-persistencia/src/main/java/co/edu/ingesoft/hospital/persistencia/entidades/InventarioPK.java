@@ -46,6 +46,34 @@ public class InventarioPK implements Serializable{
 		return true;
 	}
 
+	/**
+	 * @return the medicamento
+	 */
+	public int getMedicamento() {
+		return medicamento;
+	}
+
+	/**
+	 * @param medicamento the medicamento to set
+	 */
+	public void setMedicamento(int medicamento) {
+		this.medicamento = medicamento;
+	}
+
+	/**
+	 * @return the farmacia
+	 */
+	public int getFarmacia() {
+		return farmacia;
+	}
+
+	/**
+	 * @param farmacia the farmacia to set
+	 */
+	public void setFarmacia(int farmacia) {
+		this.farmacia = farmacia;
+	}
+
 	
 	
 	

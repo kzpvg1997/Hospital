@@ -12,6 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -22,7 +24,13 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="Farmacias")
+
+@NamedQueries({
+	@NamedQuery(name=Farmacia.usuarioFarmacia,query="SELECT f FROM Farmacia f WHERE f.usuario=?1")
+})
 public class Farmacia implements Serializable{
+	
+	public static final String usuarioFarmacia ="Farmacia.UsuarioXFarmacia";
 
 	@Id
 	@Column(name="id_farmacia")
@@ -40,4 +48,50 @@ public class Farmacia implements Serializable{
 	public Farmacia(){
 		
 	}
+
+	/**
+	 * @return the idFarmacia
+	 */
+	public int getIdFarmacia() {
+		return idFarmacia;
+	}
+
+	/**
+	 * @param idFarmacia the idFarmacia to set
+	 */
+	public void setIdFarmacia(int idFarmacia) {
+		this.idFarmacia = idFarmacia;
+	}
+
+	/**
+	 * @return the nombre
+	 */
+	public String getNombre() {
+		return nombre;
+	}
+
+	/**
+	 * @param nombre the nombre to set
+	 */
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	/**
+	 * @return the usuario
+	 */
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	/**
+	 * @param usuario the usuario to set
+	 */
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+	
+	
+	
+	
 }

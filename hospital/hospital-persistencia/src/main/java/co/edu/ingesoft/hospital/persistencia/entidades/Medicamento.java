@@ -10,16 +10,23 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
  * @author TOSHIBAP55W
  *
- */
+ */ 
 @Entity
 @Table(name="Medicamentos")
+@NamedQueries({	
+	@NamedQuery(name=Medicamento.BUSCAR_MEDICAMENTO,query="SELECT m FROM Medicamento m WHERE m.nombre=?1")
+})
 public class Medicamento implements Serializable{
+	
+	public static final String BUSCAR_MEDICAMENTO = "Medicamento.BuscarMedicamento";
 
 	@Id
 	@Column(name="id_medicamento")
@@ -94,6 +101,14 @@ public class Medicamento implements Serializable{
 	 */
 	public void setPrecio(double precio) {
 		this.precio = precio;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return nombre;
 	}
 	
 	
