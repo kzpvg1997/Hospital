@@ -177,11 +177,15 @@ public class MedicoEJB {
 
 	}
 	
-	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public void editarMedico(Medico medico){
-		Medico me = buscarMedico(medico.getIdentificacion());
-		if(me!=null){
-			em.merge(medico);
-		}
+
+	
+	/**
+	 * Metodo para editar un medico
+	 * @param medico parametro que recibe
+	 */
+	public void editarMedico(Medico medico) {
+		Rol rol= rolEJB.buscarRol(2);
+		medico.setRol(rol);
+		em.merge(medico); // Actualizar
 	}
 }

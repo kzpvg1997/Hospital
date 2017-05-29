@@ -65,7 +65,8 @@
 				<p:commandButton styleClass="ui-priority-primary" value="Registrar" process="@this :tablaDatosMedico:dtmedi :tablaDatosMedico:panelTablaMed"
 					update=":tablaDatosMedico:dtmedi :tablaDatosMedico:panelTablaMed" action="#{medicoAjaxController.registrar()}" style="margin-top:15px"/>
 
-			
+			<p:commandButton styleClass="ui-priority-primary" value="Editar" process="@this :tablaDatosMedico:dtmedi :tablaDatosMedico:panelTablaMed"
+					update=":tablaDatosMedico:dtmedi :tablaDatosMedico:panelTablaMed" action="#{medicoAjaxController.editarMedico}" style="margin-top:15px"/>
 
 			<p:accordionPanel id="panelTablaMed"  style="margin-top:15px">
 				<p:tab title="Medicos">
