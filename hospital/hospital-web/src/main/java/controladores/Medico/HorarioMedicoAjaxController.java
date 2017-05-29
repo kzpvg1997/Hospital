@@ -53,6 +53,10 @@ public class HorarioMedicoAjaxController implements Serializable{
 		
 		if(!(horaInicioSeleccionada==0) && !(horaFinSeleccionada==0) && !fecha.isEmpty() ){
 			
+			if(horaInicioSeleccionada!=horaFinSeleccionada){
+				
+			if(horaFinSeleccionada>horaInicioSeleccionada){
+			
 			Usuario u = sesionCotroller.getUsuario();
 			Medico m = medicoEJB.buscarMedico(u.getPersona().getIdentificacion());
 			
@@ -68,6 +72,12 @@ public class HorarioMedicoAjaxController implements Serializable{
 			
 			Messages.addFlashGlobalInfo("Horario registrado");
 			limpiar();
+				}else{
+					Messages.addFlashGlobalError("Hora invalida la hora inicio es mayor a la hora fin");
+				}
+			}else{
+				Messages.addFlashGlobalWarn("Verifique que las horas no sean iguales");
+			}
 		}else{
 			Messages.addFlashGlobalError("Verifique que los campos esten llenos");
 		}

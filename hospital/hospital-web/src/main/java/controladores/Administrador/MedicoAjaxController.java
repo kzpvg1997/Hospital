@@ -9,6 +9,7 @@ import javax.inject.Named;
 
 import org.omnifaces.cdi.ViewScoped;
 import org.omnifaces.util.Messages;
+import org.primefaces.component.tabview.Tab;
 
 import co.edu.eam.ingesoft.pa.negocio.beans.MedicoEJB;
 import co.edu.eam.ingesoft.pa.negocio.excepciones.ExcepcionNegocio;
@@ -172,6 +173,7 @@ public class MedicoAjaxController implements Serializable {
 					especialidad = me.getTipoMedico();
 					hospitalSeleccionado = me.getHospital().getIdHospital();
 					telefono = me.getTelefono();
+					
 
 				} else {
 					Messages.addFlashGlobalWarn("Este medico no se encuentra registrado");
