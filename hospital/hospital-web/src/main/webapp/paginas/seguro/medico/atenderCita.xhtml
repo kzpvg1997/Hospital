@@ -8,7 +8,12 @@
 	<ui:define name="cuerpo">
 			<h:form prependId="false">
 		
-			<p:fieldset legend="Atender Cita" style="margin-top:100px">
+		<p:tabView id="tabdatoscita" style="margin-top:100px">
+					<p:tab title="Atender Cita" dynamic="true" cache="true">
+		
+			<p:fieldset legend="Atender Cita" style="margin-top:10px">
+			
+			
 	
 	 	  	<h:panelGrid id="atecita" columns="2">
 	 	  	
@@ -44,7 +49,20 @@
 				<p:commandButton styleClass="ui-priority-primary" value="Cancelar/Volver" action="/paginas/seguro/medico/citaMedico.xhtml"
 					 process="@this atecita" />
 		
-			</p:fieldset>	
+			</p:fieldset>
+			</p:tab>
+			
+				<p:tab title="Examenes/Resultados" dynamic="true" cache="true">
+				</p:tab>
+				
+				<p:tab title="Orden Cirugia" dynamic="true" cache="true">
+				</p:tab>
+				
+				
+				<p:tab title="Hospitalizacion" dynamic="true" cache="true">
+				</p:tab>
+				
+			</p:tabView>	
 			</h:form>
 		</ui:define>
 	
