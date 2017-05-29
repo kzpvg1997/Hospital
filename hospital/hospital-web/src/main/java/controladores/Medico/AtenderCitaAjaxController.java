@@ -8,8 +8,10 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.omnifaces.cdi.ViewScoped;
+import org.omnifaces.util.Messages;
 
 import co.edu.eam.ingesoft.pa.negocio.beans.CitaEJB;
+import co.edu.ingesoft.hospital.persistencia.entidades.Cita;
 
 @ViewScoped
 @Named("atenderCitaAjaxController")
@@ -38,6 +40,7 @@ public class AtenderCitaAjaxController implements Serializable {
 	private String documento;
 	
 	
+	
 	@PostConstruct
 	public void inicializar() {
 
@@ -45,8 +48,10 @@ public class AtenderCitaAjaxController implements Serializable {
 		
 	}
 	
+
+	
 	public void verCita(){
-		
+			
 		tipoCita = controladorCita.getCita().getTipoCita();
 		detalle = controladorCita.getCita().getDescripcion();
 		horaCita = controladorCita.getCita().getHoraCita();
@@ -62,26 +67,31 @@ public class AtenderCitaAjaxController implements Serializable {
 		
 		anotacion = "";
 		documento =  String.valueOf(controladorCita.getCita().getPaciente().getIdentificacion());
+		System.out.println(controladorCita.getCita().getIdCita());
 
 	}
 	
-	public void atendida(){
+	public void aceptar(){
 		
+		if(!anotacion.isEmpty()){
+		Cita c = new Cita();
+		c = citaEJB.buscarCita(controladorCita.getCita().getIdCita());
+		if(c !=  null){
+			
+			c.setAnotacion(anotacion);
+			c.setAtendida(true);
+			
+			citaEJB.editarCita(c);
+			Messages.addFlashGlobalInfo("La cita fue atendida correctamente");
+		}
+		}else{
+			Messages.addFlashGlobalWarn("Por favor ingrese anotacion de la cita");
+		}
 	}
 	
+
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 
 	/**
 	 * @return the documento

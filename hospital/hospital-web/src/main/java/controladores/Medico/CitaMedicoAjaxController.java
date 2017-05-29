@@ -56,9 +56,6 @@ public class CitaMedicoAjaxController implements Serializable{
 	
 
 	
-	
-	
-	
 
 
 	/**
@@ -108,6 +105,7 @@ public class CitaMedicoAjaxController implements Serializable{
 		CitaMedicoAjaxController.cita = cita;
 	}
 
+	
 	
 	
 }

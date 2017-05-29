@@ -10,6 +10,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import co.edu.eam.ingesoft.pa.negocio.excepciones.ExcepcionNegocio;
 import co.edu.ingesoft.hospital.persistencia.entidades.Cita;
 import co.edu.ingesoft.hospital.persistencia.entidades.HorariosDisponibles;
 import co.edu.ingesoft.hospital.persistencia.entidades.Paciente;
@@ -76,6 +77,15 @@ public class CitaEJB {
 		q.setParameter(1, m);
 		List<Cita> citas = q.getResultList();
 		return citas;
+	}
+	
+	
+	/**
+	 * Metodo para editar una cita 
+	 * @param c la cita que se va atender
+	 */
+	public void editarCita(Cita c){
+		em.merge(c);
 	}
 
 
