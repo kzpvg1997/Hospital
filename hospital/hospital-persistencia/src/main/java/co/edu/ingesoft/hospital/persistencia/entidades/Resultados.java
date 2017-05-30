@@ -40,10 +40,7 @@ public class Resultados implements Serializable{
 	private String descripcion;
 	
 	@ManyToOne
-	@JoinColumns({
-		@JoinColumn(name="cita_id",referencedColumnName="Cita"),
-		@JoinColumn(name="examen_id",referencedColumnName="Examen")	
-	})
+	@JoinColumn(name="Citas_Examenes")
 	private CitaExamen citaExamen;
 	
 	

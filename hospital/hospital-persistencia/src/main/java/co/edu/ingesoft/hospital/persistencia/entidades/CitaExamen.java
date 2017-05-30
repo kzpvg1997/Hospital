@@ -13,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -22,8 +24,12 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="Citas_Examenes")
+@NamedQueries({
+	@NamedQuery(name=CitaExamen.BUSCAR_CITAEXAMEN,query="SELECT ce FROM CitaExamen ce where ce.cita=?1 and ce.examen=?2")
+})
 public class CitaExamen implements Serializable{
 
+	public static final String BUSCAR_CITAEXAMEN ="CitaExamenXExamenyCita";
 	
 	@Id
 	@Column(name="id")

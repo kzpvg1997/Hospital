@@ -10,6 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -19,8 +21,16 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="Examenes")
+@NamedQueries({
+	@NamedQuery(name=Examen.EXAMEN_POR_NOMBRE,query="SELECT e FROM Examen e where e.nombreExamen=?1")
+})
 public class Examen implements Serializable{
 
+	/**
+	 * Consulta que retorna los examenes por nombre
+	 */
+	public static final String EXAMEN_POR_NOMBRE ="Examen.examenXnombre";
+	
 	@Id
 	@Column(name="id_examen")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "EXAMEN_SEQ")
