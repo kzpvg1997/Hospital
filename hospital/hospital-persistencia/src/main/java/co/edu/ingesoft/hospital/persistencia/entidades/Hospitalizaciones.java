@@ -31,6 +31,7 @@ import javax.persistence.Table;
 })
 public class Hospitalizaciones implements Serializable{
 	
+	//
 	public static final String BUSCAR_POR_CITA ="Hospitalizaciones.busacarXCita";
 
 	@Id
