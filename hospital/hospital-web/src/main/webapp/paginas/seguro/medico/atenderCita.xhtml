@@ -26,30 +26,68 @@
 	 	  	
 	 	  		<p:outputLabel for="tftpca" id="decitaat" value="Detalle"  />
 	 	  		<p:inputTextarea rows="6" cols="33" disabled="true" value="#{atenderCitaAjaxController.detalle}"/>
+=======
+	xmlns:p="http://primefaces.org/ui" template="/template/template.xhtml">
+>>>>>>> branch 'master' of https://github.com/kzpvg1997/Hospital.git
 
-				<p:outputLabel for="tfeat" id="fate" value="Fecha"  />
-				<p:inputText id="tfeat" class="form-control" disabled="true" value="#{atenderCitaAjaxController.fecha}" />
-								
-				<p:outputLabel for="tfhoraat" id="hate" value="Hora"  />
-				<p:inputText id="tfhoraat" class="form-control" disabled="true" value="#{atenderCitaAjaxController.horaCita}" />
-				
-				<p:outputLabel for="tfmedicoat" id="mdate" value="Medico"  />
-				<p:inputText id="tfmedicoat" class="form-control" disabled="true" value="#{atenderCitaAjaxController.medico}" />
-				
-				<p:outputLabel for="tfanota" id="tfanota" value="Anotacion"  />
-	 	  		<p:inputTextarea id="anoctm" rows="6" cols="33" value="#{atenderCitaAjaxController.anotacion}"/>
+	<ui:define name="cuerpo">
+		<h:form prependId="false">
 
-			</h:panelGrid> 
-		
-				<p:commandButton styleClass="ui-priority-primary" value="Atender"  process="@this atecita" update="atecita"
-				action="#{atenderCitaAjaxController.aceptar()}" />
-					
-				<p:commandButton styleClass="ui-priority-primary" value="Cancelar/Volver" action="/paginas/seguro/medico/citaMedico.xhtml"
-					 process="@this atecita" />
-		
-			</p:fieldset>
-			</p:tab>
-			
+			<p:tabView id="tabdatoscita" style="margin-top:100px">
+				<p:tab title="Atender Cita" dynamic="true" cache="true">
+
+					<p:fieldset legend="Atender Cita" style="margin-top:10px">
+
+
+
+						<h:panelGrid id="atecita" columns="2">
+
+							<p:outputLabel for="tfpaate" id="paate" value="Paciente" />
+							<p:inputText id="tfpaate" class="form-control" disabled="true"
+								value="#{atenderCitaAjaxController.paciente}" />
+
+							<p:outputLabel for="tfdocate" id="doate" value="Documento" />
+							<p:inputText id="tfdocate" class="form-control" disabled="true"
+								value="#{atenderCitaAjaxController.documento}" />
+
+							<p:outputLabel for="tftpca" id="tpcitaat" value="Tipo cita" />
+							<p:inputText id="tftpca" class="form-control" disabled="true"
+								value="#{atenderCitaAjaxController.tipoCita}" />
+
+							<p:outputLabel for="tftpca" id="decitaat" value="Detalle" />
+							<p:inputTextarea rows="6" cols="33" disabled="true"
+								value="#{atenderCitaAjaxController.detalle}" />
+
+							<p:outputLabel for="tfeat" id="fate" value="Fecha" />
+							<p:inputText id="tfeat" class="form-control" disabled="true"
+								value="#{atenderCitaAjaxController.fecha}" />
+
+							<p:outputLabel for="tfhoraat" id="hate" value="Hora" />
+							<p:inputText id="tfhoraat" class="form-control" disabled="true"
+								value="#{atenderCitaAjaxController.horaCita}" />
+
+							<p:outputLabel for="tfmedicoat" id="mdate" value="Medico" />
+							<p:inputText id="tfmedicoat" class="form-control" disabled="true"
+								value="#{atenderCitaAjaxController.medico}" />
+
+							<p:outputLabel for="tfanota" id="tfanota" value="Anotacion" />
+							<p:inputTextarea id="anoctm" rows="6" cols="33"
+								value="#{atenderCitaAjaxController.anotacion}" />
+
+						</h:panelGrid>
+
+						<p:commandButton styleClass="ui-priority-primary" value="Atender"
+							process="@this atecita" update="atecita"
+							action="#{atenderCitaAjaxController.aceptar()}" />
+
+						<p:commandButton styleClass="ui-priority-primary"
+							value="Cancelar/Volver"
+							action="/paginas/seguro/medico/citaMedico.xhtml"
+							process="@this atecita" />
+
+					</p:fieldset>
+				</p:tab>
+
 				<p:tab title="Examenes/Resultados" dynamic="true" cache="true">
 				<h:panelGrid id="panelGeneral" columns="2">
 				
@@ -119,16 +157,74 @@
 				
 				</h:panelGrid>
 				</p:tab>
-				
+
 				<p:tab title="Orden Cirugia" dynamic="true" cache="true">
+				
+				<p:fieldset legend="Busqueda" style="margin-top:100px">
+				<h:panelGrid id="busord" columns="3">
+			
+			
+					<p:inputText id="tfbusord" class="form-control" placeholder="Buscar Cirugia" value="#{atenderCitaAjaxController.busCirugia}" />
+					<p:commandButton styleClass="ui-priority-primary" value="Buscar" process="@this busord"
+							update="busord orcg" action="#{atenderCitaAjaxController.buscarOrdenC}" />
+						
+				</h:panelGrid>
+				</p:fieldset>
+				
+				
+				<p:fieldset legend="Orden Cirugia" style="margin-top:10px">
+
+					<h:panelGrid id="orcg" columns="2">
+						
+						<p:outputLabel for="tfnumorde" id="numeOrden" value="Numero Orden" />
+						<p:inputText id="tfnumorde" class="form-control" placeholder="Numero Orden" value="#{atenderCitaAjaxController.numOrden}" />	
+
+						<p:outputLabel for="tforci" id="ordnc" value="Nombre Cirugia" />
+						<p:inputText id="tforci" class="form-control" placeholder="Nombre cirugia" value="#{atenderCitaAjaxController.nombreCirugia}" />
+						
+						<p:outputLabel for="tfordd" id="orddec" value="Descripcion"  />
+	 	  				<p:inputTextarea id="tfordd" rows="6" placeholder="Descripcion cirugia"  cols="33" value="#{atenderCitaAjaxController.descripcionQuirofano}"/>
+	 	  				
+	 	  				
+	 	  				<p:outputLabel for="tfordpro" id="ordpro" value="Procedimiento"  />
+							<h:selectOneMenu id="tfordpro" class="form-control" value="#{atenderCitaAjaxController.procedimiento}">
+							<f:selectItem itemValue="Seleccione" itemLabel="Seleccione..." />
+							<f:selectItem itemValue="Abierta" itemLabel="Abierta" />
+							<f:selectItem itemValue="Laparoscópica" itemLabel="Laparoscópica" />
+							<f:selectItem itemValue="Endoscópica" itemLabel="Endoscópica" />
+							<f:selectItem itemValue="Percutánea" itemLabel="Percutánea" />
+							<f:selectItem itemValue="Extracorpórea" itemLabel="Extracorpórea" />
+						</h:selectOneMenu>
+				
+						<p:outputLabel for="tfordqui" id="ordqui" value="Quirofano"  />
+						<h:selectOneMenu id="tfordqui" class="form-control" value="#{atenderCitaAjaxController.quirofanoSeleccionado}">
+							<f:selectItem itemValue="0" itemLabel="Seleccione..." />
+							<f:selectItems value="#{atenderCitaAjaxController.quirofanos}" var="qu" 
+					 		itemValue="#{qu.idQuirofano}" itemLabel="#{qu.nombre}"/>
+						</h:selectOneMenu>
+				
+						<p:outputLabel for="tfordfec" id="ordfech" value="Fecha "  />
+						<p:inputText id="tfordfec" class="form-control" placeholder="DD-MM-YYYY"  value="#{atenderCitaAjaxController.fechaQuirofano}" />
+						
+						<p:outputLabel for="tfbtnbus" id="tfbtnbus" value=""  />
+						<p:commandButton action="#{atenderCitaAjaxController.ordenCirugia}" process="@this orcg" value="Ordenar Cirugia"
+							update="orcg" />
+						
+
+						
+					</h:panelGrid>
+					
+				</p:fieldset>	
+
+
 				</p:tab>
-				
-				
+
+
 				<p:tab title="Hospitalizacion" dynamic="true" cache="true">
 				</p:tab>
-				
-			</p:tabView>	
-			</h:form>
-		</ui:define>
-	
-	</ui:composition>
+
+			</p:tabView>
+		</h:form>
+	</ui:define>
+
+</ui:composition>
