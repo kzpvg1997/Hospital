@@ -188,4 +188,26 @@ public class SintomasPatologiasEJB {
 		return em.find(Tratamiento.class, id);
 	}
 	
+	
+	@TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
+	public List<PatologiasDescritas> listaPatologias() {
+		Query q = em.createNamedQuery(PatologiasDescritas.LISTA_PATOLOGIAS);
+		List<PatologiasDescritas> patos = q.getResultList();
+		return patos;
+	}
+	
+	@TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
+	public List<Sintoma> listaSintomasXPatologia(PatologiasDescritas patologia) {
+		Query q = em.createNamedQuery(SintomasPatologias.SINTOMA_PATOLOGIA);
+		q.setParameter(1, patologia);
+		return q.getResultList();
+	}
+	
+	@TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
+	public List<Tratamiento> listaTratamientoXSintoma(Sintoma sintoma) {
+		Query q = em.createNamedQuery(Tratamiento.TRATAMIENTO_SINTOMA);
+		q.setParameter(1, sintoma);
+		List<Tratamiento> trata = q.getResultList();
+		return trata;
+	}
 }

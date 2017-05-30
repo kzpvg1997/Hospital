@@ -23,13 +23,18 @@ import co.edu.eam.ingesoft.pa.negocio.beans.CitaExamenEJB;
 import co.edu.eam.ingesoft.pa.negocio.beans.MedicoEJB;
 import co.edu.eam.ingesoft.pa.negocio.beans.OrdenCirugiaEJB;
 import co.edu.eam.ingesoft.pa.negocio.beans.QuirofanoEJB;
+import co.edu.eam.ingesoft.pa.negocio.beans.SintomasPatologiasEJB;
 import co.edu.eam.ingesoft.pa.negocio.excepciones.ExcepcionNegocio;
 import co.edu.ingesoft.hospital.persistencia.entidades.Cita;
 import co.edu.ingesoft.hospital.persistencia.entidades.CitaExamen;
+import co.edu.ingesoft.hospital.persistencia.entidades.CitasPatologias;
 import co.edu.ingesoft.hospital.persistencia.entidades.Examen;
 import co.edu.ingesoft.hospital.persistencia.entidades.Resultados;
+import co.edu.ingesoft.hospital.persistencia.entidades.Sintoma;
+import co.edu.ingesoft.hospital.persistencia.entidades.Tratamiento;
 import co.edu.ingesoft.hospital.persistencia.entidades.Medico;
 import co.edu.ingesoft.hospital.persistencia.entidades.OrdenCirugia;
+import co.edu.ingesoft.hospital.persistencia.entidades.PatologiasDescritas;
 import co.edu.ingesoft.hospital.persistencia.entidades.Quirofano;
 import session.SessionController;
 
@@ -58,23 +63,29 @@ public class AtenderCitaAjaxController implements Serializable {
 	@EJB
 	private OrdenCirugiaEJB ordenCirugiaEJB;
 	
+	@EJB
+	private SintomasPatologiasEJB patoEJB;
+	
+//-------------------REGISTRAR SPATOLOGIAS---------------
+	private int patologiaSeleccionada;
+	private String descripcionPatologia;
+	private List<PatologiasDescritas> listaPatologias;
+	private int sintomaSeleccionado;
+	private String descripcionSintoma;
+	private List<Sintoma> listaSintomas;
+	private int tratamientoSeleccionado;
+	private String descripcionTratamiento;
+	private List<Tratamiento> listaTratamientos;
+	
 //----------------------ATENDER CITA-----------------------
 	private String tipoCita;
-
 	private String detalle;
-
 	private String horaCita;
-
 	private String fecha;
-
 	private String medico;
-
 	private String anotacion;
-
 	private String paciente;
-
 	private String documento;
-
 //-----------------QUIROFANO------------------------
 	private String nombreCirugia;
 
@@ -111,7 +122,71 @@ public class AtenderCitaAjaxController implements Serializable {
 
 		verCita();
 		quirofanos = quirofanoEJB.listarQuirofanos();
+		listaPatologias = patoEJB.listaPatologias();
 
+	}
+	
+	public void sintomasByPatologia(){
+		
+		try{
+			System.out.println("ENTRO A LA PATOLOGIA "+patologiaSeleccionada);
+			PatologiasDescritas patologia = patoEJB.buscarPatologia(patologiaSeleccionada);
+			if(patologia != null){
+				descripcionPatologia = patologia.getDescripcion();
+				listaSintomas = patoEJB.listaSintomasXPatologia(patologia);
+				if(!listaSintomas.isEmpty()){
+					Sintoma sintoma = listaSintomas.get(0);
+					descripcionSintoma = sintoma.getDescripcion();
+					tratamientosBySintoma();
+				}else{
+					listaTratamientos.clear();
+				}
+			}else{
+				Messages.addFlashGlobalInfo("Seleccione una patologia");
+			}
+		}catch (ExcepcionNegocio e) {
+			e.printStackTrace();
+			Messages.addFlashGlobalError(e.getMessage());
+		}
+	}
+	
+	public void tratamientosBySintoma(){
+		try{
+			
+			if(sintomaSeleccionado != 0){
+				Sintoma sintoma = patoEJB.buscarSintoma(sintomaSeleccionado);
+				listaTratamientos = patoEJB.listaTratamientoXSintoma(sintoma);
+				Tratamiento tratamiento = listaTratamientos.get(0);
+				descripcionTratamiento = tratamiento.getDescripcion();
+			}
+			
+		}catch (ExcepcionNegocio e) {
+			Messages.addFlashGlobalError(e.getMessage());
+		}
+	}
+	
+	public void asignarPatologia(){
+		try{
+			if(patologiaSeleccionada!=0){
+				
+				Cita cit = controladorCita.getCita();
+				if(cit!=null){
+				PatologiasDescritas pat = patoEJB.buscarPatologia(patologiaSeleccionada);
+				if(pat!=null){
+				CitasPatologias cipa = new CitasPatologias();
+				cipa.setPatologiaDescrita(pat);
+				cipa.setCita(cit);
+				examenEJB.asignarPatologia(cipa);
+				Messages.addFlashGlobalInfo("se ha asignado la patologia: "+pat.getNombrePatologia()+" Exitosamente!.");
+				}
+				}
+			}else{
+				Messages.addFlashGlobalError("Para asignar por favor seleccione patologia");
+			}
+			
+		}catch (ExcepcionNegocio e) {
+			Messages.addFlashGlobalError(e.getMessage());
+		}
 	}
 
 	public void verCita() {
@@ -228,23 +303,6 @@ public class AtenderCitaAjaxController implements Serializable {
 		}
 	}
 	
-
-	/**
-	 * @return the busCirugia
-	 */
-	public String getBusCirugia() {
-		return busCirugia;
-	}
-
-
-	/**
-	 * @param busCirugia the busCirugia to set
-	 */
-	public void setBusCirugia(String busCirugia) {
-		this.busCirugia = busCirugia;
-	}
-
-
 
 	public void aceptar(){
 		
@@ -393,6 +451,21 @@ public class AtenderCitaAjaxController implements Serializable {
 	 */
 	public void setTipoCita(String tipoCita) {
 		this.tipoCita = tipoCita;
+	}
+
+	/**
+	 * @return the busCirugia
+	 */
+	public String getBusCirugia() {
+		return busCirugia;
+	}
+
+
+	/**
+	 * @param busCirugia the busCirugia to set
+	 */
+	public void setBusCirugia(String busCirugia) {
+		this.busCirugia = busCirugia;
 	}
 
 
@@ -728,6 +801,133 @@ public class AtenderCitaAjaxController implements Serializable {
 	 */
 	public void setNumOrden(String numOrden) {
 		this.numOrden = numOrden;
+	}
+
+	/**
+	 * @return the descripcionPatologia
+	 */
+	public String getDescripcionPatologia() {
+		return descripcionPatologia;
+	}
+
+	/**
+	 * @param descripcionPatologia the descripcionPatologia to set
+	 */
+	public void setDescripcionPatologia(String descripcionPatologia) {
+		this.descripcionPatologia = descripcionPatologia;
+	}
+
+	/**
+	 * @return the listaPatologias
+	 */
+	public List<PatologiasDescritas> getListaPatologias() {
+		return listaPatologias;
+	}
+
+	/**
+	 * @param listaPatologias the listaPatologias to set
+	 */
+	public void setListaPatologias(List<PatologiasDescritas> listaPatologias) {
+		this.listaPatologias = listaPatologias;
+	}
+
+
+	/**
+	 * @return the descripcionSintoma
+	 */
+	public String getDescripcionSintoma() {
+		return descripcionSintoma;
+	}
+
+	/**
+	 * @param descripcionSintoma the descripcionSintoma to set
+	 */
+	public void setDescripcionSintoma(String descripcionSintoma) {
+		this.descripcionSintoma = descripcionSintoma;
+	}
+
+	/**
+	 * @return the listaSintomas
+	 */
+	public List<Sintoma> getListaSintomas() {
+		return listaSintomas;
+	}
+
+	/**
+	 * @param listaSintomas the listaSintomas to set
+	 */
+	public void setListaSintomas(List<Sintoma> listaSintomas) {
+		this.listaSintomas = listaSintomas;
+	}
+
+	/**
+	 * @return the descripcionTratamiento
+	 */
+	public String getDescripcionTratamiento() {
+		return descripcionTratamiento;
+	}
+
+	/**
+	 * @param descripcionTratamiento the descripcionTratamiento to set
+	 */
+	public void setDescripcionTratamiento(String descripcionTratamiento) {
+		this.descripcionTratamiento = descripcionTratamiento;
+	}
+
+	/**
+	 * @return the listaTratamientos
+	 */
+	public List<Tratamiento> getListaTratamientos() {
+		return listaTratamientos;
+	}
+
+	/**
+	 * @param listaTratamientos the listaTratamientos to set
+	 */
+	public void setListaTratamientos(List<Tratamiento> listaTratamientos) {
+		this.listaTratamientos = listaTratamientos;
+	}
+
+	/**
+	 * @return the patologiaSeleccionada
+	 */
+	public int getPatologiaSeleccionada() {
+		return patologiaSeleccionada;
+	}
+
+	/**
+	 * @param patologiaSeleccionada the patologiaSeleccionada to set
+	 */
+	public void setPatologiaSeleccionada(int patologiaSeleccionada) {
+		this.patologiaSeleccionada = patologiaSeleccionada;
+	}
+
+	/**
+	 * @return the sintomaSeleccionado
+	 */
+	public int getSintomaSeleccionado() {
+		return sintomaSeleccionado;
+	}
+
+	/**
+	 * @param sintomaSeleccionado the sintomaSeleccionado to set
+	 */
+	public void setSintomaSeleccionado(int sintomaSeleccionado) {
+		this.sintomaSeleccionado = sintomaSeleccionado;
+	}
+
+	/**
+	 * @return the tratamientoSeleccionado
+	 */
+	public int getTratamientoSeleccionado() {
+		return tratamientoSeleccionado;
+	}
+
+	/**
+	 * @param tratamientoSeleccionado the tratamientoSeleccionado to set
+	 */
+	public void setTratamientoSeleccionado(int tratamientoSeleccionado) {
+		this.tratamientoSeleccionado = tratamientoSeleccionado;
 	}
 	
 

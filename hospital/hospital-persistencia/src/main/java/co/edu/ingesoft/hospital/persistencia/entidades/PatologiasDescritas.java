@@ -20,11 +20,14 @@ import javax.persistence.Table;
 @Entity
 @Table(name="Patologias_Descritas")
 @NamedQueries({
-	@NamedQuery(name=PatologiasDescritas.BUSCAR_PATOLOGIA_NOMBRE,query="SELECT pd FROM PatologiasDescritas pd WHERE pd.nombrePatologia=?1")
+	@NamedQuery(name=PatologiasDescritas.BUSCAR_PATOLOGIA_NOMBRE,query="SELECT pd FROM PatologiasDescritas pd WHERE pd.nombrePatologia=?1"),
+	@NamedQuery(name=PatologiasDescritas.LISTA_PATOLOGIAS,query="SELECT pd FROM PatologiasDescritas pd")
 })
 public class PatologiasDescritas {
 
 	public static final String BUSCAR_PATOLOGIA_NOMBRE = "PatologiasDescritas.BuscarXNombre";
+	
+	public static final String LISTA_PATOLOGIAS = "PatologiasDescritas.Lista";
 	
 	@Id
 	@Column(name="id_patologia")

@@ -64,7 +64,7 @@
 					<h:panelGrid id="panelGeneral" columns="2">
 
 						<h:panelGrid id="panelCitaExamen" columns="1"
-							style="margin-right:100px">
+							style="margin-right:20px">
 							<p:fieldset legend="Asignar Examen">
 								<h:panelGrid columns="2">
 
@@ -134,11 +134,58 @@
 						<h:panelGrid id="panelCitaPatologias" columns="2">
 							<p:fieldset legend="Asignar Patologias">
 
+								<p:outputLabel for="cbPatologia" id="cbPato" value="Patologia" />
+								<h:selectOneMenu id="cbPatologia" class="form-control" value="#{atenderCitaAjaxController.patologiaSeleccionada}">
+									<f:selectItem itemValue="0" itemLabel="Seleccione" />
+									<f:selectItems value="#{atenderCitaAjaxController.listaPatologias}" var="pat" 
+									itemValue="#{pat.idPatologia}" itemLabel="#{pat.nombrePatologia}" />
+									<f:ajax event="change"  execute="@this" render="panelCitaPatologias" 
+									listener="#{atenderCitaAjaxController.sintomasByPatologia()}"/>
+								</h:selectOneMenu>
+																
+								<label></label>
+								<p:inputTextarea id="tfdescPat" rows="6" cols="33"
+									placeholder="Descripcion de Patologia" disabled="true"
+									value="#{atenderCitaAjaxController.descripcionPatologia}" />
+									
+									<p:outputLabel for="cbSintoma" id="cbsinto" value="Sintomas" />
+								<h:selectOneMenu id="cbSintoma" class="form-control"
+									value="#{atenderCitaAjaxController.sintomaSeleccionado}">
+									<f:selectItem itemValue="0" itemLabel="Seleccione" />
+									<f:selectItems value="#{atenderCitaAjaxController.listaSintomas}"
+										var="sin" itemValue="#{sin.idSintoma}"
+										itemLabel="#{sin.nombreSintoma}" />
+										<f:ajax event="change" execute="@this" render="panelCitaPatologias" 
+										listener="#{atenderCitaAjaxController.tratamientosBySintoma()}"/>
+								</h:selectOneMenu>
+								<label></label>
+								<p:inputTextarea id="tfdescsin" rows="6" cols="33"
+									placeholder="Descripcion de Sintoma" disabled="true"
+									value="#{atenderCitaAjaxController.descripcionSintoma}" />
+									
+									<p:outputLabel for="cbTratamiento" id="cbsTrat" value="Tratamientos" />
+								<h:selectOneMenu id="cbTratamiento" class="form-control"
+									value="#{atenderCitaAjaxController.tratamientoSeleccionado}">
+									<f:selectItem itemValue="0" itemLabel="Seleccione" />
+									<f:selectItems value="#{atenderCitaAjaxController.listaTratamientos}"
+										var="tra" itemValue="#{tra.idTratamiento}"
+										itemLabel="#{tra.nombreTratamiento}" />
+								</h:selectOneMenu>
+								<label></label>
+								<p:inputTextarea id="tfdescTrat" rows="6" cols="33"
+									placeholder="Descripcion de Tratamiento" disabled="true"
+									value="#{atenderCitaAjaxController.descripcionTratamiento}" />
 
-
+								<p:commandButton styleClass="ui-priority-primary"
+											value="Asignar Patologia"
+											process="@this panelCitaPatologias"
+											update="panelCitaPatologias"
+											action="#{atenderCitaAjaxController.asignarPatologia()}" />
+									
 							</p:fieldset>
-
+										
 						</h:panelGrid>
+						
 
 					</h:panelGrid>
 				</p:tab>

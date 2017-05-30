@@ -40,6 +40,9 @@ public class Hospitalizaciones implements Serializable{
 	@OneToOne
 	@JoinColumn(name="Cita",unique=true)
 	private Cita cita;
+		
+	@Column(name="descripcion",length=400)
+	private String descripcion;
 	
 	public Hospitalizaciones(){
 		

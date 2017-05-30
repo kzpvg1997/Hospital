@@ -32,5 +32,35 @@ public class CitasPatologias {
 	public CitasPatologias(){
 		
 	}
+
+	/**
+	 * @return the patologiaDescrita
+	 */
+	public PatologiasDescritas getPatologiaDescrita() {
+		return patologiaDescrita;
+	}
+
+	/**
+	 * @param patologiaDescrita the patologiaDescrita to set
+	 */
+	public void setPatologiaDescrita(PatologiasDescritas patologiaDescrita) {
+		this.patologiaDescrita = patologiaDescrita;
+	}
+
+	/**
+	 * @return the cita
+	 */
+	public Cita getCita() {
+		return cita;
+	}
+
+	/**
+	 * @param cita the cita to set
+	 */
+	public void setCita(Cita cita) {
+		this.cita = cita;
+	}
+	
+	
 	
 }

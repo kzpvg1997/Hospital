@@ -22,11 +22,14 @@ import javax.persistence.Table;
 @Entity
 @Table(name="Tratamientos")
 @NamedQueries({
-	@NamedQuery(name=Tratamiento.BUSCAR_TRATAMIENTO_NOMBRE,query="SELECT t FROM Tratamiento t WHERE t.nombreTratamiento=?1")
+	@NamedQuery(name=Tratamiento.BUSCAR_TRATAMIENTO_NOMBRE,query="SELECT t FROM Tratamiento t WHERE t.nombreTratamiento=?1"),
+	@NamedQuery(name=Tratamiento.TRATAMIENTO_SINTOMA,query="SELECT ts.tratamiento FROM TratamientoSintoma ts WHERE ts.sintoma=?1")
 })
 public class Tratamiento implements Serializable{
 
 	public static final String BUSCAR_TRATAMIENTO_NOMBRE = "Tratamiento.BuscarXNombre";
+	
+	public static final String TRATAMIENTO_SINTOMA = "TratamientoXsintoma";
 	
 	@Id
 	@Column(name="id_tratamiento")

@@ -45,6 +45,34 @@ public class CitasPatologiasPK implements Serializable {
 			return false;
 		return true;
 	}
+
+	/**
+	 * @return the patologiaDescrita
+	 */
+	public int getPatologiaDescrita() {
+		return patologiaDescrita;
+	}
+
+	/**
+	 * @param patologiaDescrita the patologiaDescrita to set
+	 */
+	public void setPatologiaDescrita(int patologiaDescrita) {
+		this.patologiaDescrita = patologiaDescrita;
+	}
+
+	/**
+	 * @return the cita
+	 */
+	public int getCita() {
+		return cita;
+	}
+
+	/**
+	 * @param cita the cita to set
+	 */
+	public void setCita(int cita) {
+		this.cita = cita;
+	}
 	
 	
 }

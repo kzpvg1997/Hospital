@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /**
@@ -19,8 +21,13 @@ import javax.persistence.Table;
 @IdClass(SintomasPatologiasPK.class)
 @Entity
 @Table(name="Sintomas_Patologias")
+@NamedQueries({
+	@NamedQuery(name=SintomasPatologias.SINTOMA_PATOLOGIA,query="SELECT sp.sintoma FROM SintomasPatologias sp WHERE sp.patologiaDescrita=?1")
+})
 public class SintomasPatologias implements Serializable {
 
+	public static final String SINTOMA_PATOLOGIA = "SintomaXPatologia";
+	
 	@Id
 	@ManyToOne
 	@JoinColumn(name="Patologias_Descritas")
