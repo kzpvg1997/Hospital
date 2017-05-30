@@ -46,6 +46,7 @@ public class AtenderCitaAjaxController implements Serializable {
 	@EJB
 	private CitaExamenEJB examenEJB;
 
+	@EJB
 	private QuirofanoEJB quirofanoEJB;
 	
 	@Inject
@@ -87,6 +88,55 @@ public class AtenderCitaAjaxController implements Serializable {
 	private String nombreExamen;
 	private String descripcionExamen;
 	
+	
+	private String descripcionQuirofano;
+	
+	private String procedimiento;
+	
+	private int quirofanoSeleccionado;
+	
+	private List<Quirofano> quirofanos;
+	
+	private String fechaQuirofano;
+	
+	private Date fechaQ;
+	
+	private String numOrden;
+	
+	private String busCirugia;
+	
+	
+	@PostConstruct
+	public void inicializar() {
+
+		verCita();
+		quirofanos = quirofanoEJB.listarQuirofanos();
+
+	}
+
+	public void verCita() {
+
+		tipoCita = controladorCita.getCita().getTipoCita();
+		detalle = controladorCita.getCita().getDescripcion();
+		horaCita = controladorCita.getCita().getHoraCita();
+		fecha = controladorCita.getCita().getFechaCita().toString();
+
+		String nombreP = controladorCita.getCita().getPaciente().getNombre();
+		String apellidoP = controladorCita.getCita().getPaciente().getApellido();
+		paciente = nombreP + " " + apellidoP;
+
+		String nombre = controladorCita.getCita().getMedico().getNombre();
+		String apellido = controladorCita.getCita().getMedico().getApellido();
+
+		medico = nombre+" "+apellido;
+
+		documento =  String.valueOf(controladorCita.getCita().getPaciente().getIdentificacion());
+		medico = nombre + " " + apellido;
+		documento = String.valueOf(controladorCita.getCita().getPaciente().getIdentificacion());
+		System.out.println(controladorCita.getCita().getIdCita());
+
+	}
+
 	
 	public void asignarRessultado(){
 		try{
@@ -178,26 +228,6 @@ public class AtenderCitaAjaxController implements Serializable {
 		}
 	}
 	
-	private String descripcionQuirofano;
-	
-	private String procedimiento;
-	
-	private int quirofanoSeleccionado;
-	
-	private List<Quirofano> quirofanos;
-	
-	private String fechaQuirofano;
-	
-	private Date fechaQ;
-	
-	private String numOrden;
-	
-	private String busCirugia;
-	
-	
-//----------------------------------------------	
-	
-	
 
 	/**
 	 * @return the busCirugia
@@ -241,37 +271,7 @@ public class AtenderCitaAjaxController implements Serializable {
 	}
 	
 
-	@PostConstruct
-	public void inicializar() {
-
-		verCita();
-		quirofanos = quirofanoEJB.listarQuirofanos();
-
-	}
-
-	public void verCita() {
-
-		tipoCita = controladorCita.getCita().getTipoCita();
-		detalle = controladorCita.getCita().getDescripcion();
-		horaCita = controladorCita.getCita().getHoraCita();
-		fecha = controladorCita.getCita().getFechaCita().toString();
-
-		String nombreP = controladorCita.getCita().getPaciente().getNombre();
-		String apellidoP = controladorCita.getCita().getPaciente().getApellido();
-		paciente = nombreP + " " + apellidoP;
-
-		String nombre = controladorCita.getCita().getMedico().getNombre();
-		String apellido = controladorCita.getCita().getMedico().getApellido();
-
-		medico = nombre+" "+apellido;
-
-		documento =  String.valueOf(controladorCita.getCita().getPaciente().getIdentificacion());
-		medico = nombre + " " + apellido;
-		documento = String.valueOf(controladorCita.getCita().getPaciente().getIdentificacion());
-		System.out.println(controladorCita.getCita().getIdCita());
-
-	}
-
+	
 	
 	
 	
