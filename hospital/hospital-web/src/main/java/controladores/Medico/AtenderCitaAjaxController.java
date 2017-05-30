@@ -19,19 +19,24 @@ import org.omnifaces.util.Messages;
 import co.edu.eam.ingesoft.pa.negocio.beans.CitaEJB;
 
 import co.edu.eam.ingesoft.pa.negocio.beans.CitaExamenEJB;
-
+import co.edu.eam.ingesoft.pa.negocio.beans.HospitalizacionesEJB;
 import co.edu.eam.ingesoft.pa.negocio.beans.MedicoEJB;
 import co.edu.eam.ingesoft.pa.negocio.beans.OrdenCirugiaEJB;
 import co.edu.eam.ingesoft.pa.negocio.beans.QuirofanoEJB;
 import co.edu.eam.ingesoft.pa.negocio.beans.SintomasPatologiasEJB;
 import co.edu.eam.ingesoft.pa.negocio.excepciones.ExcepcionNegocio;
+import co.edu.ingesoft.hospital.persistencia.entidades.Cama;
 import co.edu.ingesoft.hospital.persistencia.entidades.Cita;
 import co.edu.ingesoft.hospital.persistencia.entidades.CitaExamen;
 import co.edu.ingesoft.hospital.persistencia.entidades.CitasPatologias;
 import co.edu.ingesoft.hospital.persistencia.entidades.Examen;
+
 import co.edu.ingesoft.hospital.persistencia.entidades.Resultados;
 import co.edu.ingesoft.hospital.persistencia.entidades.Sintoma;
 import co.edu.ingesoft.hospital.persistencia.entidades.Tratamiento;
+
+import co.edu.ingesoft.hospital.persistencia.entidades.Hospitalizaciones;
+import co.edu.ingesoft.hospital.persistencia.entidades.Resultados;
 import co.edu.ingesoft.hospital.persistencia.entidades.Medico;
 import co.edu.ingesoft.hospital.persistencia.entidades.OrdenCirugia;
 import co.edu.ingesoft.hospital.persistencia.entidades.PatologiasDescritas;
@@ -62,6 +67,19 @@ public class AtenderCitaAjaxController implements Serializable {
 	
 	@EJB
 	private OrdenCirugiaEJB ordenCirugiaEJB;
+	
+	@EJB
+	private HospitalizacionesEJB hospitalizacionEJB;
+	
+//--------------------CAMA---------------------------------
+	
+	private String descripcionCama;
+	
+	private List<Cama> camas;
+	
+	private int camaSeleccionada;
+	
+	private String numeroHospitalizacion;
 	
 	@EJB
 	private SintomasPatologiasEJB patoEJB;
@@ -123,6 +141,7 @@ public class AtenderCitaAjaxController implements Serializable {
 		verCita();
 		quirofanos = quirofanoEJB.listarQuirofanos();
 		listaPatologias = patoEJB.listaPatologias();
+		camas = hospitalizacionEJB.listarCamasDisponibles();
 
 	}
 	
@@ -408,9 +427,6 @@ public class AtenderCitaAjaxController implements Serializable {
 	
 	
 	
-	
-	
-	
 	public void limpiarOrden(){
 		
 		nombreCirugia = "";
@@ -420,6 +436,45 @@ public class AtenderCitaAjaxController implements Serializable {
 		fechaQuirofano = "";
 		numOrden = "";
 	}
+	
+	public void hopitalizar(){
+		
+		if(!numeroHospitalizacion.isEmpty() && (camaSeleccionada>0) && !descripcionCama.isEmpty() ){
+			
+			Hospitalizaciones hosp = hospitalizacionEJB.buscarPorCita(controladorCita.getCita());
+			System.out.println(hosp);
+			if(hosp==null){
+			
+			Hospitalizaciones h = new Hospitalizaciones();
+			Cama c = camas.get(0);
+			h.setCama(c);
+			Cita cita = citaEJB.buscarCita(controladorCita.getCita().getIdCita());
+			h.setCita(cita);
+			h.setDescripcion(descripcionCama);
+			
+			hospitalizacionEJB.crearHospitalizacion(h);
+			
+			Cama cama =  camas.get(0);
+			cama.setDescripcion(descripcionCama);
+			cama.setDisponible(false);
+			
+			hospitalizacionEJB.editarCama(cama);
+			Messages.addFlashGlobalInfo("Hospitalizacion Exitosa");
+			}else{
+				Messages.addFlashGlobalError("Esta cita ya tiene su paciente hopitalizado en la cama: "+hosp.getCama().getNumeroCama()+"");
+			}
+		}else{
+			Messages.addFlashGlobalWarn("Verifique que haya lleno todos los campos");
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 
 
 	/**
@@ -804,6 +859,7 @@ public class AtenderCitaAjaxController implements Serializable {
 	}
 
 	/**
+<<<<<<< HEAD
 	 * @return the descripcionPatologia
 	 */
 	public String getDescripcionPatologia() {
@@ -928,6 +984,61 @@ public class AtenderCitaAjaxController implements Serializable {
 	 */
 	public void setTratamientoSeleccionado(int tratamientoSeleccionado) {
 		this.tratamientoSeleccionado = tratamientoSeleccionado;
+	}
+	/**
+	 * @return the descripcionCama
+	 */
+	public String getDescripcionCama() {
+		return descripcionCama;
+	}
+
+	/**
+	 * @param descripcionCama the descripcionCama to set
+	 */
+	public void setDescripcionCama(String descripcionCama) {
+		this.descripcionCama = descripcionCama;
+	}
+
+	/**
+	 * @return the camas
+	 */
+	public List<Cama> getCamas() {
+		return camas;
+	}
+
+	/**
+	 * @param camas the camas to set
+	 */
+	public void setCamas(List<Cama> camas) {
+		this.camas = camas;
+	}
+
+	/**
+	 * @return the camaSeleccionada
+	 */
+	public int getCamaSeleccionada() {
+		return camaSeleccionada;
+	}
+
+	/**
+	 * @param camaSeleccionada the camaSeleccionada to set
+	 */
+	public void setCamaSeleccionada(int camaSeleccionada) {
+		this.camaSeleccionada = camaSeleccionada;
+	}
+
+	/**
+	 * @return the numeroHospitalizacion
+	 */
+	public String getNumeroHospitalizacion() {
+		return numeroHospitalizacion;
+	}
+
+	/**
+	 * @param numeroHospitalizacion the numeroHospitalizacion to set
+	 */
+	public void setNumeroHospitalizacion(String numeroHospitalizacion) {
+		this.numeroHospitalizacion = numeroHospitalizacion;
 	}
 	
 

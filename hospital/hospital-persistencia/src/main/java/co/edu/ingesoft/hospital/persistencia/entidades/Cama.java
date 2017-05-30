@@ -25,10 +25,13 @@ import javax.persistence.Table;
 @Table(name="Camas")
 @NamedQueries({
 	@NamedQuery(name=Cama.ListaCamas,query="SELECT c FROM Cama c WHERE c.hospital=?1"),
+	@NamedQuery(name=Cama.ListaCamasDisponibles,query="SELECT c FROM Cama c WHERE c.disponible=true")
 })
 public class Cama implements Serializable{
 
 	public static final String ListaCamas = "Cama.listarCamas";
+	
+	public static final String ListaCamasDisponibles = "Cama.listarCamasDisponibles";
 	
 	@Id	
 	@Column(name="numero_cama")

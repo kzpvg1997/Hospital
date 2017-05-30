@@ -270,6 +270,31 @@
 
 
 				<p:tab title="Hospitalizacion" dynamic="true" cache="true">
+				
+					<p:fieldset legend="Hospitalizacion" style="margin-top:10px">
+						<h:panelGrid id="atecitacam" columns="2">
+						
+						<p:outputLabel for="tfnmhoz" id="numhoz" value="Numero Hospitalizacion" />
+						<p:inputText id="tfnmhoz" class="form-control" 	placeholder="Numero Hospitalizacion" value="#{atenderCitaAjaxController.numeroHospitalizacion}" />
+						
+						<p:outputLabel for="tfcama" id="idcama" value="Cama" />
+							<h:selectOneMenu id="tfcama" class="form-control" value="#{atenderCitaAjaxController.camaSeleccionada}">
+								<f:selectItem itemValue="0" itemLabel="Seleccione..." />
+								<f:selectItems value="#{atenderCitaAjaxController.camas}"
+									var="ca" itemValue="#{ca.numeroCama}" itemLabel="#{ca.numeroCama}" />
+							</h:selectOneMenu>
+							
+							<p:outputLabel for="tfdescama" id="tfdescama" value="Descripcion" />
+							<p:inputTextarea rows="6" cols="33" placeholder="Descripcion de la ocupacion" value="#{atenderCitaAjaxController.descripcionCama}" />
+							
+							<p:outputLabel for="tfbtncama" id="tfbtncama" value=" " />
+							<p:commandButton
+								action="#{atenderCitaAjaxController.hopitalizar}" process="@this atecitacam tfcama" value="Hospitalizar" 
+								update="atecitacam tfcama" />
+						
+						
+						</h:panelGrid>
+				</p:fieldset>
 				</p:tab>
 
 			</p:tabView>
