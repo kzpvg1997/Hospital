@@ -64,18 +64,19 @@ public class GestionMedicamentoAjaxController implements Serializable {
 			m.setDescripcion(descripcion);
 			medicamentoEJB.crearMedicamento(m);
 			
-			
-			
-			Farmacia far = inventarioEJB.buscarFarmaciaUsuario(sesionController.getUsuario());
-			System.out.println(far+"??????????===========");
-			if(far!=null){
-				Inventario inv = new Inventario();
-				inv.setCantidad(cantidad);
-				inv.setMedicamento(m);
-				inv.setFarmacia(far);
-				inventarioEJB.asignarInventario(inv);
-				Messages.addFlashGlobalInfo("Se registro correctamento el medicamento");
-				limpiar();
+			Messages.addFlashGlobalInfo("Se registro correctamento el medicamento");
+			limpiar();
+//			
+//			Farmacia far = inventarioEJB.buscarFarmaciaUsuario(sesionController.getUsuario());
+//			System.out.println(far+"??????????===========");
+//			if(far!=null){
+//				Inventario inv = new Inventario();
+//				inv.setCantidad(cantidad);
+//				inv.setMedicamento(m);
+//				inv.setFarmacia(far);
+//				inventarioEJB.asignarInventario(inv);
+//				Messages.addFlashGlobalInfo("Se registro correctamento el medicamento");
+//				limpiar();
 //				Medicamento medi = medicamentoEJB.buscarMedicamento(m.getIdMedicamento());
 //				System.out.println(medi+"??????????===========");
 //				if(medi!=null){
@@ -95,9 +96,9 @@ public class GestionMedicamentoAjaxController implements Serializable {
 			}
 			
 			
-		}else{
-			Messages.addFlashGlobalWarn("Verifique que esten llenos los campos.");
-		}
+//		}else{
+//			Messages.addFlashGlobalWarn("Verifique que esten llenos los campos.");
+//		}
 		
 		}catch (ExcepcionNegocio e) {
 			Messages.addFlashGlobalError(e.getMessage());

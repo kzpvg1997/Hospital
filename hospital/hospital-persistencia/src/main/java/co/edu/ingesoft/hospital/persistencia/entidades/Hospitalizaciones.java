@@ -50,9 +50,7 @@ public class Hospitalizaciones implements Serializable{
 		
 	@Column(name="descripcion",length=400)
 	private String descripcion;
-	
-	@Column(name="descripcion",length=40)
-	private String descripcion;
+
 	
 	public Hospitalizaciones(){
 		
