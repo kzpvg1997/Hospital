@@ -26,7 +26,7 @@ public class OrdenCirugiaEJB {
 	 * @return la orden ciugia
 	 */
 	@TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
-	public OrdenCirugia buscarQuirofano(int numero){
+	public OrdenCirugia buscarOrden(int numero){
 		return em.find(OrdenCirugia.class, numero);
 	}
 	
@@ -36,12 +36,14 @@ public class OrdenCirugiaEJB {
 	 */
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void registrarOrdenCirugia(OrdenCirugia o){
-		OrdenCirugia or = buscarQuirofano(o.getNumeroOrden());
+		OrdenCirugia or = buscarOrden(o.getNumeroOrden());
 		if(or==null){
 			em.persist(o);
 		}else{
 			throw new ExcepcionNegocio("Esta orden ya se encuentra registrada");
 		}
 	}
+	
+	
 
 }

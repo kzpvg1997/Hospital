@@ -31,8 +31,6 @@ public class OrdenCirugia implements Serializable {
 
 	@Id
 	@Column(name="numero_orden")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ORDENCIRUGIA_SEQ")
-    @SequenceGenerator(sequenceName = "ordencirugia_seq", allocationSize = 1, name = "ORDENCIRUGIA_SEQ")
 	private int numeroOrden;
 	
 	@Column(name="nombre_cirugia",length=40)

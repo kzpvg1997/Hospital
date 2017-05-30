@@ -67,16 +67,30 @@
 
 				<p:tab title="Orden Cirugia" dynamic="true" cache="true">
 				
+				<p:fieldset legend="Busqueda" style="margin-top:100px">
+				<h:panelGrid id="busord" columns="3">
+			
+			
+					<p:inputText id="tfbusord" class="form-control" placeholder="Buscar Cirugia" value="#{atenderCitaAjaxController.busCirugia}" />
+					<p:commandButton styleClass="ui-priority-primary" value="Buscar" process="@this busord"
+							update="busord orcg" action="#{atenderCitaAjaxController.buscarOrdenC}" />
+						
+				</h:panelGrid>
+				</p:fieldset>
+				
+				
 				<p:fieldset legend="Orden Cirugia" style="margin-top:10px">
 
 					<h:panelGrid id="orcg" columns="2">
-
+						
+						<p:outputLabel for="tfnumorde" id="numeOrden" value="Numero Orden" />
+						<p:inputText id="tfnumorde" class="form-control" placeholder="Numero Orden" value="#{atenderCitaAjaxController.numOrden}" />	
 
 						<p:outputLabel for="tforci" id="ordnc" value="Nombre Cirugia" />
-						<p:inputText id="tforci" class="form-control" placeholder="Nombre cirugia" value="#{atenderCitaAjaxController.nombreCiruia}" />
+						<p:inputText id="tforci" class="form-control" placeholder="Nombre cirugia" value="#{atenderCitaAjaxController.nombreCirugia}" />
 						
 						<p:outputLabel for="tfordd" id="orddec" value="Descripcion"  />
-	 	  				<p:inputTextarea id="tfordd" rows="6" placeholder="Descripcion cirugia"  cols="33" value="#{atenderCitaAjaxController.descripcion}"/>
+	 	  				<p:inputTextarea id="tfordd" rows="6" placeholder="Descripcion cirugia"  cols="33" value="#{atenderCitaAjaxController.descripcionQuirofano}"/>
 	 	  				
 	 	  				
 	 	  				<p:outputLabel for="tfordpro" id="ordpro" value="Procedimiento"  />

@@ -66,7 +66,7 @@ public class AtenderCitaAjaxController implements Serializable {
 //-----------------QUIROFANO------------------------
 	private String nombreCirugia;
 	
-	private String descripcion;
+	private String descripcionQuirofano;
 	
 	private String procedimiento;
 	
@@ -78,9 +78,30 @@ public class AtenderCitaAjaxController implements Serializable {
 	
 	private Date fechaQ;
 	
+	private String numOrden;
+	
+	private String busCirugia;
+	
+	
 //----------------------------------------------	
 	
 	
+
+	/**
+	 * @return the busCirugia
+	 */
+	public String getBusCirugia() {
+		return busCirugia;
+	}
+
+
+	/**
+	 * @param busCirugia the busCirugia to set
+	 */
+	public void setBusCirugia(String busCirugia) {
+		this.busCirugia = busCirugia;
+	}
+
 
 	public void aceptar(){
 		
@@ -158,11 +179,12 @@ public class AtenderCitaAjaxController implements Serializable {
 		
 		try{
 		
-		if(!nombreCirugia.isEmpty() && !descripcion.isEmpty() && !procedimiento.isEmpty() && (quirofanoSeleccionado > 0) && !fechaQuirofano.isEmpty()){
+		if(!nombreCirugia.isEmpty() && !descripcionQuirofano.isEmpty() && !procedimiento.isEmpty() && (quirofanoSeleccionado > 0) && !fechaQuirofano.isEmpty()){
 			
 			OrdenCirugia o = new OrdenCirugia();
+			o.setNumeroOrden(Integer.parseInt(numOrden));
 			o.setNombreCirugia(nombreCirugia);
-			o.setDescripcion(descripcion);
+			o.setDescripcion(descripcionQuirofano);
 			o.setTipoProcedimiento(procedimiento);
 			Quirofano q = quirofanoEJB.buscarQuirofano(quirofanoSeleccionado);
 			System.out.println(q);
@@ -175,7 +197,7 @@ public class AtenderCitaAjaxController implements Serializable {
 			o.setMedico(m);
 			
 			ordenCirugiaEJB.registrarOrdenCirugia(o);
-			Messages.addFlashGlobalInfo("La orden fue registrada exitosamenteS");
+			Messages.addFlashGlobalInfo("La orden fue registrada exitosamente");
 			limpiarOrden();
 		}else{
 			Messages.addFlashGlobalError("Por favor ingrese todos los datos");
@@ -189,33 +211,219 @@ public class AtenderCitaAjaxController implements Serializable {
 		
 	}
 	
-	public void limpiarOrden(){
+	public void buscarOrdenC(){
 		
-		nombreCirugia = "";
-		descripcion = "";
-		procedimiento = "Seleccione";
-		quirofanoSeleccionado = 0;
-		fechaQuirofano = "";
+		if(!busCirugia.isEmpty()){
+			
+			OrdenCirugia o = ordenCirugiaEJB.buscarOrden(Integer.parseInt(busCirugia));
+			if(o!=null){
+				
+				nombreCirugia = o.getNombreCirugia();
+				descripcionQuirofano = o.getDescripcion();
+				procedimiento = o.getTipoProcedimiento();
+				quirofanoSeleccionado = o.getQuirofano().getIdQuirofano();
+				fechaQuirofano =o.getFechaCirugia()+"";
+				numOrden = o.getNumeroOrden()+"";
+				
+			}else{
+				Messages.addFlashGlobalError("Esta orden con numero "+busCirugia+" no existe");
+			}
+			
+		}else{
+			Messages.addFlashGlobalError("Para buscar ingrese el numero de orden");
+		}
+		
 	}
 	
 	
 	
 	
+	
+	
+	public void limpiarOrden(){
+		
+		nombreCirugia = "";
+		descripcionQuirofano = "";
+		procedimiento = "Seleccione";
+		quirofanoSeleccionado = 0;
+		fechaQuirofano = "";
+		numOrden = "";
+	}
 
 
 	/**
-	 * @return the nombreCiruia
+	 * @return the controladorCita
 	 */
-	public String getNombreCiruia() {
+	public CitaMedicoAjaxController getControladorCita() {
+		return controladorCita;
+	}
+
+
+	/**
+	 * @param controladorCita the controladorCita to set
+	 */
+	public void setControladorCita(CitaMedicoAjaxController controladorCita) {
+		this.controladorCita = controladorCita;
+	}
+
+
+	/**
+	 * @return the tipoCita
+	 */
+	public String getTipoCita() {
+		return tipoCita;
+	}
+
+
+	/**
+	 * @param tipoCita the tipoCita to set
+	 */
+	public void setTipoCita(String tipoCita) {
+		this.tipoCita = tipoCita;
+	}
+
+
+	/**
+	 * @return the detalle
+	 */
+	public String getDetalle() {
+		return detalle;
+	}
+
+
+	/**
+	 * @param detalle the detalle to set
+	 */
+	public void setDetalle(String detalle) {
+		this.detalle = detalle;
+	}
+
+
+	/**
+	 * @return the horaCita
+	 */
+	public String getHoraCita() {
+		return horaCita;
+	}
+
+
+	/**
+	 * @param horaCita the horaCita to set
+	 */
+	public void setHoraCita(String horaCita) {
+		this.horaCita = horaCita;
+	}
+
+
+	/**
+	 * @return the fecha
+	 */
+	public String getFecha() {
+		return fecha;
+	}
+
+
+	/**
+	 * @param fecha the fecha to set
+	 */
+	public void setFecha(String fecha) {
+		this.fecha = fecha;
+	}
+
+
+	/**
+	 * @return the medico
+	 */
+	public String getMedico() {
+		return medico;
+	}
+
+
+	/**
+	 * @param medico the medico to set
+	 */
+	public void setMedico(String medico) {
+		this.medico = medico;
+	}
+
+
+	/**
+	 * @return the anotacion
+	 */
+	public String getAnotacion() {
+		return anotacion;
+	}
+
+
+	/**
+	 * @param anotacion the anotacion to set
+	 */
+	public void setAnotacion(String anotacion) {
+		this.anotacion = anotacion;
+	}
+
+
+	/**
+	 * @return the paciente
+	 */
+	public String getPaciente() {
+		return paciente;
+	}
+
+
+	/**
+	 * @param paciente the paciente to set
+	 */
+	public void setPaciente(String paciente) {
+		this.paciente = paciente;
+	}
+
+
+	/**
+	 * @return the documento
+	 */
+	public String getDocumento() {
+		return documento;
+	}
+
+
+	/**
+	 * @param documento the documento to set
+	 */
+	public void setDocumento(String documento) {
+		this.documento = documento;
+	}
+
+
+	/**
+	 * @return the nombreCirugia
+	 */
+	public String getNombreCirugia() {
 		return nombreCirugia;
 	}
 
 
 	/**
-	 * @param nombreCiruia the nombreCiruia to set
+	 * @param nombreCirugia the nombreCirugia to set
 	 */
-	public void setNombreCiruia(String nombreCiruia) {
-		this.nombreCirugia = nombreCiruia;
+	public void setNombreCirugia(String nombreCirugia) {
+		this.nombreCirugia = nombreCirugia;
+	}
+
+
+	/**
+	 * @return the descripcionQuirofano
+	 */
+	public String getDescripcionQuirofano() {
+		return descripcionQuirofano;
+	}
+
+
+	/**
+	 * @param descripcionQuirofano the descripcionQuirofano to set
+	 */
+	public void setDescripcionQuirofano(String descripcionQuirofano) {
+		this.descripcionQuirofano = descripcionQuirofano;
 	}
 
 
@@ -300,141 +508,25 @@ public class AtenderCitaAjaxController implements Serializable {
 
 
 	/**
-	 * @return the documento
+	 * @return the numOrden
 	 */
-	public String getDocumento() {
-		return documento;
-	}
-
-	/**
-	 * @param documento
-	 *            the documento to set
-	 */
-	public void setDocumento(String documento) {
-		this.documento = documento;
-	}
-
-	/**
-	 * @return the tipoCita
-	 */
-	public String getTipoCita() {
-		return tipoCita;
-	}
-
-	/**
-	 * @param tipoCita
-	 *            the tipoCita to set
-	 */
-	public void setTipoCita(String tipoCita) {
-		this.tipoCita = tipoCita;
-	}
-
-	/**
-	 * @return the detalle
-	 */
-	public String getDetalle() {
-		return detalle;
-	}
-
-	/**
-	 * @param detalle
-	 *            the detalle to set
-	 */
-	public void setDetalle(String detalle) {
-		this.detalle = detalle;
-	}
-
-	/**
-	 * @return the fecha
-	 */
-	public String getFecha() {
-		return fecha;
-	}
-
-	/**
-	 * @param fecha
-	 *            the fecha to set
-	 */
-	public void setFecha(String fecha) {
-		this.fecha = fecha;
-	}
-
-	/**
-	 * @return the medico
-	 */
-	public String getMedico() {
-		return medico;
-	}
-
-	/**
-	 * @param medico
-	 *            the medico to set
-	 */
-	public void setMedico(String medico) {
-		this.medico = medico;
-	}
-
-	/**
-	 * @return the paciente
-	 */
-	public String getPaciente() {
-		return paciente;
-	}
-
-	/**
-	 * @param paciente
-	 *            the paciente to set
-	 */
-	public void setPaciente(String paciente) {
-		this.paciente = paciente;
-	}
-
-	/**
-	 * @return the horaCita
-	 */
-	public String getHoraCita() {
-		return horaCita;
-	}
-
-	/**
-	 * @param horaCita
-	 *            the horaCita to set
-	 */
-	public void setHoraCita(String horaCita) {
-		this.horaCita = horaCita;
-	}
-
-	/**
-	 * @return the anotacion
-	 */
-	public String getAnotacion() {
-		return anotacion;
-	}
-
-	/**
-	 * @param anotacion
-	 *            the anotacion to set
-	 */
-	public void setAnotacion(String anotacion) {
-		this.anotacion = anotacion;
+	public String getNumOrden() {
+		return numOrden;
 	}
 
 
 	/**
-	 * @return the descripcion
+	 * @param numOrden the numOrden to set
 	 */
-	public String getDescripcion() {
-		return descripcion;
-	}
-
-
-	/**
-	 * @param descripcion the descripcion to set
-	 */
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
+	public void setNumOrden(String numOrden) {
+		this.numOrden = numOrden;
 	}
 	
+	
+	
+	
+
+
 	
 
 }
