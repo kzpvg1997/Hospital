@@ -15,6 +15,7 @@ import javax.persistence.Query;
 
 import co.edu.eam.ingesoft.pa.negocio.excepciones.ExcepcionNegocio;
 import co.edu.ingesoft.hospital.persistencia.entidades.Cama;
+import co.edu.ingesoft.hospital.persistencia.entidades.Cita;
 import co.edu.ingesoft.hospital.persistencia.entidades.Hospital;
 import co.edu.ingesoft.hospital.persistencia.entidades.Medico;
 import co.edu.ingesoft.hospital.persistencia.entidades.Quirofano;
@@ -65,6 +66,11 @@ public class QuirofanoEJB {
 		}
 	}
 	
+	/**
+	 * Metodo apra buscar un quirofano
+	 * @param numero que recibe par ala busqueda
+	 * @return el quirofano buscado
+	 */
 	@TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
 	public Quirofano buscarQuirofano(int numero){
 		return em.find(Quirofano.class, numero);
@@ -101,5 +107,16 @@ public class QuirofanoEJB {
 		if(cam!=null){
 		em.remove(cam);
 		}
+	}
+	
+	/**
+	 * Metodo para listar todos los quirofanos
+	 * @return una lista de quirofanos
+	 */
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public List<Quirofano> listarQuirofanos(){
+		Query q = em.createNamedQuery(Quirofano.LISTA_QUIROFANO);
+		List<Quirofano> quirofanos = q.getResultList();
+		return quirofanos;
 	}
 }

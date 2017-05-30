@@ -14,6 +14,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -26,7 +28,14 @@ import org.hibernate.annotations.ManyToAny;
  */
 @Entity
 @Table(name="Quirofanos")
+
+@NamedQueries({
+	@NamedQuery(name=Quirofano.LISTA_QUIROFANO,query="SELECT q FROM Quirofano q ")
+})
 public class Quirofano implements Serializable{
+	
+	public static final String LISTA_QUIROFANO ="quirofano.Lista";
+	
 
 	@Id
 	@Column(name="id_quirofano")
@@ -174,6 +183,13 @@ public class Quirofano implements Serializable{
 	 */
 	public void setHospital(Hospital hospital) {
 		this.hospital = hospital;
+	}
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return getNombre()+"";
 	}
 	
 	
